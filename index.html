@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Certemis — The Operational Memory Layer for Companies</title>
+<meta name="description" content="Certemis is the operational memory layer for software houses and agencies. Knowledge that stays with the company, not in people's heads.">
+<link rel="icon" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="progress"></div>
+
+<header id="hd" class="on-dark">
+  <div class="wrap nav">
+    <a class="brand" href="index.html" aria-label="Certemis"><span class="mark" aria-hidden="true"></span><span class="wordmark">CERTEMIS</span></a>
+    <nav class="nav-mid">
+      <a href="product.html" data-i18n="nav.product">Product</a>
+      <a href="how-it-works.html" data-i18n="nav.how">How it works</a>
+      <a href="early-access.html" data-i18n="nav.early">Early access</a>
+    </nav>
+    <div class="nav-right">
+      <div class="lang"><select id="langSel" aria-label="Language"><option value="en">EN</option><option value="pl">PL</option></select></div>
+      <a class="cta" href="early-access.html" data-i18n="nav.cta">Join the waitlist</a>
+      <button id="burger" class="burger" aria-label="Menu"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+    </div>
+  </div>
+</header>
+<nav id="mobile" class="mobile">
+  <a href="product.html" data-i18n="nav.product">Product</a>
+  <a href="how-it-works.html" data-i18n="nav.how">How it works</a>
+  <a href="early-access.html" data-i18n="nav.early">Early access</a>
+  <a href="early-access.html" data-i18n="nav.cta">Join the waitlist</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" data-hero-dark>
+  <div class="wrap hero-grid">
+    <div>
+      <div class="kicker" data-i18n="home.kicker">Operational memory layer</div>
+      <h1 data-i18n="home.h1">Your company's <span class="accent">memory</span>, kept where it belongs.</h1>
+      <p class="lead" data-i18n="home.lead">Certemis is the operational memory layer for software houses and agencies.</p>
+      <div class="actions">
+        <a class="btn btn-light" href="early-access.html" data-i18n="home.btn1">Join the waitlist</a>
+        <a class="btn btn-line" href="how-it-works.html" data-i18n="home.btn2">How it works</a>
+      </div>
+      <p class="hero-note" data-i18n="home.note">Currently in private early access.</p>
+    </div>
+    <div class="viz" aria-hidden="true">
+      <svg viewBox="0 0 360 360">
+        <path class="edge" d="M180 180 L86 84"/><path class="edge" d="M180 180 L286 92"/>
+        <path class="edge" d="M180 180 L300 210"/><path class="edge" d="M180 180 L210 306"/>
+        <path class="edge" d="M180 180 L70 268"/><path class="edge" d="M180 180 L58 176"/>
+        <path class="edge-live" d="M180 180 L286 92"/>
+        <path class="edge-live" d="M180 180 L210 306" style="animation-delay:-1.4s"/>
+        <path class="edge-live" d="M180 180 L58 176" style="animation-delay:-2.4s"/>
+        <circle class="ring ping" cx="180" cy="180" r="30"/>
+        <circle class="ring ping" cx="180" cy="180" r="30" style="animation-delay:-1.5s"/>
+        <g class="flt"><circle class="node" cx="86" cy="84" r="21"/><text class="node-lbl" x="86" y="88" data-i18n="g.docs">Docs</text></g>
+        <g class="flt b"><circle class="node" cx="286" cy="92" r="21"/><text class="node-lbl" x="286" y="96" data-i18n="g.slack">Slack</text></g>
+        <g class="flt c"><circle class="node" cx="300" cy="210" r="21"/><text class="node-lbl" x="300" y="214" data-i18n="g.repos">Repos</text></g>
+        <g class="flt"><circle class="node" cx="210" cy="306" r="21"/><text class="node-lbl" x="210" y="310" data-i18n="g.decisions">Decisions</text></g>
+        <g class="flt b"><circle class="node" cx="70" cy="268" r="21"/><text class="node-lbl" x="70" y="272" data-i18n="g.tickets">Tickets</text></g>
+        <g class="flt c"><circle class="node" cx="58" cy="176" r="21"/><text class="node-lbl" x="58" y="180" data-i18n="g.wiki">Wiki</text></g>
+        <circle class="ring" cx="180" cy="180" r="40" stroke-width="1" opacity=".45"/>
+        <circle class="node" cx="180" cy="180" r="30" style="fill:#2E5BFF;stroke:#2E5BFF"/>
+        <text class="node-lbl" x="180" y="185" style="fill:#fff;font-weight:700;font-size:15px">C</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="soft">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-i18n="home.s.kicker">The cost of forgetting</span>
+      <h2 data-i18n="home.s.h2">When someone leaves, the company forgets.</h2>
+      <p data-i18n="home.s.p">The most valuable knowledge lives in people's heads.</p>
+    </div>
+    <div class="strip" style="margin-top:54px">
+      <div class="stat reveal d1" data-count="3"><div class="num"><span class="v">0</span><span class="u">×</span></div><div class="cap" data-i18n="home.stat1cap"></div></div>
+      <div class="stat reveal d2" data-count="20"><div class="num"><span class="v">0</span><span class="u">%</span></div><div class="cap" data-i18n="home.stat2cap"></div></div>
+      <div class="stat reveal d3" data-count="100"><div class="num"><span class="v">0</span><span class="u">%</span></div><div class="cap" data-i18n="home.stat3cap"></div></div>
+    </div>
+    <p style="font-size:.84rem;color:var(--muted);margin-top:18px" data-i18n="home.stat.note"></p>
+  </div>
+</section>
+
+<!-- WHAT / TEASER -->
+<section>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-i18n="home.t.kicker">What Certemis is</span>
+      <h2 data-i18n="home.t.h2">Memory that doesn't leave with the people.</h2>
+      <p data-i18n="home.t.p">Not another wiki you have to write and maintain.</p>
+    </div>
+    <div class="reveal d1" style="margin-top:30px">
+      <a class="btn btn-dark" href="product.html"><span data-i18n="home.t.btn">Explore the product</span>
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- TERMINAL (animated) -->
+<section class="dark" data-hero-dark>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-i18n="term.kicker">In practice</span>
+      <h2 data-i18n="term.h2">Ask in plain language. Get the company's answer.</h2>
+    </div>
+    <div class="terminal reveal d1" aria-hidden="true">
+      <div class="term-bar"><i></i><i></i><i></i><span data-i18n="term.title">certemis — ask</span></div>
+      <div class="term-body">
+        <div><span class="term-prompt">&gt;</span> <span class="term-q type" data-i18n="term.q">How do we deploy the billing service?</span><span class="cursor"></span></div>
+        <span class="term-a" data-i18n="term.a">// Answer assembled from your repos, decisions and docs — scoped to your access.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AUDIENCE -->
+<section>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-i18n="aud.kicker">Who it's for</span>
+      <h2 data-i18n="aud.h2">Made for teams that run on people'

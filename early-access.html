@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Early access — Certemis</title>
+<meta name="description" content="Founding members: first 20 customers, 50% off for life. Apply for early access to Certemis.">
+<link rel="icon" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="progress"></div>
+
+<header id="hd" class="on-dark">
+  <div class="wrap nav">
+    <a class="brand" href="index.html" aria-label="Certemis"><span class="mark" aria-hidden="true"></span><span class="wordmark">CERTEMIS</span></a>
+    <nav class="nav-mid">
+      <a href="product.html" data-i18n="nav.product">Product</a>
+      <a href="how-it-works.html" data-i18n="nav.how">How it works</a>
+      <a href="early-access.html" class="active" data-i18n="nav.early">Early access</a>
+    </nav>
+    <div class="nav-right">
+      <div class="lang"><select id="langSel" aria-label="Language"><option value="en">EN</option><option value="pl">PL</option></select></div>
+      <a class="cta" href="#apply" data-i18n="nav.cta">Join the waitlist</a>
+      <button id="burger" class="burger" aria-label="Menu"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+    </div>
+  </div>
+</header>
+<nav id="mobile" class="mobile">
+  <a href="product.html" data-i18n="nav.product">Product</a>
+  <a href="how-it-works.html" data-i18n="nav.how">How it works</a>
+  <a href="early-access.html" data-i18n="nav.early">Early access</a>
+  <a href="#apply" data-i18n="nav.cta">Join the waitlist</a>
+</nav>
+
+<section class="phero" data-hero-dark>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow" data-i18n="ea.kicker">Early access</span>
+      <h1 data-i18n="ea.h1">Founding members: first 20 customers, 50% off for life.</h1>
+      <p data-i18n="ea.p">We're opening a limited founding cohort.</p>
+    </div>
+  </div>
+</section>
+
+<section class="soft" style="padding-top:64px">
+  <div class="wrap">
+    <div class="offer-card reveal">
+      <div class="offer-l">
+        <div class="spec" data-i18n="ea.ribbon">Founding offer · 20 spots only</div>
+        <div class="bigprice"><span class="pct">−50%</span><span class="ctx" data-i18n="ea.price.ctx">on the standard price</span></div>
+        <p style="color:var(--muted);margin-top:10px" data-i18n="ea.price.sub"></p>
+        <ul class="terms">
+          <li><svg class="mk" width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="ea.term1"></span></li>
+          <li><svg class="mk" width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="ea.term2"></span></li>
+          <li><svg class="mk" width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="ea.term3"></span></li>
+          <li><svg class="mk" width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="ea.term4"></span></li>
+        </ul>
+        <div class="pbar"><i></i></div>
+        <div class="pmeta"><span data-i18n="ea.meta.l">Founding cohort filling up</span><span data-i18n="ea.meta.r">20 spots</span></div>
+      </div>
+
+      <div class="offer-r">
+        <h3 data-i18n="ea.form.h3">Apply for founding access</h3>
+        <p class="sub" data-i18n="ea.form.sub">Tell us a little about your company.</p>
+        <form id="apply" novalidate>
+          <div class="frow">
+            <div class="field"><label data-i18n="l.name">Full name</label><input name="name" type="text" autocomplete="name" data-i18n-ph="ph.name"></div>
+            <div class="field"><label><span data-i18n="l.email">Work email</span> <span class="req">*</span></label><input name="email" type="email" required autocomplete="email" data-i18n-ph="ph.email"></div>
+          </div>
+          <div class="frow">
+            <div class="field"><label data-i18n="l.company">Company</label><input name="company" type="text" autocomplete="organization" data-i18n-ph="ph.company"></div>
+            <div class="field"><label data-i18n="l.website">Company website</label><input name="website" type="text" data-i18n-ph="ph.website"></div>
+          </div>
+          <div class="frow">
+            <div class="field"><label data-i18n="l.country">Country</label>
+              <select class="fld" name="country">
+                <option value="" data-i18n="opt.choose">Select…</option>
+                <option value="PL" data-i18n="c.pl">Poland</option>
+                <option value="DE" data-i18n="c.de">Germany</option>
+                <option value="UK" data-i18n="c.uk">United Kingdom</option>
+                <option value="NL" data-i18n="c.nl">Netherlands</option>
+                <option value="FR" data-i18n="c.fr">France</option>
+                <option value="ES" data-i18n="c.es">Spain</option>
+                <option value="SE" data-i18n="c.se">Sweden</option>
+                <option value="OTHER" data-i18n="c.other">Other (EU / UK)</option>
+              </select>
+            </div>
+            <div class="field"><label data-i18n="l.size">Company size</label>
+              <select class="fld" name="size">
+                <option value="" data-i18n="opt.choose">Select…</option>
+                <option value="1-29" data-i18n="size.1">1–29 people</option>
+                <option value="30-80" data-i18n="size.2">30–80 people</option>
+                <option value="81-150" data-i18n="size.3">81–150 people</option>
+                <option value="150+" data-i18n="size.4">150+ people</option>
+              </select>
+            </div>
+          </div>
+          <div class="field full"><label data-i18n="l.role">Your role</label><input name="role" type="text" data-i18n-ph="ph.role"></div>
+          <div class="field full"><label data-i18n="l.needs">What would you want Certemis to solve?</label><textarea name="needs" data-i18n-ph="ph.needs"></textarea></div>
+          <button class="btn btn-submit" type="submit" data-i18n="ea.submit">Apply for founding access</button>
+          <div class="msg" id="formMsg"></div>
+          <p class="consent" data-i18n="ea.consent"></p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head center reveal"><span class="eyebrow c" data-i18n="ea.faq.kicker">Questions</span><h2 data-i18n="ea.faq.h2">Good to know</h2></div>
+    <div class="faq" style="margin-top:50px">
+      <details open class="reveal"><summary><span data-i18n="q1"></span><svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></summary><p data-i18n="a1"></p></details>
+      <details class="reveal"><summary><span data-i18n="q2"></span><svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></summary><p data-i18n="a2"></p></details>
+      <details class="reveal"><summary><span data-i18n="q3"></span><svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></summary><p data-i18n="a3"></p></details>
+      <details class="reveal"><summary><span data-i18n="q4"></span><svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></summary><p data-i18n="a4"></p></details>
+      <details class="reveal"><summary><span data-i18n="q5"></span><svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></summary><p data-i18n="a5"></p></details>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand"><div class="brand"><span class="mark" aria-hidden="true"></span><span class="wordmark">CERTEMIS</span></div><p class="foot-tag" data-i18n="foot.tag"></p></div>
+      <div class="foot-nav">
+        <div><h4 data-i18n="foot.h.nav">Navigate</h4><a href="product.html" data-i18n="nav.product">Product</a><a href="how-it-works.html" data-i18n="nav.how">How it works</a><a href="early-access.html" data-i18n="nav.early">Early access</a></div>
+        <div><h4 data-i18n="foot.h.contact">Contact</h4><a href="mailto:hello@certemis.com">hello@certemis.com</a></div>
+      </div>
+    </div>
+    <div class="foot-bottom"><span>© <span id="yr"></span> <span data-i18n="foot.rights"></span></span><a href="mailto:hello@certemis.com">hello@certemis.com</a></div>
+  </div>
+</footer>
+<script src="site.js"></script>
+</body>
+</html>
+                                                                                                                                                                                                                                
