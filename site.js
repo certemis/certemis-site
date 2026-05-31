@@ -313,7 +313,7 @@
     var counts = document.querySelectorAll("[data-count]");
     for (var m = 0; m < counts.length; m++) cio.observe(counts[m]);
 
-    var FORM_ACTION = "";
+    var FORM_ACTION = "https://formspree.io/f/xnjryoyq";
 
     var form = document.getElementById("apply");
     if (form) {
