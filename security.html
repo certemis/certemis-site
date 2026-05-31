@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Security — Certemis</title>
+<meta name="description" content="How Certemis protects your operational knowledge: encryption, tenant isolation, EU data residency, permission-aware access, and no training of models on your data.">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="progress"></div>
+
+<header id="hd" class="on-dark">
+  <div class="wrap nav">
+    <a class="brand" href="index.html" aria-label="Certemis"><span class="mark" aria-hidden="true"></span><span class="wordmark">CERTEMIS</span></a>
+    <nav class="nav-mid">
+      <a href="about.html" data-i18n="nav.about">About</a>
+      <a href="product.html" data-i18n="nav.product">Product</a>
+      <a href="use-cases.html" data-i18n="nav.usecases">Use cases</a>
+      <a href="pricing.html" data-i18n="nav.pricing">Pricing</a>
+      <a href="how-it-works.html" data-i18n="nav.how">How it works</a>
+      <a href="early-access.html" data-i18n="nav.early">Early access</a>
+    </nav>
+    <div class="nav-right">
+      <div class="lang"><select id="langSel" aria-label="Language"><option value="en">EN</option><option value="pl">PL</option></select></div>
+      <a class="cta" href="early-access.html" data-i18n="nav.cta">Join the waitlist</a>
+      <button id="burger" class="burger" aria-label="Menu"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+    </div>
+  </div>
+</header>
+<nav id="mobile" class="mobile">
+  <a href="about.html" data-i18n="nav.about">About</a>
+  <a href="product.html" data-i18n="nav.product">Product</a>
+  <a href="use-cases.html" data-i18n="nav.usecases">Use cases</a>
+  <a href="pricing.html" data-i18n="nav.pricing">Pricing</a>
+  <a href="how-it-works.html" data-i18n="nav.how">How it works</a>
+  <a href="early-access.html" data-i18n="nav.early">Early access</a>
+  <a href="security.html" class="active" data-i18n="nav.security">Security</a>
+  <a href="early-access.html" data-i18n="nav.cta">Join the waitlist</a>
+</nav>
+
+<section class="phero" data-hero-dark>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow" data-i18n="sec.kicker">Security</span>
+      <h1 data-i18n="sec.h1">Built to be trusted with your most sensitive knowledge.</h1>
+      <p data-i18n="sec.p">Your operational knowledge is your most sensitive asset, so it's protected like one - from the first integration onward.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="eyebrow" data-i18n="sec.how.kicker">How we protect your data</span><h2 data-i18n="sec.how.h">Security built into the foundations, not bolted on.</h2></div>
+    <div class="features" style="margin-top:54px">
+      <div class="feat reveal d1"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="5" y="10" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M8 10V7a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="12" cy="15" r="1.4" fill="currentColor"/></svg></div><h3 data-i18n="sec.f1t">Encryption everywhere</h3><p data-i18n="sec.f1p"></p></div>
+      <div class="feat reveal d2"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="4" y="5" width="7" height="14" rx="1.6" stroke="currentColor" stroke-width="1.6"/><rect x="13" y="5" width="7" height="14" rx="1.6" stroke="currentColor" stroke-width="1.6"/></svg></div><h3 data-i18n="sec.f2t">Tenant isolation</h3><p data-i18n="sec.f2p"></p></div>
+      <div class="feat reveal d3"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 3 5 6v5c0 4.5 3 7.5 7 9 4-1.5 7-4.5 7-9V6l-7-3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="m9 12 2 2 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3 data-i18n="sec.f3t">EU data residency</h3><p data-i18n="sec.f3p"></p></div>
+      <div class="feat reveal d1"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.2" stroke="currentColor" stroke-width="1.6"/><path d="M5 20c0-3.5 3.1-6 7-6s7 2.5 7 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div><h3 data-i18n="sec.f4t">Permission-aware access</h3><p data-i18n="sec.f4p"></p></div>
+      <div class="feat reveal d2"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="1.6"/><path d="M7 7l10 10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div><h3 data-i18n="sec.f5t">No training on your data</h3><p data-i18n="sec.f5p"></p></div>
+      <div class="feat reveal d3"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="6" y="3" width="12" height="18" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M9 8h6M9 12h6M9 16h4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div><h3 data-i18n="sec.f6t">Audit &amp; logging</h3><p data-i18n="sec.f6p"></p></div>
+    </div>
+  </div>
+</section>
+
+<section class="dark">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="eyebrow" data-i18n="sec.ctrl.kicker">Your data, your control</span><h2 data-i18n="sec.ctrl.h">You decide what Certemis sees - and what it never touches.</h2></div>
+    <ul class="terms reveal" style="max-width:720px">
+      <li><svg class="mk" width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="sec.ctrl.1"></span></li>
+      <li><svg class="mk" width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="sec.ctrl.2"></span></li>
+      <li><svg class="mk" width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="sec.ctrl.3"></span></li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="eyebrow" data-i18n="sec.comp.kicker">Compliance &amp; roadmap</span><h2 data-i18n="sec.comp.h">Where we are on compliance - honestly.</h2><p data-i18n="sec.comp.p"></p></div>
+    <p class="reveal" style="max-width:720px;color:var(--muted);margin-top:18px" data-i18n="sec.comp.contact"></p>
+  </div>
+</section>
+
+<section class="soft">
+  <div class="wrap">
+    <div class="sec-head center reveal"><span class="eyebrow c" data-i18n="sec.faq.kicker">Questions</span><h2 data-i18n="sec.faq.h2">Security, answered</h2></div>
+    <div class="faq" style="margin-top:50px">
+      <details open class="reveal"><summary><span data-i18n="sec.q1"></span><svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></summary><p data-i18n="sec.a1"></p></details>
+      <details class="reveal"><summary><span data-i18n="sec.q2"></span><svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></summary><p data-i18n="sec.a2"></p></details>
+      <details class="reveal"><summary><span data-i18n="sec.q3"></span><svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></summary><p data-i18n="sec.a3"></p></details>
+    </div>
+  </div>
+</section>
+
+<section class="center">
+  <div class="wrap">
+    <div class="sec-head center reveal"><h2 data-i18n="sec.cta.h">Security-conscious teams are exactly who we build for.</h2></div>
+    <div class="reveal d1" style="margin-top:30px"><a class="btn btn-dark" href="early-access.html"><span data-i18n="sec.cta.btn">Join the waitlist</span><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand"><div class="brand"><span class="mark" aria-hidden="true"></span><span class="wordmark">CERTEMIS</span></div><p class="foot-tag" data-i18n="foot.tag"></p></div>
+      <div class="foot-nav">
+        <div><h4 data-i18n="foot.h.nav">Navigate</h4><a href="about.html" data-i18n="nav.about">About</a><a href="product.html" data-i18n="nav.product">Product</a><a href="use-cases.html" data-i18n="nav.usecases">Use cases</a><a href="pricing.html" data-i18n="nav.pricing">Pricing</a><a href="how-it-works.html" data-i18n="nav.how">How it works</a><a href="early-access.html" data-i18n="nav.early">Early access</a><a href="security.html" class="active" data-i18n="nav.security">Security</a></div>
+        <div><h4 data-i18n="foot.h.contact">Contact</h4><a href="mailto:hello@certemis.com">hello@certemis.com</a></div>
+      </div>
+    </div>
+    <div class="foot-bottom"><span>© <span id="yr"></span> <span data-i18n="foot.rights"></span></span><a href="mailto:hello@certemis.com">hello@certemis.com</a></div>
+  </div>
+</footer>
+<script src="site.js"></script>
+</body>
+</html>
