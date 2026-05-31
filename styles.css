@@ -42,11 +42,11 @@ header.on-dark.solid{background:rgba(10,10,11,.72);border-bottom:1px solid var(-
 .nav{display:flex;align-items:center;justify-content:space-between;height:80px;gap:20px}
 
 .brand{display:flex;align-items:center;gap:13px;color:var(--ink)}
-.brand .mark{width:99px;height:32px;flex:0 0 auto;background:currentColor;
+.brand .mark{width:172px;height:44px;flex:0 0 auto;background:currentColor;
   -webkit-mask:url(assets/logo-mask.png) left center/contain no-repeat;mask:url(assets/logo-mask.png) left center/contain no-repeat}
 .brand .wordmark{display:none}
 header.on-dark .brand{color:#fff}
-@media(max-width:520px){.brand .mark{width:86px;height:28px}}
+@media(max-width:520px){.brand .mark{width:140px;height:36px}}
 
 .nav-mid{display:flex;gap:40px;align-items:center}
 .nav-mid a{font-family:var(--body);font-weight:600;font-size:.94rem;letter-spacing:.05em;
