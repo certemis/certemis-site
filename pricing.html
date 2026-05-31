@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pricing — Certemis</title>
+<meta name="description" content="Simple, transparent pricing for Certemis — the operational memory layer. Plans for teams of every size, with EU data residency on every tier.">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="progress"></div>
+
+<header id="hd" class="on-dark">
+  <div class="wrap nav">
+    <a class="brand" href="index.html" aria-label="Certemis"><span class="mark" aria-hidden="true"></span><span class="wordmark">CERTEMIS</span></a>
+    <nav class="nav-mid">
+      <a href="about.html" data-i18n="nav.about">About</a>
+      <a href="product.html" data-i18n="nav.product">Product</a>
+      <a href="pricing.html" class="active" data-i18n="nav.pricing">Pricing</a>
+      <a href="how-it-works.html" data-i18n="nav.how">How it works</a>
+      <a href="early-access.html" data-i18n="nav.early">Early access</a>
+    </nav>
+    <div class="nav-right">
+      <div class="lang"><select id="langSel" aria-label="Language"><option value="en">EN</option><option value="pl">PL</option></select></div>
+      <a class="cta" href="early-access.html" data-i18n="nav.cta">Join the waitlist</a>
+      <button id="burger" class="burger" aria-label="Menu"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+    </div>
+  </div>
+</header>
+<nav id="mobile" class="mobile">
+  <a href="about.html" data-i18n="nav.about">About</a>
+  <a href="product.html" data-i18n="nav.product">Product</a>
+  <a href="pricing.html" data-i18n="nav.pricing">Pricing</a>
+  <a href="how-it-works.html" data-i18n="nav.how">How it works</a>
+  <a href="early-access.html" data-i18n="nav.early">Early access</a>
+  <a href="early-access.html" data-i18n="nav.cta">Join the waitlist</a>
+</nav>
+
+<section class="phero" data-hero-dark>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow" data-i18n="price.kicker">Pricing</span>
+      <h1 data-i18n="price.h1">Simple pricing that grows with your team.</h1>
+      <p data-i18n="price.p">Every plan includes EU data residency, a DPA, and permission-aware access. No training of models on your data, ever.</p>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:64px">
+  <div class="wrap">
+    <div class="plans">
+
+      <div class="plan reveal d1">
+        <div class="pname">Starter</div>
+        <div class="price">€149<span class="per" data-i18n="price.per">/mo</span></div>
+        <p class="pdesc" data-i18n="price.s.desc"></p>
+        <ul class="terms">
+          <li><svg class="mk" width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="price.s.f1"></span></li>
+          <li><svg class="mk" width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="price.s.f2"></span></li>
+          <li><svg class="mk" width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="price.s.f3"></span></li>
+          <li><svg class="mk" width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="price.s.f4"></span></li>
+          <li><svg class="mk" width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="price.s.f5"></span></li>
+          <li><svg class="mk" width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="price.s.f6"></span></li>
+        </ul>
+        <a class="btn btn-line" href="early-access.html"><span data-i18n="price.s.cta">Get started</span><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+
+      <div class="plan popular reveal d2">
+        <div class="badge" data-i18n="price.popular">Most popular</div>
+        <div class="pname">Growth</div>
+        <div class="price">€399<span class="per" data-i18n="price.per">/mo</span></div>
+        <p class="pdesc" data-i18n="price.g.desc"></p>
+        <ul class="terms">
+          <li><svg class="mk" width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="price.g.f1"></span></li>
+          <li><svg class="mk" width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="price.g.f2"></span></li>
+          <li><svg class="mk" width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="price.g.f3"></span></li>
+          <li><svg class="mk" width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="price.g.f4"></span></li>
+          <li><svg class="mk" width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="price.g.f5"></span></li>
+          <li><svg class="mk" width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="price.g.f6"></span></li>
+        </ul>
+        <a class="btn btn-accent" href="early-access.html"><span data-i18n="price.g.cta">Start with Growth</span><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+
+      <div class="plan reveal d3">
+        <div class="pname">Scale</div>
+        <div class="price">€899<span class="per" data-i18n="price.per">/mo</span></div>
+        <p class="pdesc" data-i18n="price.sc.desc"></p>
+        <ul class="terms">
+          <li><svg class="mk" width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="price.sc.f1"></span></li>
+          <li><svg class="mk" width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="price.sc.f2"></span></li>
+          <li><svg class="mk" width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="price.sc.f3"></span></li>
+          <li><svg class="mk" width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="price.sc.f4"></span></li>
+          <li><svg class="mk" width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="price.sc.f5"></span></li>
+          <li><svg class="mk" width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="price.sc.f6"></span></li>
+        </ul>
+        <a class="btn btn-line" href="early-access.html"><span data-i18n="price.sc.cta">Choose Scale</span><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+
+      <div class="plan reveal d1">
+        <div class="pname">Enterprise</div>
+        <div class="price" data-i18n="price.custom">Custom</div>
+        <p class="pdesc" data-i18n="price.e.desc"></p>
+        <ul class="terms">
+          <li><svg class="mk" width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="price.e.f1"></span></li>
+          <li><svg class="mk" width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="price.e.f2"></span></li>
+          <li><svg class="mk" width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="price.e.f3"></span></li>
+          <li><svg class="mk" width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="price.e.f4"></span></li>
+          <li><svg class="mk" width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="price.e.f5"></span></li>
+          <li><svg class="mk" width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="price.e.f6"></span></li>
+        </ul>
+        <a class="btn btn-line" href="mailto:hello@certemis.com"><span data-i18n="price.e.cta">Contact us</span><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+
+    </div>
+    <p class="price-note reveal" data-i18n="price.note"></p>
+  </div>
+</section>
+
+<section class="soft">
+  <div class="wrap">
+    <div class="sec-head center reveal"><span class="eyebrow c" data-i18n="price.faq.kicker">Questions</span><h2 data-i18n="price.faq.h2">Pricing, answered</h2></div>
+    <div class="faq" style="margin-top:50px">
+      <details open class="reveal"><summary><span data-i18n="price.q1"></span><svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></summary><p data-i18n="price.a1"></p></details>
+      <details class="reveal"><summary><span data-i18n="price.q2"></span><svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></summary><p data-i18n="price.a2"></p></details>
+      <details class="reveal"><summary><span data-i18n="price.q3"></span><svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></summary><p data-i18n="price.a3"></p></details>
+    </div>
+  </div>
+</section>
+
+<section class="center">
+  <div class="wrap">
+    <div class="sec-head center reveal"><h2 data-i18n="price.cta.h">Lock in founding-member pricing before launch.</h2></div>
+    <div class="reveal d1" style="margin-top:30px"><a class="btn btn-dark" href="early-access.html"><span data-i18n="price.cta.btn">Join the waitlist</span><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand"><div class="brand"><span class="mark" aria-hidden="true"></span><span class="wordmark">CERTEMIS</span></div><p class="foot-tag" data-i18n="foot.tag"></p></div>
+      <div class="foot-nav">
+        <div><h4 data-i18n="foot.h.nav">Navigate</h4><a href="about.html" data-i18n="nav.about">About</a><a href="product.html" data-i18n="nav.product">Product</a><a href="pricing.html" data-i18n="nav.pricing">Pricing</a><a href="how-it-works.html" data-i18n="nav.how">How it works</a><a href="early-access.html" data-i18n="nav.early">Early access</a></div>
+        <div><h4 data-i18n="foot.h.contact">Contact</h4><a href="mailto:hello@certemis.com">hello@certemis.com</a></div>
+      </div>
+    </div>
+    <div class="foot-bottom"><span>© <span id="yr"></span> <span data-i18n="foot.rights"></span></span><a href="mailto:hello@certemis.com">hello@certemis.com</a></div>
+  </div>
+</footer>
+<script src="site.js"></script>
+</body>
+</html>

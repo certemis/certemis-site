@@ -164,6 +164,32 @@ section{padding:110px 0}
 .dark .feat .ic{border-color:var(--line-dk);color:#fff}
 .dark .feat:hover{border-color:var(--muted-dk)}
 
+.btn-accent{background:var(--accent);color:#fff}
+.btn-accent:hover{background:var(--accent-dk);transform:translateY(-2px)}
+
+.plans{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;align-items:stretch;margin-top:54px}
+@media(max-width:920px){.plans{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:620px){.plans{grid-template-columns:1fr}}
+.plan{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:14px;
+  padding:32px 26px;background:var(--paper);transition:.25s;position:relative}
+.plan:hover{border-color:var(--ink);transform:translateY(-4px)}
+.plan.popular{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+.plan.popular:hover{border-color:var(--accent)}
+.plan .badge{position:absolute;top:-12px;left:26px;background:var(--accent);color:#fff;font-family:var(--display);
+  font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:5px 12px;border-radius:7px}
+.plan .pname{font-family:var(--display);font-size:.92rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.plan .price{font-family:var(--display);font-weight:700;font-size:2.5rem;line-height:1;margin-top:14px;color:var(--ink)}
+.plan .price .per{font-family:var(--body);font-size:1rem;font-weight:600;color:var(--muted);letter-spacing:0}
+.plan .pdesc{color:var(--muted);font-size:.97rem;margin:12px 0 0}
+.plan .terms{margin:22px 0 26px}
+.plan .terms li{font-size:.97rem;margin-bottom:13px}
+.plan .terms .mk{color:var(--accent)}
+.plan .btn{width:100%;justify-content:center;margin-top:auto;padding:14px 22px}
+.plan .btn-line{border-color:var(--line);color:var(--ink)}
+.plan .btn-line:hover{border-color:var(--ink);background:var(--paper-2)}
+.price-note{color:var(--muted);font-size:.92rem;text-align:center;margin-top:30px}
+.price-note a{color:var(--accent);text-decoration:underline}
+
 .compare{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);
   border:1px solid var(--line);border-radius:16px;overflow:hidden}
 @media(max-width:720px){.compare{grid-template-columns:1fr}}
