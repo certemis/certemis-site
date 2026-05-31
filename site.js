@@ -1,28 +1,21 @@
-/* ============================================================
-   CERTEMIS — shared site script
-   i18n (EN default + PL), language toggle (persisted),
-   header state, mobile menu, scroll reveal, count-up, form.
-============================================================ */
 (function () {
   "use strict";
 
-  /* ---------------- i18n dictionary ---------------- */
-  const I18N = {
+  var I18N = {
     en: {
       "nav.product": "Product",
       "nav.how": "How it works",
       "nav.early": "Early access",
       "nav.cta": "Join the waitlist",
 
-      "foot.tag": "The operational memory layer for companies. Knowledge that stays in the business — not in people's heads.",
+      "foot.tag": "The operational memory layer for companies. Knowledge that stays in the business - not in people's heads.",
       "foot.h.nav": "Navigate",
       "foot.h.contact": "Contact",
-      "foot.rights": "Certemis — Operational Memory Layer for Companies.",
+      "foot.rights": "Certemis - Operational Memory Layer for Companies.",
 
-      /* home */
       "home.kicker": "Operational memory layer",
       "home.h1": "Your company's <span class=\"accent\">memory</span>, kept where it belongs.",
-      "home.lead": "Certemis is the operational memory layer for software houses and agencies. It captures how your company actually works — decisions, context, know-how — so the knowledge stays in the business, not in people's heads.",
+      "home.lead": "Certemis is the operational memory layer for software houses and agencies. It captures how your company actually works - decisions, context, know-how - so the knowledge stays in the business, not in people's heads.",
       "home.btn1": "Join the waitlist",
       "home.btn2": "How it works",
       "home.note": "Currently in private early access. Founding-member access is opening to a limited cohort.",
@@ -31,11 +24,11 @@
 
       "home.s.kicker": "The cost of forgetting",
       "home.s.h2": "When someone leaves, the company forgets.",
-      "home.s.p": "The most valuable knowledge lives in people's heads, scattered threads, and the memory of a few seniors. When they leave, take leave, or simply forget — you pay for it again and again.",
+      "home.s.p": "The most valuable knowledge lives in people's heads, scattered threads, and the memory of a few seniors. When they leave, take leave, or simply forget - you pay for it again and again.",
       "home.stat1cap": "longer onboarding when new hires depend on seniors instead of a system.",
       "home.stat2cap": "of senior time lost to repeated questions that already have an answer.",
       "home.stat3cap": "of project context can leave with a single departure.",
-      "home.stat.note": "Illustrative figures — to be validated with customers.",
+      "home.stat.note": "Illustrative figures - to be validated with customers.",
 
       "home.t.kicker": "What Certemis is",
       "home.t.h2": "Memory that doesn't leave with the people.",
@@ -45,14 +38,14 @@
       "aud.kicker": "Who it's for",
       "aud.h2": "Made for teams that run on people's knowledge.",
       "aud.1t": "Software houses", "aud.1p": "Project-based, senior-heavy, high rotation. Onboarding and context loss hit hardest here.",
-      "aud.2t": "Digital & creative agencies", "aud.2p": "Many clients, much context — who agreed what, and why. Keep it all in one place.",
+      "aud.2t": "Digital & creative agencies", "aud.2p": "Many clients, much context - who agreed what, and why. Keep it all in one place.",
       "aud.3t": "Consulting & IT services", "aud.3p": "Knowledge is the product. Losing it is the most expensive thing that can happen.",
 
       "cmp.kicker": "Not another wiki",
       "cmp.h2": "The difference is who does the work.",
       "cmp.old.h": "The manual way", "cmp.new.h": "With Certemis",
       "cmp.o1": "Someone has to write and update every page.",
-      "cmp.o2": "Answers live in five chats — often conflicting.",
+      "cmp.o2": "Answers live in five chats - often conflicting.",
       "cmp.o3": "When a senior leaves, the context leaves too.",
       "cmp.n1": "Context is captured automatically as work happens.",
       "cmp.n2": "One current answer, scoped to your permissions.",
@@ -60,47 +53,44 @@
 
       "term.kicker": "In practice",
       "term.h2": "Ask in plain language. Get the company's answer.",
-      "term.title": "certemis — ask",
+      "term.title": "certemis - ask",
       "term.q": "How do we deploy the billing service?",
-      "term.a": "// Answer assembled from your repos, decisions and docs — scoped to your access.",
+      "term.a": "// Answer assembled from your repos, decisions and docs - scoped to your access.",
 
-      /* product */
       "prod.kicker": "Product",
       "prod.h1": "One memory layer for everything your company knows.",
       "prod.p": "Certemis unifies the operational knowledge scattered across your tools and your people into a single, permission-aware layer your whole team can query in plain language.",
       "prod.f.h2": "Built for how technical teams actually work.",
       "f1.t": "Faster onboarding", "f1.p": "New people ask the system instead of pulling a senior off client work. Ramp-up in days, not weeks.",
       "f2.t": "Continuity", "f2.p": "Project knowledge and the reasoning behind decisions stay in the company as people rotate.",
-      "f3.t": "One source of truth", "f3.p": "“How do we do this?” gets one current answer — not five conflicting ones across five chats.",
+      "f3.t": "One source of truth", "f3.p": "How do we do this? gets one current answer - not five conflicting ones across five chats.",
       "f4.t": "EU-first & private", "f4.p": "EU data residency, GDPR-ready, a DPA with every client, and no training of models on your data.",
       "f5.t": "Permissions respected", "f5.p": "Role-based access means the system never shows anyone more than they're allowed to see.",
-      "f6.t": "Low maintenance", "f6.p": "Built to capture context automatically — without the discipline a manual wiki demands.",
+      "f6.t": "Low maintenance", "f6.p": "Built to capture context automatically - without the discipline a manual wiki demands.",
       "prod.sec.kicker": "Security",
       "prod.sec.h2": "Your knowledge, treated as your most sensitive asset.",
       "prod.sec.p": "Encryption in transit and at rest, strict tenant isolation, EU data residency, a Data Processing Agreement with every customer, and a clear contractual commitment that your data is never used to train models.",
       "prod.cta": "Request early access",
 
-      /* how */
       "how.kicker": "How it works",
       "how.h1": "Set up once. Useful from day one.",
       "how.p": "Four steps from scattered knowledge to a living memory your whole team can query.",
-      "s1.t": "Connect your knowledge sources", "s1.p": "Point Certemis at where your knowledge already lives. You choose exactly what it remembers — and what it never touches.",
+      "s1.t": "Connect your knowledge sources", "s1.p": "Point Certemis at where your knowledge already lives. You choose exactly what it remembers - and what it never touches.",
       "s2.t": "It organises and indexes automatically", "s2.p": "Certemis ingests and structures the context in the background. No manual tagging, no busywork for your team.",
       "s3.t": "Your team just asks", "s3.p": "Anyone gets answers on demand, in plain language, scoped strictly to what they are allowed to see.",
-      "s4.t": "Knowledge compounds", "s4.p": "As work happens the memory grows — so the company gets smarter over time instead of forgetting.",
+      "s4.t": "Knowledge compounds", "s4.p": "As work happens the memory grows - so the company gets smarter over time instead of forgetting.",
       "how.cta.h2": "Be among the first teams to run on Certemis.",
       "how.cta.btn": "Join the waitlist",
 
-      /* early access */
       "ea.kicker": "Early access",
       "ea.h1": "Founding members: first 20 customers, 50% off for life.",
       "ea.p": "We're opening a limited founding cohort. Tell us about your team and lock in the founding-member price at launch.",
-      "ea.ribbon": "Founding offer · 20 spots only",
+      "ea.ribbon": "Founding offer - 20 spots only",
       "ea.price.ctx": "on the standard price",
-      "ea.price.sub": "A lifetime discount for the first 20 customers — held for as long as your subscription stays active.",
-      "ea.term1": "<b>50% off for life</b> — applies the entire time you remain a customer.",
+      "ea.price.sub": "A lifetime discount for the first 20 customers - held for as long as your subscription stays active.",
+      "ea.term1": "<b>50% off for life</b> - applies the entire time you remain a customer.",
       "ea.term2": "Reserved for the <b>first 20 customers</b> who join from the waitlist.",
-      "ea.term3": "Open <b>only to waitlist members</b> — apply below to be eligible.",
+      "ea.term3": "Open <b>only to waitlist members</b> - apply below to be eligible.",
       "ea.term4": "Held with <b>continuous subscription</b>. If it lapses, the founding price ends.",
       "ea.meta.l": "Founding cohort filling up", "ea.meta.r": "20 spots",
 
@@ -111,23 +101,23 @@
       "l.role": "Your role", "l.needs": "What would you want Certemis to solve?",
       "ph.name": "Jane Kowalski", "ph.email": "you@company.com", "ph.company": "Company name",
       "ph.website": "company.com", "ph.role": "e.g. CTO, Head of Engineering",
-      "ph.needs": "Onboarding speed, knowledge loss when people leave, scattered context…",
-      "opt.choose": "Select…",
-      "size.1": "1–29 people", "size.2": "30–80 people", "size.3": "81–150 people", "size.4": "150+ people",
+      "ph.needs": "Onboarding speed, knowledge loss when people leave, scattered context...",
+      "opt.choose": "Select...",
+      "size.1": "1-29 people", "size.2": "30-80 people", "size.3": "81-150 people", "size.4": "150+ people",
       "c.pl": "Poland", "c.de": "Germany", "c.uk": "United Kingdom", "c.nl": "Netherlands",
       "c.fr": "France", "c.es": "Spain", "c.se": "Sweden", "c.other": "Other (EU / UK)",
       "ea.submit": "Apply for founding access",
-      "ea.consent": "By applying you agree to receive launch updates from Certemis. Only product news and your founding-member offer — no spam, unsubscribe anytime.",
+      "ea.consent": "By applying you agree to receive launch updates from Certemis. Only product news and your founding-member offer - no spam, unsubscribe anytime.",
       "ea.faq.kicker": "Questions",
       "ea.faq.h2": "Good to know",
-      "q1": "Is the product available now?", "a1": "Not yet. We're in private early access. Apply and you'll be notified the moment it goes live — applicants get first access to the founding-member offer.",
+      "q1": "Is the product available now?", "a1": "Not yet. We're in private early access. Apply and you'll be notified the moment it goes live - applicants get first access to the founding-member offer.",
       "q2": "How does the 50%-for-life offer work?", "a2": "The first 20 customers who join from the waitlist lock in 50% off the standard price for the entire time they stay subscribed, as long as the subscription remains active without interruption.",
       "q3": "What if I pause or cancel?", "a3": "The founding discount is tied to continuous subscription. If it lapses, the founding price ends and standard pricing applies on return.",
-      "q4": "Who is Certemis for?", "a4": "Teams where operational knowledge is critical and people rotate — software houses, agencies, and consulting firms.",
+      "q4": "Who is Certemis for?", "a4": "Teams where operational knowledge is critical and people rotate - software houses, agencies, and consulting firms.",
       "q5": "How is our data protected?", "a5": "EU data residency, GDPR-ready, a DPA with every customer, encryption in transit and at rest, strict tenant isolation, and no training of models on your data.",
       "msg.invalid": "Please enter a valid work email.",
-      "msg.demo": "Thank you — your application is recorded. (Demo mode: connect a form endpoint to receive submissions.)",
-      "msg.ok": "Thank you — your application is in. We'll be in touch as launch approaches.",
+      "msg.demo": "Thank you - your application is recorded. (Demo mode: connect a form endpoint to receive submissions.)",
+      "msg.ok": "Thank you - your application is in. We'll be in touch as launch approaches.",
       "msg.err": "Something went wrong. Please email hello@certemis.com and we'll add you."
     },
     pl: {
@@ -181,7 +171,7 @@
 
       "term.kicker": "W praktyce",
       "term.h2": "Pytaj naturalnym językiem. Dostań odpowiedź firmy.",
-      "term.title": "certemis — zapytanie",
+      "term.title": "certemis - zapytanie",
       "term.q": "Jak wdrażamy serwis płatności?",
       "term.a": "// Odpowiedź złożona z repozytoriów, decyzji i dokumentów — w zakresie Twoich uprawnień.",
 
@@ -213,7 +203,7 @@
       "ea.kicker": "Wczesny dostęp",
       "ea.h1": "Founding members: pierwszych 20 klientów, 50% taniej na zawsze.",
       "ea.p": "Otwieramy ograniczoną grupę founding. Opowiedz nam o swoim zespole i zablokuj cenę founding-member na starcie.",
-      "ea.ribbon": "Oferta founding · tylko 20 miejsc",
+      "ea.ribbon": "Oferta founding — tylko 20 miejsc",
       "ea.price.ctx": "od ceny standardowej",
       "ea.price.sub": "Dożywotni rabat dla pierwszych 20 klientów — utrzymany tak długo, jak aktywna jest subskrypcja.",
       "ea.term1": "<b>50% taniej na zawsze</b> — przez cały czas, gdy jesteś klientem.",
@@ -226,7 +216,7 @@
       "ea.form.sub": "Napisz nam trochę o swojej firmie, byśmy dopasowali wczesny dostęp.",
       "l.name": "Imię i nazwisko", "l.email": "E-mail służbowy", "l.company": "Firma",
       "l.website": "Strona firmy", "l.country": "Kraj", "l.size": "Wielkość firmy",
-      "l.role": "Twoja rola", "l.needs": "Co Certemis miałby rozwiązać u Was?",
+      "l.role": "Twoja rola", "l.needs": "Co Certemis mialby rozwiazac u Was?",
       "ph.name": "Jan Kowalski", "ph.email": "ty@firma.com", "ph.company": "Nazwa firmy",
       "ph.website": "firma.pl", "ph.role": "np. CTO, Head of Engineering",
       "ph.needs": "Tempo onboardingu, utrata wiedzy przy odejściach, rozproszony kontekst…",
@@ -250,23 +240,25 @@
     }
   };
 
-  const LS_KEY = "certemis_lang";
-  let lang = localStorage.getItem(LS_KEY) || "en";
+  var LS_KEY = "certemis_lang";
+  var lang = localStorage.getItem(LS_KEY) || "en";
   if (!I18N[lang]) lang = "en";
 
-  function t(key) { return (I18N[lang] && I18N[lang][key]) || (I18N.en[key]) || ""; }
+  function t(key) { return (I18N[lang] && I18N[lang][key]) || I18N.en[key] || ""; }
 
   function apply() {
     document.documentElement.lang = lang;
-    document.querySelectorAll("[data-i18n]").forEach(function (el) {
-      const v = t(el.getAttribute("data-i18n"));
-      if (v) el.innerHTML = v;
-    });
-    document.querySelectorAll("[data-i18n-ph]").forEach(function (el) {
-      const v = t(el.getAttribute("data-i18n-ph"));
-      if (v) el.setAttribute("placeholder", v);
-    });
-    const sel = document.getElementById("langSel");
+    var els = document.querySelectorAll("[data-i18n]");
+    for (var i = 0; i < els.length; i++) {
+      var v = t(els[i].getAttribute("data-i18n"));
+      if (v) els[i].innerHTML = v;
+    }
+    var phs = document.querySelectorAll("[data-i18n-ph]");
+    for (var j = 0; j < phs.length; j++) {
+      var pv = t(phs[j].getAttribute("data-i18n-ph"));
+      if (pv) phs[j].setAttribute("placeholder", pv);
+    }
+    var sel = document.getElementById("langSel");
     if (sel) sel.value = lang;
   }
 
@@ -278,9 +270,68 @@
   document.addEventListener("DOMContentLoaded", function () {
     apply();
 
-    const langSel = document.getElementById("langSel");
+    var langSel = document.getElementById("langSel");
     if (langSel) langSel.addEventListener("change", function () { setLang(langSel.value); });
 
-    /* header state */
-    const hd = document.getElementById("hd");
-    const heroDark = document.querySelector("[data-hero-dar
+    var hd = document.getElementById("hd");
+    var heroDark = document.querySelector("[data-hero-dark]");
+    function onScroll() {
+      var y = window.scrollY;
+      if (hd) {
+        hd.classList.toggle("solid", y > 20);
+        if (heroDark) {
+          var limit = heroDark.offsetHeight - 90;
+          hd.classList.toggle("on-dark", y < limit);
+        }
+      }
+      var h = document.documentElement;
+      var p = document.getElementById("progress");
+      if (p) p.style.width = (h.scrollTop / (h.scrollHeight - h.clientHeight) * 100) + "%";
+    }
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+
+    var burger = document.getElementById("burger");
+    var mobile = document.getElementById("mobile");
+    if (burger && mobile) burger.addEventListener("click", function () { mobile.classList.toggle("open"); });
+
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+    }, { threshold: .15 });
+    var rev = document.querySelectorAll(".reveal");
+    for (var k = 0; k < rev.length; k++) io.observe(rev[k]);
+
+    var cio = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        var el = e.target, target = +el.dataset.count, span = el.querySelector(".v");
+        var cur = 0, step = Math.max(1, Math.round(target / 38));
+        var tm = setInterval(function () { cur += step; if (cur >= target) { cur = target; clearInterval(tm); } span.textContent = cur; }, 26);
+        cio.unobserve(el);
+      });
+    }, { threshold: .6 });
+    var counts = document.querySelectorAll("[data-count]");
+    for (var m = 0; m < counts.length; m++) cio.observe(counts[m]);
+
+    var FORM_ACTION = "";
+
+    var form = document.getElementById("apply");
+    if (form) {
+      var msg = document.getElementById("formMsg");
+      var show = function (cls, key) { msg.className = "msg " + cls; msg.textContent = t(key); };
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        var emailEl = form.querySelector("[name=email]");
+        var email = emailEl ? emailEl.value.trim() : "";
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { show("err", "msg.invalid"); return; }
+        if (!FORM_ACTION) { show("ok", "msg.demo"); form.reset(); return; }
+        fetch(FORM_ACTION, { method: "POST", headers: { "Accept": "application/json" }, body: new FormData(form) })
+          .then(function (r) { if (r.ok) { show("ok", "msg.ok"); form.reset(); } else { show("err", "msg.err"); } })
+          .catch(function () { show("err", "msg.err"); });
+      });
+    }
+
+    var yr = document.getElementById("yr");
+    if (yr) yr.textContent = new Date().getFullYear();
+  });
+})();
