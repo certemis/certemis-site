@@ -84,7 +84,7 @@
       "how.cta.btn": "Join the waitlist",
 
       "about.kicker": "About Certemis",
-      "about.h1": "We keep what your company knows from walking out the door.",
+      "about.h1": "Your company's knowledge shouldn't leave when people do.",
       "about.p": "Certemis is building the operational memory layer for teams whose most valuable knowledge lives in people's heads. We're early, focused, and building alongside the teams who feel the problem most.",
       "about.mission.kicker": "Our mission",
       "about.mission.h": "Make a company's knowledge outlast the people who hold it.",
@@ -99,7 +99,7 @@
       "about.v3p": "We'd rather earn trust with something that quietly works than ship a demo that dazzles once. Every decision is measured against whether it helps real teams do real work.",
       "about.why.kicker": "Why now",
       "about.why.h": "Why operational memory, and why now.",
-      "about.why.p": "Teams have never produced more context - across repos, chats, docs and decisions - and have never had a harder time holding onto it. Tools that can finally read and connect that context in plain language only became practical recently. We think the timing is right to build memory that captures how a company works as the work happens, instead of asking people to write it all down after the fact.",
+      "about.why.p": "Teams have never produced more context - across repos, chats, docs and decisions - and have never had a harder time holding onto it. Tools that can finally read and connect that context in plain language only became practical recently. We think the timing is right to build memory designed to capture how a company works as the work happens, instead of asking people to write it all down after the fact.",
       "about.cta.h": "We're building Certemis with our earliest teams.",
       "about.cta.btn": "Join the waitlist",
 
@@ -223,7 +223,7 @@
       "how.cta.btn": "Dołącz do listy",
 
       "about.kicker": "O Certemis",
-      "about.h1": "Sprawiamy, że wiedza firmy nie wychodzi razem z ludźmi.",
+      "about.h1": "Wiedza Twojej firmy nie powinna odchodzić razem z ludźmi.",
       "about.p": "Certemis buduje warstwę pamięci operacyjnej dla zespołów, których najcenniejsza wiedza żyje w głowach ludzi. Jesteśmy na wczesnym etapie - skupieni i budujący razem z zespołami, które najmocniej odczuwają ten problem.",
       "about.mission.kicker": "Nasza misja",
       "about.mission.h": "Sprawić, by wiedza firmy przetrwała ludzi, którzy ją trzymają.",
@@ -238,7 +238,7 @@
       "about.v3p": "Wolimy zdobyć zaufanie czymś, co po cichu działa, niż pokazać demo, które olśniewa tylko raz. Każdą decyzję mierzymy tym, czy pomaga realnym zespołom w realnej pracy.",
       "about.why.kicker": "Dlaczego teraz",
       "about.why.h": "Dlaczego pamięć operacyjna i dlaczego teraz.",
-      "about.why.p": "Zespoły nigdy nie tworzyły tyle kontekstu - w repozytoriach, czatach, dokumentach i decyzjach - i nigdy nie było im trudniej go utrzymać. Narzędzia, które potrafią wreszcie czytać i łączyć ten kontekst naturalnym językiem, stały się praktyczne dopiero niedawno. Uważamy, że to właściwy moment, by budować pamięć utrwalającą sposób pracy firmy w trakcie jej trwania, zamiast prosić ludzi, by spisywali wszystko po fakcie.",
+      "about.why.p": "Zespoły nigdy nie tworzyły tylu informacji - w repozytoriach, czatach, dokumentach i decyzjach - i nigdy nie było tak trudno ich nie tracić. Narzędzia, które potrafią wreszcie czytać i łączyć ten kontekst naturalnym językiem, stały się praktyczne dopiero niedawno. Uważamy, że to właściwy moment, by budować pamięć zaprojektowaną tak, by utrwalała sposób pracy firmy w trakcie jej wykonywania - zamiast prosić ludzi, żeby spisywali wszystko po fakcie.",
       "about.cta.h": "Budujemy Certemis z naszymi pierwszymi zespołami.",
       "about.cta.btn": "Dołącz do listy",
 
