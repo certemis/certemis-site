@@ -584,6 +584,8 @@
     }
     var sel = document.getElementById("langSel");
     if (sel) sel.value = lang;
+    var selM = document.getElementById("langSelMobile");
+    if (selM) selM.value = lang;
   }
 
   function setLang(l) {
@@ -596,6 +598,8 @@
 
     var langSel = document.getElementById("langSel");
     if (langSel) langSel.addEventListener("change", function () { setLang(langSel.value); });
+    var langSelMobile = document.getElementById("langSelMobile");
+    if (langSelMobile) langSelMobile.addEventListener("change", function () { setLang(langSelMobile.value); });
 
     var hd = document.getElementById("hd");
     var heroDark = document.querySelector("[data-hero-dark]");
