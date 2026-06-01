@@ -881,3 +881,16 @@ footer{background:var(--ink);color:var(--muted-dk);padding:62px 0 42px}
   .pc-hero{padding:120px 0 76px}
   .pc-hero-bars{height:92px;margin-top:40px;gap:6px}
 }
+
+/* === Use-cases: per-scenario reality-check stat + "Why it adds up" metrics === */
+.uc-stat{margin:24px 0 0;padding:11px 0 11px 18px;border-left:3px solid var(--accent);
+  color:var(--muted);font-size:.96rem;line-height:1.5;max-width:60ch}
+.uc-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;margin-top:50px}
+.uc-metric-n{font-family:var(--display);font-weight:700;color:var(--accent);line-height:1;font-size:clamp(2rem,4vw,2.9rem)}
+.uc-metric-c{color:var(--muted-dk);font-size:1rem;margin-top:12px;max-width:32ch}
+.uc-src{margin-top:30px;color:var(--muted-dk);font-size:.86rem;opacity:.85}
+.uc-src a{color:#b6b6c2;text-decoration:underline;text-underline-offset:2px;transition:color .2s}
+.uc-src a:hover{color:#fff}
+@media(max-width:680px){
+  .uc-metrics{grid-template-columns:1fr;gap:26px}
+}
