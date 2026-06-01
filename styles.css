@@ -624,3 +624,60 @@ footer{background:var(--ink);color:var(--muted-dk);padding:62px 0 42px}
   .ab-statement{column-gap:22px}
   .ab-val{gap:20px;padding:26px 0}
 }
+
+/* ===================================================================
+   Use-cases — unique animated banner ("knowledge quietly slips away")
+   and living scenario panels. Page-scoped; global .phero is untouched.
+   =================================================================== */
+.uc-hero{position:relative;overflow:hidden;background:var(--ink);color:#fff;padding:150px 0 112px}
+.uc-hero::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:radial-gradient(circle at 50% 28%,rgba(46,91,255,.12),transparent 60%)}
+.uc-hero-inner{position:relative;z-index:2;max-width:880px;margin:0 auto;text-align:center}
+.uc-hero .eyebrow{justify-content:center;color:var(--muted-dk)}
+.uc-hero h1{font-size:clamp(2.2rem,5.4vw,4rem);line-height:1.04;margin:.32em 0 .34em}
+.uc-hero p{color:var(--muted-dk);font-size:clamp(1.05rem,1.6vw,1.32rem);max-width:60ch;margin:0 auto}
+
+/* drifting, fading knowledge particles */
+.uc-hero-fx{position:absolute;inset:0;z-index:1;overflow:hidden;pointer-events:none}
+.uc-hero-fx span{position:absolute;width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.5);opacity:.22}
+.uc-hero-fx span.a{background:var(--accent)}
+.uc-hero-fx span.lg{width:7px;height:7px}
+
+/* fading dot trail woven under the copy (theme accent) */
+.uc-hero-trail{display:flex;gap:9px;justify-content:center;margin-top:30px}
+.uc-hero-trail i{width:7px;height:7px;border-radius:50%;background:var(--accent);opacity:.85}
+
+@keyframes uc-drift{0%{opacity:0;transform:translate3d(0,0,0) scale(.5)}20%{opacity:.5}75%{opacity:.16}100%{opacity:0;transform:translate3d(var(--dx,10px),-46px,0) scale(1.15)}}
+@keyframes uc-fadeout{0%,100%{opacity:.85;transform:translateY(0)}60%{opacity:.06;transform:translateY(-4px)}}
+@keyframes uc-hero-in{from{opacity:0;transform:translateY(16px);filter:blur(6px)}to{opacity:1;transform:none;filter:blur(0)}}
+
+/* living scenario panels */
+@keyframes uc-pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.13)}}
+@keyframes uc-twinkle{0%,100%{opacity:1}50%{opacity:.3}}
+@keyframes uc-ghost{0%,100%{opacity:.5}50%{opacity:.1}}
+@keyframes uc-flow{to{stroke-dashoffset:-24}}
+
+@media (prefers-reduced-motion: no-preference){
+  .uc-hero-fx span{animation:uc-drift var(--t,9s) ease-in-out var(--d,0s) infinite}
+  .uc-hero-trail i{animation:uc-fadeout 3s ease-in-out infinite}
+  .uc-hero-trail i:nth-child(2){animation-delay:.4s}
+  .uc-hero-trail i:nth-child(3){animation-delay:.8s}
+
+  .uc-hero-inner .eyebrow,.uc-hero-inner h1,.uc-hero-inner p{animation:uc-hero-in .8s cubic-bezier(.2,.7,.2,1) both}
+  .uc-hero-inner h1{animation-delay:.1s}
+  .uc-hero-inner p{animation-delay:.2s}
+  .uc-hero-trail{animation:uc-hero-in .8s cubic-bezier(.2,.7,.2,1) .3s both}
+
+  .uc-panel .uc-node.accent{transform-box:fill-box;transform-origin:center;animation:uc-pulse 3s ease-in-out infinite}
+  .uc-panel .uc-node.ghost{animation:uc-ghost 4s ease-in-out infinite}
+  .uc-panel .uc-dot{transform-box:fill-box;transform-origin:center;animation:uc-twinkle 3s ease-in-out infinite}
+  .uc-panel .uc-dot:nth-of-type(2){animation-delay:.5s}
+  .uc-panel .uc-dot:nth-of-type(3){animation-delay:1s}
+  .uc-panel .uc-dot:nth-of-type(4){animation-delay:1.5s}
+  .uc-panel .uc-dot:nth-of-type(5){animation-delay:2s}
+  .uc-panel .uc-line{stroke-dasharray:5 7;animation:uc-flow 2.4s linear infinite}
+}
+
+@media(max-width:560px){
+  .uc-hero{padding:120px 0 84px}
+}
