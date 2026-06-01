@@ -280,7 +280,25 @@
       "msg.invalid": "Please enter a valid work email.",
       "msg.demo": "Thank you - your application is recorded. (Demo mode: connect a form endpoint to receive submissions.)",
       "msg.ok": "Thank you - your application is in. We'll be in touch as launch approaches.",
-      "msg.err": "Something went wrong. Please email hello@certemis.com and we'll add you."
+      "msg.err": "Something went wrong. Please email hello@certemis.com and we'll add you.",
+
+      "nav.privacy": "Privacy",
+      "priv.kicker": "Legal",
+      "priv.h1": "Privacy &amp; data",
+      "priv.p": "How we handle the information you share with us - in plain language. Last updated 1 June 2026.",
+      "priv.note": "Certemis is being established as a company; this notice will be expanded with full legal details once incorporation is complete.",
+      "priv.s1.h": "What we collect",
+      "priv.s1.p": "When you apply for early access, we collect only the details you choose to share in the form: your name, work email, company, website, country, team size, role, and a short description of your needs. We don't track you across the web or buy data about you.",
+      "priv.s2.h": "How we use it",
+      "priv.s2.p": "We use your information for one purpose: to contact you about early access and to let you know when Certemis launches. We never sell or rent your personal data to third parties.",
+      "priv.s3.h": "Where it goes",
+      "priv.s3.p": "The early-access form is handled by Formspree, our form provider, and this site is hosted on Cloudflare. We keep your details only as long as we need them to stay in touch, and you can ask us to delete them at any time by emailing hello@certemis.com.",
+      "priv.s4.h": "Cookies",
+      "priv.s4.p": "This site uses no tracking or advertising cookies. Any analytics we run are anonymous and cookieless. Because nothing here requires consent, you won't see a cookie banner.",
+      "priv.s5.h": "Your rights",
+      "priv.s5.p": "You can ask us to access, correct, or delete the personal data you have shared with us - just email hello@certemis.com and we'll take care of it.",
+      "priv.s6.h": "Contact",
+      "priv.s6.p": "Questions about privacy or your data? Email us at hello@certemis.com."
     },
     pl: {
       "nav.about": "O nas",
@@ -560,7 +578,25 @@
       "msg.invalid": "Podaj prawidłowy e-mail służbowy.",
       "msg.demo": "Dziękujemy — Twoja aplikacja została zapisana. (Tryb demo: podłącz endpoint formularza, by odbierać zgłoszenia.)",
       "msg.ok": "Dziękujemy — aplikacja przyjęta. Odezwiemy się w okolicach startu.",
-      "msg.err": "Coś poszło nie tak. Napisz na hello@certemis.com, a dodamy Cię ręcznie."
+      "msg.err": "Coś poszło nie tak. Napisz na hello@certemis.com, a dodamy Cię ręcznie.",
+
+      "nav.privacy": "Prywatność",
+      "priv.kicker": "Informacje prawne",
+      "priv.h1": "Prywatność i dane",
+      "priv.p": "Jak postępujemy z informacjami, które nam przekazujesz — prostym językiem. Ostatnia aktualizacja: 1 czerwca 2026.",
+      "priv.note": "Certemis jest w trakcie rejestracji jako spółka; ta informacja zostanie rozszerzona o pełne dane prawne po zakończeniu rejestracji.",
+      "priv.s1.h": "Co zbieramy",
+      "priv.s1.p": "Gdy aplikujesz o wczesny dostęp, zbieramy wyłącznie dane, które sam zdecydujesz się podać w formularzu: imię, służbowy e-mail, firmę, stronę, kraj, wielkość zespołu, rolę oraz krótki opis potrzeb. Nie śledzimy Cię w sieci ani nie kupujemy danych na Twój temat.",
+      "priv.s2.h": "Jak je wykorzystujemy",
+      "priv.s2.p": "Twoje dane wykorzystujemy w jednym celu: aby skontaktować się z Tobą w sprawie wczesnego dostępu i poinformować Cię o starcie Certemis. Nigdy nie sprzedajemy ani nie wynajmujemy Twoich danych osobowych podmiotom trzecim.",
+      "priv.s3.h": "Gdzie trafiają",
+      "priv.s3.p": "Formularz wczesnego dostępu obsługuje Formspree — nasz dostawca formularzy, a strona jest hostowana w Cloudflare. Przechowujemy Twoje dane tylko tak długo, jak potrzebujemy ich do kontaktu, a w każdej chwili możesz poprosić o ich usunięcie, pisząc na hello@certemis.com.",
+      "priv.s4.h": "Pliki cookie",
+      "priv.s4.p": "Ta strona nie używa plików cookie śledzących ani reklamowych. Ewentualna analityka jest anonimowa i nie korzysta z cookies. Ponieważ nic tutaj nie wymaga zgody, nie zobaczysz banera cookie.",
+      "priv.s5.h": "Twoje prawa",
+      "priv.s5.p": "Możesz poprosić o dostęp do swoich danych osobowych, ich poprawienie lub usunięcie — wystarczy napisać na hello@certemis.com, a my się tym zajmiemy.",
+      "priv.s6.h": "Kontakt",
+      "priv.s6.p": "Masz pytania o prywatność lub swoje dane? Napisz do nas na hello@certemis.com."
     }
   };
 
