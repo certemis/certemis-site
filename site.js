@@ -90,6 +90,9 @@
       "term.title": "certemis — ask",
       "term.q": "How do we deploy the billing service?",
       "term.a": "// Pulled together from your repos, decisions and docs — and limited to what you're allowed to see.",
+      "hero.ans1": "Deploy through the staging pipeline,",
+      "hero.ans2": "then promote once checks are green.",
+      "hero.ansmeta": "Assembled from your repos, decisions and docs",
 
       "prod.kicker": "Product",
       "prod.h1": "One place to ask anything your company already figured out.",
@@ -388,6 +391,9 @@
       "term.title": "certemis — zapytanie",
       "term.q": "Jak wdrażamy serwis płatności?",
       "term.a": "// Złożone z Twoich repozytoriów, decyzji i dokumentów — i ograniczone do tego, co możesz zobaczyć.",
+      "hero.ans1": "Wdrażaj przez pipeline staging,",
+      "hero.ans2": "potem promuj po zielonych testach.",
+      "hero.ansmeta": "Złożone z Twoich repozytoriów, decyzji i dokumentów",
 
       "prod.kicker": "Produkt",
       "prod.h1": "Jedno miejsce, by zapytać o wszystko, co Twoja firma już kiedyś rozgryzła.",
@@ -712,6 +718,7 @@
     if (yr) yr.textContent = new Date().getFullYear();
 
     initMotion();
+    initHeroAnim();
   });
 
   // ===== Premium motion layer (additive, GPU-only, fully gated) =====
@@ -843,6 +850,62 @@
         });
         el.addEventListener("mouseleave", function () { el.style.transform = ""; });
       })(mags[b]);
+    }
+  }
+
+  // ===== Hero "ask -> answer" looped sequence (index only) =====
+  function initHeroAnim() {
+    var root = document.querySelector(".hero-anim");
+    if (!root) return;
+    // Reduced motion: leave the static end state (HTML/CSS) untouched.
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    var q = root.querySelector(".ha-q");
+    var STAGES = ["is-q", "is-src", "is-core", "is-ans"];
+    var timers = [], typeTimer = null, running = false;
+    root.classList.add("anim");
+
+    function clearAll() {
+      for (var i = 0; i < timers.length; i++) clearTimeout(timers[i]);
+      timers = [];
+      if (typeTimer) { clearInterval(typeTimer); typeTimer = null; }
+    }
+    function reset() {
+      for (var i = 0; i < STAGES.length; i++) root.classList.remove(STAGES[i]);
+      q.textContent = "";
+    }
+    function typeQ(text, done) {
+      q.textContent = ""; var i = 0;
+      typeTimer = setInterval(function () {
+        q.textContent = text.slice(0, ++i);
+        if (i >= text.length) { clearInterval(typeTimer); typeTimer = null; if (done) done(); }
+      }, 42);
+    }
+    function run() {
+      clearAll(); reset();
+      var text = t("term.q") || (q.getAttribute("data-i18n") && I18N.en["term.q"]) || "";
+      timers.push(setTimeout(function () {
+        root.classList.add("is-q");
+        typeQ(text, function () {
+          timers.push(setTimeout(function () { root.classList.add("is-src"); }, 350));
+          timers.push(setTimeout(function () { root.classList.add("is-core"); }, 1050));
+          timers.push(setTimeout(function () { root.classList.add("is-ans"); }, 1900));
+          timers.push(setTimeout(run, 3600)); // hold ~1.5s after the answer, then loop
+        });
+      }, 250));
+    }
+
+    // Only animate while the hero is on screen (perf + battery).
+    if ("IntersectionObserver" in window) {
+      var io = new IntersectionObserver(function (es) {
+        es.forEach(function (e) {
+          if (e.isIntersecting) { if (!running) { running = true; run(); } }
+          else { running = false; clearAll(); }
+        });
+      }, { threshold: .2 });
+      io.observe(root);
+    } else {
+      running = true; run();
     }
   }
 })();

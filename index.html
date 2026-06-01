@@ -78,25 +78,37 @@
       <p class="hero-note" data-i18n="home.note">Currently in private early access — we're onboarding a first group of founding teams.</p>
     </div>
     <div class="viz" aria-hidden="true">
-      <svg viewBox="0 0 360 360">
-        <path class="edge" d="M180 180 L86 84"/><path class="edge" d="M180 180 L286 92"/>
-        <path class="edge" d="M180 180 L300 210"/><path class="edge" d="M180 180 L210 306"/>
-        <path class="edge" d="M180 180 L70 268"/><path class="edge" d="M180 180 L58 176"/>
-        <path class="edge-live" d="M180 180 L286 92"/>
-        <path class="edge-live" d="M180 180 L210 306" style="animation-delay:-1.4s"/>
-        <path class="edge-live" d="M180 180 L58 176" style="animation-delay:-2.4s"/>
-        <circle class="ring ping" cx="180" cy="180" r="30"/>
-        <circle class="ring ping" cx="180" cy="180" r="30" style="animation-delay:-1.5s"/>
-        <g class="flt"><circle class="node" cx="86" cy="84" r="21"/><text class="node-lbl" x="86" y="88" data-i18n="g.docs">Docs</text></g>
-        <g class="flt b"><circle class="node" cx="286" cy="92" r="21"/><text class="node-lbl" x="286" y="96" data-i18n="g.slack">Slack</text></g>
-        <g class="flt c"><circle class="node" cx="300" cy="210" r="21"/><text class="node-lbl" x="300" y="214" data-i18n="g.repos">Repos</text></g>
-        <g class="flt"><circle class="node" cx="210" cy="306" r="21"/><text class="node-lbl" x="210" y="310" data-i18n="g.decisions">Decisions</text></g>
-        <g class="flt b"><circle class="node" cx="70" cy="268" r="21"/><text class="node-lbl" x="70" y="272" data-i18n="g.tickets">Tickets</text></g>
-        <g class="flt c"><circle class="node" cx="58" cy="176" r="21"/><text class="node-lbl" x="58" y="180" data-i18n="g.wiki">Wiki</text></g>
-        <circle class="ring" cx="180" cy="180" r="40" stroke-width="1" opacity=".45"/>
-        <circle class="node" cx="180" cy="180" r="30" style="fill:#2E5BFF;stroke:#2E5BFF"/>
-        <text class="node-lbl" x="180" y="185" style="fill:#fff;font-weight:700;font-size:15px">C</text>
-      </svg>
+      <div class="hero-anim">
+        <div class="ha-prompt">
+          <span class="ha-caret">&gt;</span>
+          <span class="ha-q" data-i18n="term.q">How do we deploy the billing service?</span>
+          <span class="ha-cur"></span>
+        </div>
+        <div class="ha-graph">
+          <div class="ha-srcs">
+            <svg class="ha-lines" viewBox="0 0 100 100" preserveAspectRatio="none">
+              <line x1="50" y1="50" x2="50" y2="12"/>
+              <line x1="50" y1="50" x2="83" y2="31"/>
+              <line x1="50" y1="50" x2="83" y2="69"/>
+              <line x1="50" y1="50" x2="50" y2="88"/>
+              <line x1="50" y1="50" x2="17" y2="69"/>
+              <line x1="50" y1="50" x2="17" y2="31"/>
+            </svg>
+            <div class="ha-src s1"><span class="ha-dot"></span><span class="ha-lbl" data-i18n="g.repos">Repos</span></div>
+            <div class="ha-src s2"><span class="ha-dot"></span><span class="ha-lbl" data-i18n="g.slack">Slack</span></div>
+            <div class="ha-src s3"><span class="ha-dot"></span><span class="ha-lbl" data-i18n="g.tickets">Tickets</span></div>
+            <div class="ha-src s4"><span class="ha-dot"></span><span class="ha-lbl" data-i18n="g.decisions">Decisions</span></div>
+            <div class="ha-src s5"><span class="ha-dot"></span><span class="ha-lbl" data-i18n="g.wiki">Wiki</span></div>
+            <div class="ha-src s6"><span class="ha-dot"></span><span class="ha-lbl" data-i18n="g.docs">Docs</span></div>
+          </div>
+          <div class="ha-core"><span class="ha-ping"></span><span class="ha-sym"></span></div>
+        </div>
+        <div class="ha-answer">
+          <p class="ha-a1" data-i18n="hero.ans1">Deploy through the staging pipeline,</p>
+          <p class="ha-a2" data-i18n="hero.ans2">then promote once checks are green.</p>
+          <p class="ha-ameta" data-i18n="hero.ansmeta">Assembled from your repos, decisions and docs</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
