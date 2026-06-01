@@ -955,3 +955,19 @@ footer{background:var(--ink);color:var(--muted-dk);padding:62px 0 42px}
 .roi-n{flex:0 0 auto;font-family:var(--display);font-weight:700;color:#fff;font-size:1.04rem}
 .roi-disc{margin-top:20px;font-size:.8rem;line-height:1.5;color:var(--muted-dk);opacity:.85}
 .roi-cta{margin-top:22px}
+
+/* ===================================================================
+   Integration logos (homepage) — simplified monochrome marks, shown
+   honestly as planned connectors (see int.note caption below the grid).
+   =================================================================== */
+.int-logos{margin-top:46px}
+.int-logos-h{display:block;margin-bottom:22px}
+.int-logos-row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+@media(max-width:760px){.int-logos-row{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:480px){.int-logos-row{grid-template-columns:repeat(2,1fr)}}
+.int-logo{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;
+  padding:22px 12px;border:1px solid var(--line);border-radius:12px;background:var(--paper);
+  color:var(--muted);transition:color .25s,border-color .25s,transform .25s}
+.int-logo:hover{color:var(--ink);border-color:var(--ink);transform:translateY(-3px)}
+.int-logo svg{width:26px;height:26px;flex:0 0 auto}
+.int-logo span{font-family:var(--body);font-weight:600;font-size:.92rem;letter-spacing:.01em;text-align:center;line-height:1.2}

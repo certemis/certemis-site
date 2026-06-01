@@ -68,6 +68,7 @@
       "int.5t": "Tickets", "int.5s": "Jira, Linear",
       "int.6t": "Decisions", "int.6s": "Threads, records",
       "int.note": "Integrations shown are planned connectors; availability rolls out during early access.",
+      "int.logos.h": "On the integration roadmap",
 
       "exp.kicker": "Explore",
       "exp.h2": "Go deeper into Certemis.",
@@ -397,6 +398,7 @@
       "int.5t": "Zgłoszenia", "int.5s": "Jira, Linear",
       "int.6t": "Decyzje", "int.6s": "Wątki, zapisy",
       "int.note": "Pokazane integracje to planowane konektory; dostępność udostępniamy stopniowo w trakcie wczesnego dostępu.",
+      "int.logos.h": "Na mapie integracji",
 
       "exp.kicker": "Poznaj więcej",
       "exp.h2": "Zajrzyj głębiej w Certemis.",
