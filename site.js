@@ -88,8 +88,9 @@
       "term.kicker": "In practice",
       "term.h2": "Ask a question. Get the answer your company already knows.",
       "term.title": "certemis — ask",
-      "term.q": "How do we deploy the billing service?",
-      "term.a": "// Pulled together from your repos, decisions and docs — and limited to what you're allowed to see.",
+      "term.q": "Why did we drop the legacy auth flow?",
+      "term.a": "// Pulled from the decision record and the discussion that led to it — scoped to your access.",
+      "hero.q": "How do we deploy the billing service?",
       "hero.ans1": "Deploy through the staging pipeline,",
       "hero.ans2": "then promote once checks are green.",
       "hero.ansmeta": "Assembled from your repos, decisions and docs",
@@ -389,8 +390,9 @@
       "term.kicker": "W praktyce",
       "term.h2": "Zadaj pytanie. Dostań odpowiedź, którą Twoja firma już zna.",
       "term.title": "certemis — zapytanie",
-      "term.q": "Jak wdrażamy serwis płatności?",
-      "term.a": "// Złożone z Twoich repozytoriów, decyzji i dokumentów — i ograniczone do tego, co możesz zobaczyć.",
+      "term.q": "Dlaczego porzuciliśmy stary system logowania?",
+      "term.a": "// Wyciągnięte z zapisu decyzji i dyskusji, która do niej doprowadziła — w zakresie Twoich uprawnień.",
+      "hero.q": "Jak wdrażamy serwis płatności?",
       "hero.ans1": "Wdrażaj przez pipeline staging,",
       "hero.ans2": "potem promuj po zielonych testach.",
       "hero.ansmeta": "Złożone z Twoich repozytoriów, decyzji i dokumentów",
@@ -879,20 +881,20 @@
       typeTimer = setInterval(function () {
         q.textContent = text.slice(0, ++i);
         if (i >= text.length) { clearInterval(typeTimer); typeTimer = null; if (done) done(); }
-      }, 42);
+      }, 66);
     }
     function run() {
       clearAll(); reset();
-      var text = t("term.q") || (q.getAttribute("data-i18n") && I18N.en["term.q"]) || "";
+      var text = t("hero.q") || I18N.en["hero.q"] || "";
       timers.push(setTimeout(function () {
         root.classList.add("is-q");
         typeQ(text, function () {
-          timers.push(setTimeout(function () { root.classList.add("is-src"); }, 350));
-          timers.push(setTimeout(function () { root.classList.add("is-core"); }, 1050));
-          timers.push(setTimeout(function () { root.classList.add("is-ans"); }, 1900));
-          timers.push(setTimeout(run, 3600)); // hold ~1.5s after the answer, then loop
+          timers.push(setTimeout(function () { root.classList.add("is-src"); }, 600));
+          timers.push(setTimeout(function () { root.classList.add("is-core"); }, 2400));
+          timers.push(setTimeout(function () { root.classList.add("is-ans"); }, 4000));
+          timers.push(setTimeout(run, 7200)); // long, readable hold after the answer, then loop
         });
-      }, 250));
+      }, 400));
     }
 
     // Only animate while the hero is on screen (perf + battery).

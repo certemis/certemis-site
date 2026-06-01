@@ -450,8 +450,8 @@ footer{background:var(--ink);color:var(--muted-dk);padding:62px 0 42px}
 .ha-lines{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
 .ha-lines line{stroke:rgba(255,255,255,.16);stroke-width:1;vector-effect:non-scaling-stroke}
 .ha-src{position:absolute;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;gap:5px}
-.ha-dot{width:9px;height:9px;border-radius:50%;background:#101015;border:1px solid rgba(255,255,255,.32)}
-.ha-lbl{font-size:clamp(.52rem,1.2vw,.72rem);letter-spacing:.04em;color:#c4c7d3;white-space:nowrap}
+.ha-dot{width:13px;height:13px;border-radius:50%;background:#16161c;border:1.5px solid rgba(255,255,255,.55);box-shadow:0 0 0 4px rgba(255,255,255,.04)}
+.ha-lbl{font-size:clamp(.64rem,1.4vw,.82rem);font-weight:600;letter-spacing:.03em;color:#d6d9e3;white-space:nowrap}
 .ha-src.s1{left:50%;top:12%}.ha-src.s2{left:83%;top:31%}.ha-src.s3{left:83%;top:69%}
 .ha-src.s4{left:50%;top:88%}.ha-src.s5{left:17%;top:69%}.ha-src.s6{left:17%;top:31%}
 
@@ -462,7 +462,7 @@ footer{background:var(--ink);color:var(--muted-dk);padding:62px 0 42px}
 .ha-sym{width:54%;height:54%;background:#fff;
   -webkit-mask:url(assets/symbol-mask.png) center/contain no-repeat;
   mask:url(assets/symbol-mask.png) center/contain no-repeat}
-.ha-ping{position:absolute;inset:0;border-radius:50%;border:1px solid var(--accent);opacity:.35}
+.ha-ping{position:absolute;inset:0;border-radius:50%;border:1.5px solid var(--accent);opacity:.4}
 
 /* answer card */
 .ha-answer{flex:0 0 auto;position:relative;background:var(--ink-2);border:1px solid var(--line-dk);
@@ -479,30 +479,35 @@ footer{background:var(--ink);color:var(--muted-dk);padding:62px 0 42px}
   .ha-cur{display:none}
 }
 @keyframes ha-blink{50%{opacity:0}}
-@keyframes ha-ping{0%{transform:scale(1);opacity:.5}70%{transform:scale(2.1);opacity:0}100%{opacity:0}}
+@keyframes ha-ping{0%{transform:scale(1);opacity:.65}70%{transform:scale(2.3);opacity:0}100%{opacity:0}}
 
 /* Animated sequence — only with JS (.anim) and motion allowed. Stages: is-q -> is-src -> is-core -> is-ans */
 @media (prefers-reduced-motion: no-preference){
-  .hero-anim.anim .ha-prompt{opacity:0;transform:translateY(-8px);transition:opacity .5s ease,transform .5s ease}
+  .hero-anim.anim .ha-prompt{opacity:0;transform:translateY(8px);transition:opacity .6s ease,transform .6s ease}
   .hero-anim.anim.is-q .ha-prompt{opacity:1;transform:none}
 
-  .hero-anim.anim .ha-srcs{opacity:0;transform:scale(1.08);transition:opacity .55s ease,transform .8s cubic-bezier(.2,.7,.2,1)}
+  .hero-anim.anim .ha-srcs{opacity:0;transform:scale(1.08);transition:opacity .8s ease,transform 1.4s cubic-bezier(.2,.7,.2,1)}
   .hero-anim.anim.is-src .ha-srcs{opacity:1;transform:scale(1)}
   .hero-anim.anim.is-core .ha-srcs{opacity:.92;transform:scale(.72)}
 
-  .hero-anim.anim .ha-src{opacity:0;transition:opacity .5s ease}
+  .hero-anim.anim .ha-src{opacity:0;transition:opacity .8s ease}
   .hero-anim.anim.is-src .ha-src{opacity:1}
+  .hero-anim.anim.is-src .ha-src.s2{transition-delay:.14s}
+  .hero-anim.anim.is-src .ha-src.s3{transition-delay:.28s}
+  .hero-anim.anim.is-src .ha-src.s4{transition-delay:.42s}
+  .hero-anim.anim.is-src .ha-src.s5{transition-delay:.56s}
+  .hero-anim.anim.is-src .ha-src.s6{transition-delay:.70s}
 
-  .hero-anim.anim .ha-lines line{stroke-dasharray:60;stroke-dashoffset:60;transition:stroke-dashoffset .7s ease}
+  .hero-anim.anim .ha-lines line{stroke-dasharray:60;stroke-dashoffset:60;transition:stroke-dashoffset 1.2s ease}
   .hero-anim.anim.is-core .ha-lines line{stroke-dashoffset:0}
 
-  .hero-anim.anim .ha-core{opacity:0;transform:translate(-50%,-50%) scale(.4);transition:opacity .5s ease,transform .6s cubic-bezier(.2,.7,.2,1)}
+  .hero-anim.anim .ha-core{opacity:0;transform:translate(-50%,-50%) scale(.4);transition:opacity .8s ease,transform 1s cubic-bezier(.2,.7,.2,1)}
   .hero-anim.anim.is-core .ha-core{opacity:1;transform:translate(-50%,-50%) scale(1)}
 
   .hero-anim.anim .ha-ping{opacity:0}
-  .hero-anim.anim.is-core .ha-ping{opacity:1;animation:ha-ping 2.4s ease-out infinite}
+  .hero-anim.anim.is-core .ha-ping{opacity:1;animation:ha-ping 2.8s ease-out infinite}
 
-  .hero-anim.anim .ha-answer{opacity:0;transform:translateY(12px);transition:opacity .5s ease,transform .55s cubic-bezier(.2,.7,.2,1)}
+  .hero-anim.anim .ha-answer{opacity:0;transform:translateY(12px);transition:opacity .85s ease,transform .85s cubic-bezier(.2,.7,.2,1)}
   .hero-anim.anim.is-ans .ha-answer{opacity:1;transform:none}
 
   .hero-anim.anim.is-ans .ha-cur{opacity:0}
