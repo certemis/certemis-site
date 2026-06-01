@@ -19,7 +19,7 @@
 
       "home.kicker": "Operational memory layer",
       "home.h1": "Your company's <span class=\"accent\">memory</span>, kept where it belongs.",
-      "home.lead": "Certemis is the operational memory layer for software houses and agencies. It captures how your company actually works - decisions, context, know-how - so the knowledge stays in the business, not in people's heads.",
+      "home.lead": "Certemis is the operational memory layer for companies whose edge lives in what their people know - from software houses and agencies to professional services and beyond. It captures how your company actually works - decisions, context, know-how - so the knowledge stays in the business, not in people's heads.",
       "home.btn1": "Join the waitlist",
       "home.btn2": "How it works",
       "home.note": "Currently in private early access. Founding-member access is opening to a limited cohort.",
@@ -40,7 +40,7 @@
       "home.t.btn": "Explore the product",
 
       "aud.kicker": "Who it's for",
-      "aud.h2": "Made for teams that run on people's knowledge.",
+      "aud.h2": "Made for any team where knowledge lives in people's heads - these are just where it bites first.",
       "aud.1t": "Software houses", "aud.1p": "Project-based, senior-heavy, high rotation. Onboarding and context loss hit hardest here.",
       "aud.2t": "Digital & creative agencies", "aud.2p": "Many clients, much context - who agreed what, and why. Keep it all in one place.",
       "aud.3t": "Consulting & IT services", "aud.3p": "Knowledge is the product. Losing it is the most expensive thing that can happen.",
@@ -275,7 +275,7 @@
       "q1": "Is the product available now?", "a1": "Not yet. We're in private early access. Apply and you'll be notified the moment it goes live - applicants get first access to the founding-member offer.",
       "q2": "How does the 50%-for-life offer work?", "a2": "The first 20 customers who join from the waitlist lock in 50% off the standard price for the entire time they stay subscribed, as long as the subscription remains active without interruption.",
       "q3": "What if I pause or cancel?", "a3": "The founding discount is tied to continuous subscription. If it lapses, the founding price ends and standard pricing applies on return.",
-      "q4": "Who is Certemis for?", "a4": "Teams where operational knowledge is critical and people rotate - software houses, agencies, and consulting firms.",
+      "q4": "Who is Certemis for?", "a4": "Any company where operational knowledge is critical and people rotate - from software houses and agencies to consulting and professional services, and any team where knowledge lives in people's heads.",
       "q5": "How is our data protected?", "a5": "EU data residency, GDPR-ready, a DPA with every customer, encryption in transit and at rest, strict tenant isolation, and no training of models on your data.",
       "msg.invalid": "Please enter a valid work email.",
       "msg.demo": "Thank you - your application is recorded. (Demo mode: connect a form endpoint to receive submissions.)",
@@ -299,7 +299,7 @@
 
       "home.kicker": "Warstwa pamięci operacyjnej",
       "home.h1": "<span class=\"accent\">Pamięć</span> Twojej firmy — tam, gdzie jej miejsce.",
-      "home.lead": "Certemis to warstwa pamięci operacyjnej dla software house'ów i agencji. Utrwala to, jak naprawdę pracuje Twoja firma — decyzje, kontekst, know-how — tak by wiedza zostawała w firmie, a nie w głowach ludzi.",
+      "home.lead": "Certemis to warstwa pamięci operacyjnej dla firm, których przewaga tkwi w wiedzy ich ludzi — od software house'ów i agencji po usługi profesjonalne i dalej. Utrwala to, jak naprawdę pracuje Twoja firma — decyzje, kontekst, know-how — tak by wiedza zostawała w firmie, a nie w głowach ludzi.",
       "home.btn1": "Dołącz do listy",
       "home.btn2": "Jak to działa",
       "home.note": "Obecnie w prywatnym wczesnym dostępie. Otwieramy miejsca dla ograniczonej grupy founding members.",
@@ -320,7 +320,7 @@
       "home.t.btn": "Poznaj produkt",
 
       "aud.kicker": "Dla kogo",
-      "aud.h2": "Dla zespołów, które żyją wiedzą ludzi.",
+      "aud.h2": "Dla każdego zespołu, w którym wiedza żyje w głowach ludzi — to tylko miejsca, gdzie boli najmocniej.",
       "aud.1t": "Software house'y", "aud.1p": "Projektowe, dużo seniorów, wysoka rotacja. Onboarding i utrata kontekstu bolą tu najbardziej.",
       "aud.2t": "Agencje cyfrowe i kreatywne", "aud.2p": "Wielu klientów, dużo kontekstu — kto co ustalił i dlaczego. Trzymaj to w jednym miejscu.",
       "aud.3t": "Konsulting i usługi IT", "aud.3p": "Wiedza jest produktem. Jej utrata to najdroższa rzecz, jaka może się zdarzyć.",
@@ -555,7 +555,7 @@
       "q1": "Czy produkt jest już dostępny?", "a1": "Jeszcze nie. Jesteśmy w prywatnym wczesnym dostępie. Po aplikacji powiadomimy Cię w chwili startu — aplikujący mają pierwszeństwo do oferty founding.",
       "q2": "Jak działa oferta 50% na zawsze?", "a2": "Pierwszych 20 klientów z listy blokuje 50% od ceny standardowej na cały czas subskrypcji, dopóki pozostaje ona aktywna bez przerw.",
       "q3": "Co jeśli wstrzymam lub zrezygnuję?", "a3": "Rabat founding jest powiązany z ciągłością subskrypcji. Po przerwie cena founding wygasa i obowiązuje cennik standardowy.",
-      "q4": "Dla kogo jest Certemis?", "a4": "Dla zespołów, w których wiedza operacyjna jest kluczowa, a ludzie rotują — software house'y, agencje i firmy konsultingowe.",
+      "q4": "Dla kogo jest Certemis?", "a4": "Dla każdej firmy, w której wiedza operacyjna jest kluczowa, a ludzie rotują — od software house'ów i agencji po konsulting i usługi profesjonalne, i każdego zespołu, w którym wiedza żyje w głowach ludzi.",
       "q5": "Jak chronione są nasze dane?", "a5": "Rezydencja danych w UE, zgodność z RODO, DPA z każdym klientem, szyfrowanie w tranzycie i spoczynku, ścisła izolacja tenantów i brak treningu modeli na Twoich danych.",
       "msg.invalid": "Podaj prawidłowy e-mail służbowy.",
       "msg.demo": "Dziękujemy — Twoja aplikacja została zapisana. (Tryb demo: podłącz endpoint formularza, by odbierać zgłoszenia.)",

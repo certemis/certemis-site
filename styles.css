@@ -74,7 +74,9 @@ header.on-dark .lang select:hover{border-color:#fff}
 .cta:hover{background:var(--ink-3);transform:translateY(-1px)}
 header.on-dark .cta{background:#fff;color:var(--ink)}
 header.on-dark .cta:hover{background:var(--paper-2)}
-.burger{display:none;background:none;border:0;cursor:pointer;color:inherit;width:30px;height:30px}
+.burger{display:none;background:none;border:0;cursor:pointer;color:var(--ink);width:30px;height:30px}
+/* Burger must stay visible in every header state: dark hero (on-dark) -> white; otherwise the light .solid bg keeps the dark burger readable */
+header.on-dark .burger{color:#fff}
 @media(max-width:900px){.nav-mid{display:none}.burger{display:grid;place-items:center}}
 .mobile{position:fixed;inset:80px 0 auto 0;z-index:190;background:var(--ink);color:#fff;
   border-bottom:1px solid var(--line-dk);transform:translateY(-12px);opacity:0;pointer-events:none;transition:.25s}
@@ -304,22 +306,26 @@ footer{background:var(--ink);color:var(--muted-dk);padding:62px 0 42px}
 .lang-mobile select{width:auto;color:#fff;border-color:var(--line-dk);
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23B6B6C2' stroke-width='2.5'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E")}
 .lang-mobile select:hover{border-color:#fff}
-/* Phones: compact header = symbol logo + CTA + burger; language moves into the burger */
+/* Phones: compact header = full logo lockup + CTA + burger; language moves into the burger */
 @media(max-width:560px){
-  .brand .mark{width:38px;height:38px;
-    -webkit-mask:url(assets/symbol-mask.png) left center/contain no-repeat;
-    mask:url(assets/symbol-mask.png) left center/contain no-repeat}
+  .nav{height:60px;gap:10px}
+  /* Full CERTEMIS lockup on phones, just smaller (logo-mask, ~3.9:1 -> 94x24) */
+  .brand .mark{width:94px;height:24px;
+    -webkit-mask:url(assets/logo-mask.png) left center/contain no-repeat;
+    mask:url(assets/logo-mask.png) left center/contain no-repeat}
   header .lang{display:none}
-  header .cta{padding:11px 15px;font-size:.83rem}
-  .nav{gap:12px}
-  .nav-right{gap:12px}
+  /* Trimmed so logo + CTA + burger all fit the 300px nav area at 360px */
+  header .cta{padding:8px 12px;font-size:.75rem;letter-spacing:.03em}
+  .nav-right{gap:10px}
+  /* Mobile menu hangs off the now-shorter 60px header */
+  .mobile{top:60px;max-height:calc(100vh - 60px);max-height:calc(100dvh - 60px)}
   .mobile .lang-mobile{display:block;padding:16px 30px}
 }
 /* Phones: tighten section rhythm and oversized paddings that waste width */
 @media(max-width:560px){
   section{padding:74px 0}
-  .phero{padding:128px 0 64px}
-  .hero{padding:128px 0 80px}
+  .phero{padding:104px 0 64px}
+  .hero{padding:104px 0 80px}
 }
 /* Phones: roomier form by trimming the large card padding */
 @media(max-width:520px){
