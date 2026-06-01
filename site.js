@@ -710,6 +710,7 @@
       es.forEach(function (e) {
         if (!e.isIntersecting) return;
         var el = e.target, target = +el.dataset.count, span = el.querySelector(".v");
+        el.classList.add("sfx-counted"); // triggers a one-time entry pop on the number (CSS, motion-gated)
         var cur = 0, step = Math.max(1, Math.round(target / 38));
         var tm = setInterval(function () { cur += step; if (cur >= target) { cur = target; clearInterval(tm); } span.textContent = cur; }, 26);
         cio.unobserve(el);
@@ -892,7 +893,8 @@
         var p = (vh - r.top) / (vh + r.height);
         p = p < 0 ? 0 : p > 1 ? 1 : p;
         if (el.getAttribute("data-sfx") === "rise") {
-          el.style.transform = "translate3d(0," + ((0.5 - p) * 30).toFixed(1) + "px,0)";
+          var amp = parseFloat(el.getAttribute("data-sfx-amp")) || 60;
+          el.style.transform = "translate3d(0," + (-p * amp).toFixed(1) + "px,0)"; // drifts up as it scrolls through
         } else {
           el.style.setProperty("--sp", p.toFixed(3));
         }

@@ -806,7 +806,9 @@ footer{background:var(--ink);color:var(--muted-dk);padding:62px 0 42px}
    faint constellation whose connection lines slowly draw themselves in
    on a calm, long loop. Page-scoped; global .phero untouched.
    =================================================================== */
-.ab-hero{position:relative;overflow:hidden;background:var(--ink);color:#fff;padding:166px 0 120px}
+.ab-hero{position:relative;overflow:hidden;background:var(--ink);color:#fff;padding:166px 0 92px}
+/* first content section sits closer to its custom banner (avoids a large empty white band) */
+.hero-next{padding-top:56px}
 .ab-hero-net{position:absolute;inset:0;z-index:0;pointer-events:none}
 .ab-net-lines{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
 .ab-net-line{stroke:rgba(255,255,255,.3);stroke-width:1;fill:none;vector-effect:non-scaling-stroke;
@@ -839,7 +841,8 @@ footer{background:var(--ink);color:var(--muted-dk);padding:62px 0 42px}
 }
 
 @media(max-width:560px){
-  .ab-hero{padding:128px 0 84px}
+  .ab-hero{padding:128px 0 64px}
+  .hero-next{padding-top:40px}
 }
 
 /* ===================================================================
@@ -898,5 +901,11 @@ footer{background:var(--ink);color:var(--muted-dk);padding:62px 0 42px}
 
 /* === Scroll-reactive effects (driven by site.js setting --sp / transform) ===
    Without JS or under reduced motion these rest in their natural state. */
-.sfx-line{width:100%;height:2px;border-radius:2px;background:var(--accent);opacity:.45;
-  transform-origin:left;transform:scaleX(var(--sp,1))}
+.sfx-line{width:100%;height:3px;border-radius:2px;background:var(--accent);opacity:.6;
+  box-shadow:0 0 14px rgba(46,91,255,.5);transform-origin:left;transform:scaleX(var(--sp,1))}
+/* count-up numbers pop in as they enter (scroll-triggered via IntersectionObserver) */
+@media (prefers-reduced-motion: no-preference){
+  .stat .num{transform-origin:left}
+  .stat.sfx-counted .num{animation:sfx-pop .7s cubic-bezier(.2,.7,.2,1)}
+}
+@keyframes sfx-pop{0%{transform:scale(.6);opacity:.15}55%{opacity:1}100%{transform:scale(1);opacity:1}}
