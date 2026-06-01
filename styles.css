@@ -909,3 +909,49 @@ footer{background:var(--ink);color:var(--muted-dk);padding:62px 0 42px}
   .stat.sfx-counted .num{animation:sfx-pop .7s cubic-bezier(.2,.7,.2,1)}
 }
 @keyframes sfx-pop{0%{transform:scale(.6);opacity:.15}55%{opacity:1}100%{transform:scale(1);opacity:1}}
+
+/* ===================================================================
+   ROI calculator (pricing.html): controls card (left) + result card (right)
+   =================================================================== */
+.roi-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:30px;align-items:start;margin-top:48px}
+@media(max-width:820px){.roi-grid{grid-template-columns:1fr;gap:22px}}
+
+/* left — controls */
+.roi-controls{border:1px solid var(--line);border-radius:16px;padding:30px 28px;background:var(--paper)}
+.roi-ctrl{margin-bottom:24px}
+.roi-ctrl:last-child{margin-bottom:0}
+.roi-row{display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin-bottom:10px}
+.roi-row label{margin:0}
+.roi-val{flex:0 0 auto;font-family:var(--display);font-weight:700;font-size:1.02rem;color:var(--accent)}
+.roi-hint{display:inline-block;margin-top:9px;font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+
+/* range sliders (override the global input rule) */
+.roi-controls input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:5px;margin:4px 0 0;padding:0;
+  border:0;border-radius:99px;cursor:pointer;background-color:var(--line);
+  background-image:linear-gradient(var(--accent),var(--accent));background-repeat:no-repeat;background-size:var(--fp,0%) 100%}
+.roi-controls input[type=range]:focus{outline:none}
+.roi-controls input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;
+  background:var(--accent);border:3px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.22);cursor:pointer}
+.roi-controls input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;
+  background:var(--accent);border:3px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.22);cursor:pointer}
+.roi-controls input[type=range]:focus-visible::-webkit-slider-thumb{box-shadow:0 0 0 4px var(--accent-soft)}
+
+/* number field (€ rate) */
+.roi-num{display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--line);transition:border-color .2s}
+.roi-num:focus-within{border-bottom-color:var(--accent)}
+.roi-cur{flex:0 0 auto;font-family:var(--display);font-weight:700;color:var(--muted)}
+.roi-num input{flex:1;width:auto;min-width:0;border:0;padding:9px 0;font-family:var(--display);font-weight:700;font-size:1.12rem}
+
+/* right — result card (accent-highlighted, dark) */
+.roi-out{position:relative;overflow:hidden;border:1px solid var(--line-dk);border-radius:16px;
+  padding:34px 30px;background:var(--ink);color:#fff}
+.roi-out::before{content:"";position:absolute;left:0;top:0;right:0;height:4px;background:var(--accent)}
+.roi-out .eyebrow{color:var(--muted-dk)}
+.roi-big{font-family:var(--display);font-weight:700;line-height:1;color:#fff;margin-top:12px;font-size:clamp(2.5rem,5.5vw,3.6rem)}
+.roi-peryear{margin-top:8px;font-family:var(--mono);font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted-dk)}
+.roi-lines{list-style:none;padding:20px 0 0;margin:22px 0 0;border-top:1px solid var(--line-dk)}
+.roi-lines li{display:flex;justify-content:space-between;align-items:baseline;gap:14px;margin-bottom:11px;color:var(--muted-dk);font-size:.98rem}
+.roi-lines li:last-child{margin-bottom:0}
+.roi-n{flex:0 0 auto;font-family:var(--display);font-weight:700;color:#fff;font-size:1.04rem}
+.roi-disc{margin-top:20px;font-size:.8rem;line-height:1.5;color:var(--muted-dk);opacity:.85}
+.roi-cta{margin-top:22px}

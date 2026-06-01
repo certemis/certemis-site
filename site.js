@@ -189,6 +189,23 @@
       "price.a3": "The first 20 customers who join from the waitlist lock in 50% off these prices for as long as their subscription stays active. Apply for early access to claim it before launch.",
       "price.cta.h": "Lock in founding-member pricing before launch.",
       "price.cta.btn": "Join the waitlist",
+      "roi.kicker": "ROI calculator",
+      "roi.h2": "See what forgetting costs — and what Certemis could recover.",
+      "roi.p": "Move the sliders to estimate the time and money lost to scattered knowledge.",
+      "roi.employees": "Employees",
+      "roi.hours": "Hours/week each person loses finding answers",
+      "roi.rate": "Average hourly cost (gross)",
+      "roi.hires": "New hires per year",
+      "roi.ramp": "Days to full productivity for a new hire",
+      "roi.recover": "How much Certemis realistically recovers",
+      "roi.rec.cons": "conservative", "roi.rec.real": "realistic", "roi.rec.opt": "optimistic",
+      "roi.res.main": "Certemis could recover",
+      "roi.res.peryear": "per year",
+      "roi.res.search": "lost to searching / month",
+      "roi.res.total": "total lost / year",
+      "roi.res.onb": "onboarding cost / year",
+      "roi.disclaimer": "An automated estimate based on industry averages. Actual results vary by team, tools and how knowledge is shared.",
+      "roi.cta": "Join the waitlist",
 
       "uc.kicker": "Use cases",
       "uc.h1": "The moments where knowledge quietly slips away.",
@@ -501,6 +518,23 @@
       "price.a3": "Pierwszych 20 klientów z listy zapisów blokuje 50% od tych cen na cały czas aktywnej subskrypcji. Aplikuj o wczesny dostęp, by zdobyć rabat przed startem.",
       "price.cta.h": "Zablokuj cenę founding-member przed startem.",
       "price.cta.btn": "Dołącz do listy",
+      "roi.kicker": "Kalkulator ROI",
+      "roi.h2": "Zobacz, ile kosztuje zapominanie — i ile Certemis może odzyskać.",
+      "roi.p": "Przesuń suwaki, aby oszacować czas i pieniądze tracone przez rozproszoną wiedzę.",
+      "roi.employees": "Pracownicy",
+      "roi.hours": "Godziny tygodniowo tracone na szukanie wiedzy (1 osoba)",
+      "roi.rate": "Średnia stawka godzinowa (brutto)",
+      "roi.hires": "Nowe osoby rocznie",
+      "roi.ramp": "Dni do pełnej produktywności nowej osoby",
+      "roi.recover": "Ile Certemis realnie odzyskuje",
+      "roi.rec.cons": "konserwatywnie", "roi.rec.real": "realistycznie", "roi.rec.opt": "optymistycznie",
+      "roi.res.main": "Certemis może odzyskać",
+      "roi.res.peryear": "rocznie",
+      "roi.res.search": "tracone na szukaniu / mies.",
+      "roi.res.total": "łączna strata / rok",
+      "roi.res.onb": "koszt onboardingu / rok",
+      "roi.disclaimer": "Szacunek poglądowy oparty na średnich branżowych. Realne wyniki zależą od zespołu, narzędzi i sposobu dzielenia się wiedzą.",
+      "roi.cta": "Dołącz do listy",
 
       "uc.kicker": "Zastosowania",
       "uc.h1": "Chwile, w których wiedza po cichu znika.",
@@ -742,6 +776,7 @@
 
     initMotion();
     initScrollFX();
+    initROI();
   });
 
   // ===== Premium motion layer (additive, GPU-only, fully gated) =====
@@ -904,6 +939,50 @@
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll, { passive: true });
     update();
+  }
+
+  // ===== Live ROI calculator (pricing.html) =====
+  function initROI() {
+    var root = document.getElementById("roi");
+    if (!root) return;
+    var inputs = ["roiEmp", "roiHours", "roiRate", "roiHires", "roiRamp", "roiRec"];
+    function num(id) { var e = document.getElementById(id); return e ? (parseFloat(e.value) || 0) : 0; }
+    function money(n) { return "€" + Math.round(n).toLocaleString(lang === "pl" ? "pl-PL" : "en-US"); }
+    function set(id, v) { var e = document.getElementById(id); if (e) e.textContent = v; }
+    function fill(id, min, max) {
+      var e = document.getElementById(id); if (!e) return;
+      var pct = (num(id) - min) / (max - min) * 100;
+      e.style.setProperty("--fp", Math.max(0, Math.min(100, pct)).toFixed(1) + "%");
+    }
+    function recompute() {
+      var emp = num("roiEmp"), hrs = num("roiHours"), rate = num("roiRate"),
+          hires = num("roiHires"), ramp = num("roiRamp"), rec = num("roiRec");
+      var searchMonth = emp * hrs * 4.33 * rate;
+      var searchYear = searchMonth * 12;
+      var onbYear = hires * (ramp * 8 * rate * 0.5);
+      var totalYear = searchYear + onbYear;
+      var recoverYear = totalYear * (rec / 100);
+      set("roiRecoverYear", money(recoverYear));
+      set("roiSearchMonth", money(searchMonth));
+      set("roiTotalYear", money(totalYear));
+      set("roiOnbYear", money(onbYear));
+      set("roiEmpV", emp); set("roiHoursV", hrs); set("roiHiresV", hires);
+      set("roiRampV", ramp); set("roiRecV", Math.round(rec) + "%");
+      var hint = document.getElementById("roiRecHint");
+      if (hint) hint.textContent = t(rec <= 29 ? "roi.rec.cons" : rec <= 45 ? "roi.rec.real" : "roi.rec.opt");
+      fill("roiEmp", 1, 500); fill("roiHours", 0, 15); fill("roiHires", 0, 100);
+      fill("roiRamp", 10, 120); fill("roiRec", 10, 60);
+    }
+    for (var i = 0; i < inputs.length; i++) {
+      var el = document.getElementById(inputs[i]);
+      if (el) el.addEventListener("input", recompute);
+    }
+    // re-render (locale formatting + hint) when the language changes
+    ["langSel", "langSelMobile"].forEach(function (id) {
+      var s = document.getElementById(id);
+      if (s) s.addEventListener("change", function () { setTimeout(recompute, 0); });
+    });
+    recompute();
   }
 
 })();
