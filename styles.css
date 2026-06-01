@@ -379,3 +379,52 @@ footer{background:var(--ink);color:var(--muted-dk);padding:62px 0 42px}
   .uc-text p{max-width:none}
   .uc-panel{aspect-ratio:16/9}
 }
+
+/* ===================================================================
+   Premium motion layer (additive). Everything here is GPU-only
+   (transform/opacity/filter; width only on .pbar i) and gated by
+   js-ready + prefers-reduced-motion. Without JS or under reduced
+   motion the page is fully static and visible.
+   =================================================================== */
+
+/* 4. Reveal: add a focus-in blur on top of the existing translateY/opacity */
+@media (prefers-reduced-motion: no-preference){
+  .reveal{filter:blur(6px);
+    transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1),filter .7s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{filter:blur(0)}
+}
+/* Reduced motion: show everything statically, no transitions/blur */
+@media (prefers-reduced-motion: reduce){
+  .reveal{opacity:1;transform:none;filter:none;transition:none}
+}
+
+/* 6. Page transitions — only with JS active AND motion allowed. Default body stays opaque. */
+@media (prefers-reduced-motion: no-preference){
+  html.js-ready body{opacity:0}
+  html.js-ready body.page-in{opacity:1;transition:opacity .4s ease}
+  html.js-ready body.page-out{opacity:0;transition:opacity .25s ease}
+}
+
+/* 3. Magnetic buttons — JS sets the transform; here we add a softer hover shadow + scale hint.
+   Pointer/hover + motion gated so touch and reduced-motion are unaffected. */
+@media (hover:hover) and (pointer:fine) and (prefers-reduced-motion: no-preference){
+  .btn,.cta{will-change:transform}
+  .btn:hover{box-shadow:0 12px 30px -12px rgba(10,10,11,.38)}
+  .btn-dark:hover,.btn-line:hover,.btn-accent:hover,.btn-submit:hover{box-shadow:0 14px 34px -14px rgba(0,0,0,.5)}
+  .cta:hover{box-shadow:0 10px 24px -12px rgba(10,10,11,.5)}
+}
+
+/* 2. Cursor glow — host class + element are only added by JS in rich mode */
+.cg-host{position:relative;overflow:hidden}
+.cg-host > .wrap{position:relative;z-index:1}
+.cursor-glow{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;opacity:0;transition:opacity .5s ease}
+.cursor-glow b{position:absolute;top:0;left:0;width:520px;height:520px;margin:-260px 0 0 -260px;border-radius:50%;
+  background:radial-gradient(circle, rgba(46,91,255,.10), rgba(46,91,255,0) 65%);will-change:transform}
+
+/* 1. Hero graph parallax wrapper (JS writes translate3d here) */
+.viz{will-change:transform}
+
+/* 5. Progress-bar fill (width is the one allowed layout transition) */
+@media (prefers-reduced-motion: no-preference){
+  html.js-ready .pbar i{transition:width 1.2s cubic-bezier(.2,.7,.2,1)}
+}

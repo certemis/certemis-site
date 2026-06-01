@@ -1,6 +1,19 @@
 (function () {
   "use strict";
 
+  // Signal JS is active so CSS can enable motion (page fade, reveal blur) — set ASAP to avoid a flash.
+  document.documentElement.classList.add("js-ready");
+
+  // Reveal the body (fade-in) independently of all other logic, so a failure elsewhere can never
+  // leave the page stuck at opacity:0. Under reduced motion CSS keeps the body visible anyway.
+  (function revealBody() {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    function show() { if (document.body) requestAnimationFrame(function () { document.body.classList.add("page-in"); }); }
+    if (document.readyState !== "loading") show();
+    else document.addEventListener("DOMContentLoaded", show);
+    window.addEventListener("load", show); // failsafe if DOMContentLoaded was missed
+  })();
+
   var I18N = {
     en: {
       "nav.about": "About",
@@ -697,5 +710,139 @@
 
     var yr = document.getElementById("yr");
     if (yr) yr.textContent = new Date().getFullYear();
+
+    initMotion();
   });
+
+  // ===== Premium motion layer (additive, GPU-only, fully gated) =====
+  function initMotion() {
+    var reduceMQ = window.matchMedia("(prefers-reduced-motion: reduce)");
+    var fineMQ = window.matchMedia("(pointer: fine)");
+    var motionOK = !reduceMQ.matches;
+    var rich = motionOK && fineMQ.matches && window.innerWidth > 900;
+    var body = document.body;
+
+    // 6. Page fade-in is handled by the standalone revealBody() above.
+    // 6b. Fade-out before navigating to another internal page.
+    if (motionOK) {
+      document.addEventListener("click", function (e) {
+        if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+        var a = e.target.closest ? e.target.closest("a") : null;
+        if (!a) return;
+        var href = a.getAttribute("href");
+        if (!href || a.target === "_blank" || a.hasAttribute("download")) return;
+        if (/^(mailto:|tel:|#)/i.test(href)) return;
+        var url;
+        try { url = new URL(a.href, location.href); } catch (_) { return; }
+        if (url.origin !== location.origin) return;        // external
+        if (url.pathname === location.pathname) return;     // same page / #anchor
+        e.preventDefault();
+        body.classList.remove("page-in");
+        body.classList.add("page-out");
+        setTimeout(function () { window.location.href = a.href; }, 240);
+      });
+      window.addEventListener("pageshow", function (ev) {
+        if (ev.persisted) { body.classList.remove("page-out"); body.classList.add("page-in"); }
+      });
+    }
+
+    // 5. Progress bars fill from 0 to their CSS width when scrolled into view.
+    if (motionOK) {
+      var bars = document.querySelectorAll(".pbar > i");
+      if (bars.length && "IntersectionObserver" in window) {
+        var pio = new IntersectionObserver(function (es) {
+          es.forEach(function (en) {
+            if (!en.isIntersecting) return;
+            var bar = en.target, target = getComputedStyle(bar).width;
+            bar.style.width = "0px";
+            void bar.offsetWidth;                            // reflow so the transition runs
+            requestAnimationFrame(function () { bar.style.width = target; });
+            pio.unobserve(bar);
+          });
+        }, { threshold: .4 });
+        for (var pb = 0; pb < bars.length; pb++) pio.observe(bars[pb]);
+      }
+    }
+
+    if (!rich) return; // parallax, cursor glow and magnetic buttons: desktop + fine pointer + motion only
+
+    var raf = null;
+
+    // 1. Hero graph parallax — move the whole .viz wrapper (never .flt, to keep its float keyframes).
+    var viz = document.querySelector(".viz");
+    var vizHost = viz ? (viz.closest("[data-hero-dark]") || viz.closest("section")) : null;
+    var pTX = 0, pTY = 0, pCX = 0, pCY = 0;
+
+    // 2. Cursor glow on dark hero sections.
+    var glows = [];
+    var hosts = document.querySelectorAll("[data-hero-dark]");
+    for (var h = 0; h < hosts.length; h++) {
+      var sec = hosts[h];
+      sec.classList.add("cg-host");
+      var g = document.createElement("div"); g.className = "cursor-glow";
+      var blob = document.createElement("b"); g.appendChild(blob);
+      sec.insertBefore(g, sec.firstChild);
+      glows.push({ sec: sec, el: g, blob: blob, tx: 0, ty: 0, cx: 0, cy: 0, on: false });
+    }
+
+    function loop() {
+      raf = null;
+      var need = false;
+      if (viz) {
+        pCX += (pTX - pCX) * 0.08; pCY += (pTY - pCY) * 0.08;
+        viz.style.transform = "translate3d(" + pCX.toFixed(2) + "px," + pCY.toFixed(2) + "px,0)";
+        if (Math.abs(pTX - pCX) > 0.1 || Math.abs(pTY - pCY) > 0.1) need = true;
+      }
+      for (var i = 0; i < glows.length; i++) {
+        var gg = glows[i];
+        gg.cx += (gg.tx - gg.cx) * 0.14; gg.cy += (gg.ty - gg.cy) * 0.14;
+        gg.blob.style.transform = "translate3d(" + gg.cx.toFixed(1) + "px," + gg.cy.toFixed(1) + "px,0)";
+        if (gg.on && (Math.abs(gg.tx - gg.cx) > 0.3 || Math.abs(gg.ty - gg.cy) > 0.3)) need = true;
+      }
+      if (need) raf = requestAnimationFrame(loop);
+    }
+    function kick() { if (!raf) raf = requestAnimationFrame(loop); }
+
+    if (viz && vizHost) {
+      vizHost.addEventListener("mousemove", function (e) {
+        var r = vizHost.getBoundingClientRect();
+        var nx = (e.clientX - (r.left + r.width / 2)) / (r.width / 2);
+        var ny = (e.clientY - (r.top + r.height / 2)) / (r.height / 2);
+        pTX = Math.max(-1, Math.min(1, nx)) * 8;
+        pTY = Math.max(-1, Math.min(1, ny)) * 8;
+        kick();
+      });
+      vizHost.addEventListener("mouseleave", function () { pTX = 0; pTY = 0; kick(); });
+    }
+
+    glows.forEach(function (gg) {
+      gg.sec.addEventListener("mousemove", function (e) {
+        var r = gg.sec.getBoundingClientRect();
+        gg.tx = e.clientX - r.left; gg.ty = e.clientY - r.top;
+        if (!gg.on) { gg.on = true; gg.cx = gg.tx; gg.cy = gg.ty; gg.el.style.opacity = "1"; }
+        kick();
+      });
+      gg.sec.addEventListener("mouseleave", function () { gg.on = false; gg.el.style.opacity = "0"; });
+    });
+
+    // 3. Magnetic buttons — follow the cursor a few px + scale; CSS .2s transition smooths the return.
+    var mags = document.querySelectorAll(".btn, .cta");
+    for (var b = 0; b < mags.length; b++) {
+      (function (el) {
+        var pending = false;
+        el.addEventListener("mousemove", function (e) {
+          if (pending) return;
+          pending = true;
+          requestAnimationFrame(function () {
+            pending = false;
+            var r = el.getBoundingClientRect();
+            var dx = (e.clientX - (r.left + r.width / 2)) / (r.width / 2);
+            var dy = (e.clientY - (r.top + r.height / 2)) / (r.height / 2);
+            el.style.transform = "translate(" + (dx * 4).toFixed(2) + "px," + (dy * 4).toFixed(2) + "px) scale(1.02)";
+          });
+        });
+        el.addEventListener("mouseleave", function () { el.style.transform = ""; });
+      })(mags[b]);
+    }
+  }
 })();
