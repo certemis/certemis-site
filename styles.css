@@ -443,9 +443,10 @@ footer{background:var(--ink);color:var(--muted-dk);padding:62px 0 42px}
   stroke-dasharray:2.5 21;stroke-dashoffset:23.5;vector-effect:non-scaling-stroke}
 
 /* source nodes on a ring around the core */
-.ha-src{position:absolute;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;gap:7px}
-.ha-dot{width:18px;height:18px;border-radius:50%;background:#16161c;border:2px solid rgba(255,255,255,.6);box-shadow:0 0 0 5px rgba(255,255,255,.045)}
-.ha-lbl{font-size:clamp(.66rem,1.45vw,.84rem);font-weight:600;letter-spacing:.03em;color:#dde0ea;white-space:nowrap}
+/* anchor = the DOT's centre (so connecting lines meet the node exactly); label hangs below */
+.ha-src{position:absolute;width:18px;height:18px;transform:translate(-50%,-50%)}
+.ha-dot{display:block;width:18px;height:18px;border-radius:50%;background:#16161c;border:2px solid rgba(255,255,255,.6);box-shadow:0 0 0 5px rgba(255,255,255,.045)}
+.ha-lbl{position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%);font-size:clamp(.66rem,1.45vw,.84rem);font-weight:600;letter-spacing:.03em;color:#dde0ea;white-space:nowrap}
 .ha-src.s1{left:50%;top:12%}.ha-src.s2{left:84%;top:31%}.ha-src.s3{left:84%;top:69%}
 .ha-src.s4{left:50%;top:88%}.ha-src.s5{left:16%;top:69%}.ha-src.s6{left:16%;top:31%}
 
@@ -704,7 +705,7 @@ footer{background:var(--ink);color:var(--muted-dk);padding:62px 0 42px}
   background:rgba(255,255,255,.6);opacity:.55}
 .pr-hero-dot.a{background:var(--accent)}
 
-@keyframes pr-converge{0%,100%{transform:translate(var(--sx),var(--sy));opacity:.4}46%,54%{transform:translate(0,0);opacity:1}}
+@keyframes pr-converge{0%{transform:translate(var(--sx),var(--sy));opacity:0}16%{opacity:.85}80%{opacity:.85}100%{transform:translate(0,0);opacity:0}}
 @keyframes pr-line{0%,100%{opacity:.2;transform:scaleX(.55)}50%{opacity:.7;transform:scaleX(1)}}
 @keyframes pr-hero-in{from{opacity:0;transform:translateY(16px);filter:blur(6px)}to{opacity:1;transform:none;filter:blur(0)}}
 
@@ -894,3 +895,8 @@ footer{background:var(--ink);color:var(--muted-dk);padding:62px 0 42px}
 @media(max-width:680px){
   .uc-metrics{grid-template-columns:1fr;gap:26px}
 }
+
+/* === Scroll-reactive effects (driven by site.js setting --sp / transform) ===
+   Without JS or under reduced motion these rest in their natural state. */
+.sfx-line{width:100%;height:2px;border-radius:2px;background:var(--accent);opacity:.45;
+  transform-origin:left;transform:scaleX(var(--sp,1))}

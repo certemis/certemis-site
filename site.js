@@ -740,6 +740,7 @@
     if (yr) yr.textContent = new Date().getFullYear();
 
     initMotion();
+    initScrollFX();
   });
 
   // ===== Premium motion layer (additive, GPU-only, fully gated) =====
@@ -872,6 +873,35 @@
         el.addEventListener("mouseleave", function () { el.style.transform = ""; });
       })(mags[b]);
     }
+  }
+
+  // ===== Scroll-reactive content effects (content sections only, not banners) =====
+  // [data-sfx="rise"]  -> gentle vertical parallax as the element moves through the viewport
+  // [data-sfx="line"]  -> sets --sp (0..1) scroll progress; CSS draws a line via scaleX(var(--sp))
+  function initScrollFX() {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    var els = [].slice.call(document.querySelectorAll("[data-sfx]"));
+    if (!els.length) return;
+    var ticking = false;
+    function update() {
+      ticking = false;
+      var vh = window.innerHeight || document.documentElement.clientHeight;
+      for (var i = 0; i < els.length; i++) {
+        var el = els[i], r = el.getBoundingClientRect();
+        if (r.bottom < -120 || r.top > vh + 120) continue; // skip far off-screen
+        var p = (vh - r.top) / (vh + r.height);
+        p = p < 0 ? 0 : p > 1 ? 1 : p;
+        if (el.getAttribute("data-sfx") === "rise") {
+          el.style.transform = "translate3d(0," + ((0.5 - p) * 30).toFixed(1) + "px,0)";
+        } else {
+          el.style.setProperty("--sp", p.toFixed(3));
+        }
+      }
+    }
+    function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll, { passive: true });
+    update();
   }
 
 })();
