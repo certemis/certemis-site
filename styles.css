@@ -333,3 +333,42 @@ footer{background:var(--ink);color:var(--muted-dk);padding:62px 0 42px}
   .term-body{font-size:.94rem;padding:20px 18px;line-height:1.8}
   .term-bar{padding:13px 16px}
 }
+
+/* === Use-cases zig-zag (page-scoped, additive — does not touch shared rules) === */
+.uc-rows{display:flex;flex-direction:column;gap:104px}
+.uc-row{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+/* alternating rows: reverse column order for the zig-zag */
+.uc-row.rev .uc-text{order:2}
+.uc-row.rev .uc-visual{order:1}
+.uc-text .eyebrow{margin-bottom:18px}
+.uc-text h2{margin:0 0 .5em}
+.uc-text p{color:var(--muted);font-size:1.1rem;margin:0 0 15px;max-width:54ch}
+.uc-text .terms{margin-top:24px}
+
+.uc-visual{position:relative}
+.uc-panel{position:relative;overflow:hidden;display:grid;place-items:center;
+  background:var(--ink-2);border:1px solid var(--line-dk);border-radius:18px;
+  aspect-ratio:7/5;color:#fff}
+.uc-panel::before{content:"";position:absolute;inset:0;opacity:.55;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);
+  background-size:40px 40px;-webkit-mask:radial-gradient(circle at 72% 16%,#000,transparent 74%);mask:radial-gradient(circle at 72% 16%,#000,transparent 74%)}
+.uc-panel svg{position:relative;z-index:2;width:80%;height:80%;overflow:visible}
+
+/* shared SVG primitives for the panels (echo the hero graph aesthetic) */
+.uc-edge{stroke:rgba(255,255,255,.16);stroke-width:1.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.uc-edge.dash{stroke:rgba(255,255,255,.3);stroke-dasharray:5 7}
+.uc-line{stroke:var(--accent);stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.uc-node{fill:#101015;stroke:rgba(255,255,255,.28);stroke-width:1.5}
+.uc-node.accent{fill:var(--accent);stroke:var(--accent)}
+.uc-node.ghost{fill:none;stroke:rgba(255,255,255,.2);stroke-dasharray:4 5}
+.uc-dot{fill:var(--accent)}
+
+@media(max-width:760px){
+  .uc-rows{gap:64px}
+  .uc-row{grid-template-columns:1fr;gap:30px}
+  /* mobile: always text first, visual after — regardless of .rev */
+  .uc-row .uc-text{order:1}
+  .uc-row .uc-visual{order:2}
+  .uc-text p{max-width:none}
+  .uc-panel{aspect-ratio:16/9}
+}
