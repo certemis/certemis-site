@@ -342,8 +342,10 @@ footer{background:var(--ink);color:var(--muted-dk);padding:62px 0 42px}
 }
 
 /* === Use-cases zig-zag (page-scoped, additive — does not touch shared rules) === */
-.uc-rows{display:flex;flex-direction:column;gap:104px}
-.uc-row{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.uc-rows{display:flex;flex-direction:column}
+.uc-row{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;padding:60px 0}
+.uc-row:first-child{padding-top:0}
+.uc-row + .uc-row{border-top:1px solid var(--line)}
 /* alternating rows: reverse column order for the zig-zag */
 .uc-row.rev .uc-text{order:2}
 .uc-row.rev .uc-visual{order:1}
@@ -360,6 +362,10 @@ footer{background:var(--ink);color:var(--muted-dk);padding:62px 0 42px}
   background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);
   background-size:40px 40px;-webkit-mask:radial-gradient(circle at 72% 16%,#000,transparent 74%);mask:radial-gradient(circle at 72% 16%,#000,transparent 74%)}
 .uc-panel svg{position:relative;z-index:2;width:80%;height:80%;overflow:visible}
+/* large faint chapter index watermark inside each panel */
+.uc-idx{position:absolute;top:8px;left:16px;z-index:1;pointer-events:none;
+  font-family:var(--display);font-weight:700;line-height:1;letter-spacing:.02em;
+  font-size:clamp(2.6rem,7vw,4.4rem);color:rgba(255,255,255,.07)}
 
 /* shared SVG primitives for the panels (echo the hero graph aesthetic) */
 .uc-edge{stroke:rgba(255,255,255,.16);stroke-width:1.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
@@ -371,13 +377,13 @@ footer{background:var(--ink);color:var(--muted-dk);padding:62px 0 42px}
 .uc-dot{fill:var(--accent)}
 
 @media(max-width:760px){
-  .uc-rows{gap:64px}
-  .uc-row{grid-template-columns:1fr;gap:30px}
-  /* mobile: always text first, visual after — regardless of .rev */
-  .uc-row .uc-text{order:1}
-  .uc-row .uc-visual{order:2}
+  .uc-row{grid-template-columns:1fr;gap:30px;padding:44px 0}
+  /* mobile: always text first, visual after — even on reversed rows (matches .rev specificity) */
+  .uc-row .uc-text,.uc-row.rev .uc-text{order:1}
+  .uc-row .uc-visual,.uc-row.rev .uc-visual{order:2}
   .uc-text p{max-width:none}
   .uc-panel{aspect-ratio:16/9}
+  .uc-idx{font-size:clamp(2.1rem,11vw,3.2rem)}
 }
 
 /* ===================================================================
