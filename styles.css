@@ -50,13 +50,20 @@ header.on-dark .brand{color:#fff}
 
 .nav-mid{display:flex;gap:40px;align-items:center}
 .nav-mid a{font-family:var(--body);font-weight:600;font-size:.94rem;letter-spacing:.05em;
-  text-transform:uppercase;color:var(--muted);transition:color .2s;position:relative;padding:6px 0}
+  text-transform:uppercase;color:var(--muted);transition:color .2s;position:relative;padding:6px 0;white-space:nowrap}
 .nav-mid a:hover{color:var(--ink)}
 .nav-mid a.active{color:var(--ink)}
 .nav-mid a.active::after{content:"";position:absolute;left:0;bottom:-3px;width:16px;height:2px;background:var(--accent)}
 header.on-dark .nav-mid a{color:var(--muted-dk)}
 header.on-dark .nav-mid a:hover,header.on-dark .nav-mid a.active{color:#fff}
 .nav-right{display:flex;align-items:center;gap:16px}
+/* Keep the top menu on ONE line between 900–1180px (longer PL labels): fluid gap + font, tighter tracking. >=1180px stays roomy via base rules. */
+@media(min-width:901px) and (max-width:1179px){
+  .nav{gap:clamp(8px,1.2vw,18px)}
+  .nav-mid{gap:clamp(10px,1.5vw,24px)}
+  .nav-mid a{font-size:clamp(.78rem,1vw,.9rem);letter-spacing:.02em}
+  .nav-right{gap:10px}
+}
 
 .lang select{font-family:var(--body);font-weight:700;font-size:.84rem;letter-spacing:.1em;
   padding:9px 30px 9px 13px;border:1px solid var(--line);border-radius:8px;background:transparent;color:var(--ink);
