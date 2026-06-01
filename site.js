@@ -720,7 +720,6 @@
     if (yr) yr.textContent = new Date().getFullYear();
 
     initMotion();
-    initHeroAnim();
   });
 
   // ===== Premium motion layer (additive, GPU-only, fully gated) =====
@@ -855,59 +854,4 @@
     }
   }
 
-  // ===== Hero "ask -> answer" looped sequence (index only) =====
-  function initHeroAnim() {
-    var root = document.querySelector(".hero-anim");
-    if (!root) return;
-    // Reduced motion: leave the static end state (HTML/CSS) untouched.
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-
-    var q = root.querySelector(".ha-q");
-    var STAGES = ["is-q", "is-src", "is-core", "is-ans"];
-    var timers = [], typeTimer = null, running = false;
-    root.classList.add("anim");
-
-    function clearAll() {
-      for (var i = 0; i < timers.length; i++) clearTimeout(timers[i]);
-      timers = [];
-      if (typeTimer) { clearInterval(typeTimer); typeTimer = null; }
-    }
-    function reset() {
-      for (var i = 0; i < STAGES.length; i++) root.classList.remove(STAGES[i]);
-      q.textContent = "";
-    }
-    function typeQ(text, done) {
-      q.textContent = ""; var i = 0;
-      typeTimer = setInterval(function () {
-        q.textContent = text.slice(0, ++i);
-        if (i >= text.length) { clearInterval(typeTimer); typeTimer = null; if (done) done(); }
-      }, 66);
-    }
-    function run() {
-      clearAll(); reset();
-      var text = t("hero.q") || I18N.en["hero.q"] || "";
-      timers.push(setTimeout(function () {
-        root.classList.add("is-q");
-        typeQ(text, function () {
-          timers.push(setTimeout(function () { root.classList.add("is-src"); }, 600));
-          timers.push(setTimeout(function () { root.classList.add("is-core"); }, 2400));
-          timers.push(setTimeout(function () { root.classList.add("is-ans"); }, 4000));
-          timers.push(setTimeout(run, 7200)); // long, readable hold after the answer, then loop
-        });
-      }, 400));
-    }
-
-    // Only animate while the hero is on screen (perf + battery).
-    if ("IntersectionObserver" in window) {
-      var io = new IntersectionObserver(function (es) {
-        es.forEach(function (e) {
-          if (e.isIntersecting) { if (!running) { running = true; run(); } }
-          else { running = false; clearAll(); }
-        });
-      }, { threshold: .2 });
-      io.observe(root);
-    } else {
-      running = true; run();
-    }
-  }
 })();

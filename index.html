@@ -79,35 +79,28 @@
     </div>
     <div class="viz" aria-hidden="true">
       <div class="hero-anim">
-        <div class="ha-graph">
-          <div class="ha-srcs">
-            <svg class="ha-lines" viewBox="0 0 100 100" preserveAspectRatio="none">
-              <line x1="50" y1="50" x2="50" y2="12"/>
-              <line x1="50" y1="50" x2="83" y2="31"/>
-              <line x1="50" y1="50" x2="83" y2="69"/>
-              <line x1="50" y1="50" x2="50" y2="88"/>
-              <line x1="50" y1="50" x2="17" y2="69"/>
-              <line x1="50" y1="50" x2="17" y2="31"/>
-            </svg>
-            <div class="ha-src s1"><span class="ha-dot"></span><span class="ha-lbl" data-i18n="g.repos">Repos</span></div>
-            <div class="ha-src s2"><span class="ha-dot"></span><span class="ha-lbl" data-i18n="g.slack">Slack</span></div>
-            <div class="ha-src s3"><span class="ha-dot"></span><span class="ha-lbl" data-i18n="g.tickets">Tickets</span></div>
-            <div class="ha-src s4"><span class="ha-dot"></span><span class="ha-lbl" data-i18n="g.decisions">Decisions</span></div>
-            <div class="ha-src s5"><span class="ha-dot"></span><span class="ha-lbl" data-i18n="g.wiki">Wiki</span></div>
-            <div class="ha-src s6"><span class="ha-dot"></span><span class="ha-lbl" data-i18n="g.docs">Docs</span></div>
-          </div>
-          <div class="ha-core"><span class="ha-ping"></span><span class="ha-sym"></span></div>
-        </div>
-        <div class="ha-answer">
-          <p class="ha-a1" data-i18n="hero.ans1">Deploy through the staging pipeline,</p>
-          <p class="ha-a2" data-i18n="hero.ans2">then promote once checks are green.</p>
-          <p class="ha-ameta" data-i18n="hero.ansmeta">Assembled from your repos, decisions and docs</p>
-        </div>
-        <div class="ha-prompt">
-          <span class="ha-caret">&gt;</span>
-          <span class="ha-q" data-i18n="hero.q">How do we deploy the billing service?</span>
-          <span class="ha-cur"></span>
-        </div>
+        <svg class="ha-lines" viewBox="0 0 100 100" preserveAspectRatio="none">
+          <line class="ln" x1="50" y1="12" x2="50" y2="50"/>
+          <line class="ln" x1="84" y1="31" x2="50" y2="50"/>
+          <line class="ln" x1="84" y1="69" x2="50" y2="50"/>
+          <line class="ln" x1="50" y1="88" x2="50" y2="50"/>
+          <line class="ln" x1="16" y1="69" x2="50" y2="50"/>
+          <line class="ln" x1="16" y1="31" x2="50" y2="50"/>
+          <line class="fl f1" x1="50" y1="12" x2="50" y2="50"/>
+          <line class="fl f2" x1="84" y1="31" x2="50" y2="50"/>
+          <line class="fl f3" x1="84" y1="69" x2="50" y2="50"/>
+          <line class="fl f4" x1="50" y1="88" x2="50" y2="50"/>
+          <line class="fl f5" x1="16" y1="69" x2="50" y2="50"/>
+          <line class="fl f6" x1="16" y1="31" x2="50" y2="50"/>
+        </svg>
+        <div class="ha-src s1"><span class="ha-dot"></span><span class="ha-lbl" data-i18n="g.repos">Repos</span></div>
+        <div class="ha-src s2"><span class="ha-dot"></span><span class="ha-lbl" data-i18n="g.slack">Slack</span></div>
+        <div class="ha-src s3"><span class="ha-dot"></span><span class="ha-lbl" data-i18n="g.tickets">Tickets</span></div>
+        <div class="ha-src s4"><span class="ha-dot"></span><span class="ha-lbl" data-i18n="g.decisions">Decisions</span></div>
+        <div class="ha-src s5"><span class="ha-dot"></span><span class="ha-lbl" data-i18n="g.wiki">Wiki</span></div>
+        <div class="ha-src s6"><span class="ha-dot"></span><span class="ha-lbl" data-i18n="g.docs">Docs</span></div>
+        <div class="ha-orbit" aria-hidden="true"><i></i><i></i><i></i></div>
+        <div class="ha-core"><span class="ha-ping"></span><span class="ha-ping p2"></span><span class="ha-sym"></span></div>
       </div>
     </div>
   </div>
