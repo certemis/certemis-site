@@ -901,8 +901,13 @@ footer{background:var(--ink);color:var(--muted-dk);padding:62px 0 42px}
 
 /* === Scroll-reactive effects (driven by site.js setting --sp / transform) ===
    Without JS or under reduced motion these rest in their natural state. */
-.sfx-line{width:100%;height:3px;border-radius:2px;background:var(--accent);opacity:.6;
-  box-shadow:0 0 14px rgba(46,91,255,.5);transform-origin:left;transform:scaleX(var(--sp,1))}
+/* one bold scroll-progress bar (homepage "the problem" section): fill + a glowing dot
+   that travels across as you scroll through the section. Default (no JS / reduced motion)
+   rests filled so it reads as an intentional accent rule. */
+.sfx-prog{position:relative;width:100%;height:5px;border-radius:99px;background:var(--line)}
+.sfx-prog .fill{position:absolute;inset:0;border-radius:99px;background:var(--accent);transform-origin:left;transform:scaleX(var(--sp,1))}
+.sfx-prog .dot{position:absolute;top:50%;left:calc(var(--sp,1)*100%);width:16px;height:16px;margin:-8px 0 0 -8px;
+  border-radius:50%;background:var(--accent);box-shadow:0 0 16px 4px rgba(46,91,255,.55)}
 /* count-up numbers pop in as they enter (scroll-triggered via IntersectionObserver) */
 @media (prefers-reduced-motion: no-preference){
   .stat .num{transform-origin:left}
@@ -941,6 +946,12 @@ footer{background:var(--ink);color:var(--muted-dk);padding:62px 0 42px}
 .roi-num:focus-within{border-bottom-color:var(--accent)}
 .roi-cur{flex:0 0 auto;font-family:var(--display);font-weight:700;color:var(--muted)}
 .roi-num input{flex:1;width:auto;min-width:0;border:0;padding:9px 0;font-family:var(--display);font-weight:700;font-size:1.12rem}
+/* manual number field next to each slider */
+.roi-numin{flex:0 0 auto;width:76px;text-align:right;border:1px solid var(--line);border-radius:8px;
+  padding:5px 8px;font-family:var(--display);font-weight:700;font-size:.98rem;color:var(--ink);background:var(--paper);-moz-appearance:textfield;appearance:textfield}
+.roi-numin::-webkit-outer-spin-button,.roi-numin::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.roi-numin:focus{outline:none;border-color:var(--accent)}
+.roi-rangenote{margin:10px 0 0;font-size:.82rem;line-height:1.45;color:var(--muted-dk)}
 
 /* right — result card (accent-highlighted, dark) */
 .roi-out{position:relative;overflow:hidden;border:1px solid var(--line-dk);border-radius:16px;

@@ -159,35 +159,31 @@
     <div class="roi-grid reveal" id="roi">
       <div class="roi-controls">
         <div class="roi-ctrl">
-          <div class="roi-row"><label for="roiEmp" data-i18n="roi.employees">Employees</label><output class="roi-val" id="roiEmpV" for="roiEmp">60</output></div>
-          <input type="range" id="roiEmp" min="1" max="500" step="1" value="60" aria-describedby="roiEmpV">
+          <div class="roi-row"><label id="roiEmpL" for="roiEmp" data-i18n="roi.employees">Employees</label><input type="number" class="roi-numin" id="roiEmpN" min="1" max="500" step="1" value="60" inputmode="numeric" aria-labelledby="roiEmpL"></div>
+          <input type="range" id="roiEmp" min="1" max="500" step="1" value="60" aria-labelledby="roiEmpL">
         </div>
         <div class="roi-ctrl">
-          <div class="roi-row"><label for="roiHours" data-i18n="roi.hours">Hours/week each person loses finding answers</label><output class="roi-val" id="roiHoursV" for="roiHours">4</output></div>
-          <input type="range" id="roiHours" min="0" max="15" step="0.5" value="4" aria-describedby="roiHoursV">
+          <div class="roi-row"><label id="roiHoursL" for="roiHours" data-i18n="roi.hours">Hours/week each person loses finding answers</label><input type="number" class="roi-numin" id="roiHoursN" min="0" max="15" step="0.5" value="4" inputmode="decimal" aria-labelledby="roiHoursL"></div>
+          <input type="range" id="roiHours" min="0" max="15" step="0.5" value="4" aria-labelledby="roiHoursL">
         </div>
         <div class="roi-ctrl">
           <label for="roiRate" data-i18n="roi.rate">Average hourly cost (gross)</label>
           <div class="roi-num"><span class="roi-cur" aria-hidden="true">€</span><input type="number" id="roiRate" min="0" step="1" value="35" inputmode="numeric"></div>
         </div>
         <div class="roi-ctrl">
-          <div class="roi-row"><label for="roiHires" data-i18n="roi.hires">New hires per year</label><output class="roi-val" id="roiHiresV" for="roiHires">12</output></div>
-          <input type="range" id="roiHires" min="0" max="100" step="1" value="12" aria-describedby="roiHiresV">
+          <div class="roi-row"><label id="roiHiresL" for="roiHires" data-i18n="roi.hires">New hires per year</label><input type="number" class="roi-numin" id="roiHiresN" min="0" max="100" step="1" value="12" inputmode="numeric" aria-labelledby="roiHiresL"></div>
+          <input type="range" id="roiHires" min="0" max="100" step="1" value="12" aria-labelledby="roiHiresL">
         </div>
         <div class="roi-ctrl">
-          <div class="roi-row"><label for="roiRamp" data-i18n="roi.ramp">Days to full productivity for a new hire</label><output class="roi-val" id="roiRampV" for="roiRamp">65</output></div>
-          <input type="range" id="roiRamp" min="10" max="120" step="1" value="65" aria-describedby="roiRampV">
-        </div>
-        <div class="roi-ctrl">
-          <div class="roi-row"><label for="roiRec" data-i18n="roi.recover">How much Certemis realistically recovers</label><output class="roi-val" id="roiRecV" for="roiRec">30%</output></div>
-          <input type="range" id="roiRec" min="10" max="60" step="1" value="30" aria-describedby="roiRecHint">
-          <span class="roi-hint" id="roiRecHint">realistic</span>
+          <div class="roi-row"><label id="roiRampL" for="roiRamp" data-i18n="roi.ramp">Days to full productivity for a new hire</label><input type="number" class="roi-numin" id="roiRampN" min="10" max="120" step="1" value="65" inputmode="numeric" aria-labelledby="roiRampL"></div>
+          <input type="range" id="roiRamp" min="10" max="120" step="1" value="65" aria-labelledby="roiRampL">
         </div>
       </div>
       <div class="roi-out" aria-live="polite">
         <span class="eyebrow" data-i18n="roi.res.main">Certemis could recover</span>
-        <div class="roi-big"><span id="roiRecoverYear">€0</span></div>
+        <div class="roi-big"><span id="roiRecLow">€0</span> – <span id="roiRecHigh">€0</span></div>
         <div class="roi-peryear" data-i18n="roi.res.peryear">per year</div>
+        <p class="roi-rangenote" data-i18n="roi.range.note">Range assumes Certemis recovers 20–40% of the time lost to searching and slow ramp-up — a conservative-to-optimistic estimate.</p>
         <ul class="roi-lines">
           <li><span data-i18n="roi.res.search">lost to searching / month</span><span class="roi-n" id="roiSearchMonth">€0</span></li>
           <li><span data-i18n="roi.res.total">total lost / year</span><span class="roi-n" id="roiTotalYear">€0</span></li>

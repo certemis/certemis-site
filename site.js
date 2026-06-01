@@ -198,8 +198,7 @@
       "roi.rate": "Average hourly cost (gross)",
       "roi.hires": "New hires per year",
       "roi.ramp": "Days to full productivity for a new hire",
-      "roi.recover": "How much Certemis realistically recovers",
-      "roi.rec.cons": "conservative", "roi.rec.real": "realistic", "roi.rec.opt": "optimistic",
+      "roi.range.note": "Range assumes Certemis recovers 20–40% of the time lost to searching and slow ramp-up — a conservative-to-optimistic estimate.",
       "roi.res.main": "Certemis could recover",
       "roi.res.peryear": "per year",
       "roi.res.search": "lost to searching / month",
@@ -528,8 +527,7 @@
       "roi.rate": "Średnia stawka godzinowa (brutto)",
       "roi.hires": "Nowe osoby rocznie",
       "roi.ramp": "Dni do pełnej produktywności nowej osoby",
-      "roi.recover": "Ile Certemis realnie odzyskuje",
-      "roi.rec.cons": "konserwatywnie", "roi.rec.real": "realistycznie", "roi.rec.opt": "optymistycznie",
+      "roi.range.note": "Zakres zakłada, że Certemis odzyskuje 20–40% czasu traconego na szukanie i wolne wdrożenie — od szacunku konserwatywnego do optymistycznego.",
       "roi.res.main": "Certemis może odzyskać",
       "roi.res.peryear": "rocznie",
       "roi.res.search": "tracone na szukaniu / mies.",
@@ -943,43 +941,59 @@
     update();
   }
 
-  // ===== Live ROI calculator (pricing.html) =====
+  // ===== Live ROI calculator (pricing.html) — slider <-> number two-way sync, recovery range =====
   function initROI() {
     var root = document.getElementById("roi");
     if (!root) return;
-    var inputs = ["roiEmp", "roiHours", "roiRate", "roiHires", "roiRamp", "roiRec"];
-    function num(id) { var e = document.getElementById(id); return e ? (parseFloat(e.value) || 0) : 0; }
-    function money(n) { return "€" + Math.round(n).toLocaleString(lang === "pl" ? "pl-PL" : "en-US"); }
+    // sliders paired with a manual number field
+    var pairs = [
+      { r: "roiEmp", n: "roiEmpN", min: 1, max: 500 },
+      { r: "roiHours", n: "roiHoursN", min: 0, max: 15 },
+      { r: "roiHires", n: "roiHiresN", min: 0, max: 100 },
+      { r: "roiRamp", n: "roiRampN", min: 10, max: 120 }
+    ];
+    function val(id) { var e = document.getElementById(id); return e ? (parseFloat(e.value) || 0) : 0; }
+    function clamp(x, min, max) { return x < min ? min : x > max ? max : x; }
+    var loc = function () { return lang === "pl" ? "pl-PL" : "en-US"; };
+    function money(n) { return "€" + Math.round(n).toLocaleString(loc()); }
+    function money1k(n) { return "€" + (Math.round(n / 1000) * 1000).toLocaleString(loc()); }
     function set(id, v) { var e = document.getElementById(id); if (e) e.textContent = v; }
-    function fill(id, min, max) {
+    function fillRange(id, min, max) {
       var e = document.getElementById(id); if (!e) return;
-      var pct = (num(id) - min) / (max - min) * 100;
-      e.style.setProperty("--fp", Math.max(0, Math.min(100, pct)).toFixed(1) + "%");
+      var pct = (val(id) - min) / (max - min) * 100;
+      e.style.setProperty("--fp", clamp(pct, 0, 100).toFixed(1) + "%");
     }
     function recompute() {
-      var emp = num("roiEmp"), hrs = num("roiHours"), rate = num("roiRate"),
-          hires = num("roiHires"), ramp = num("roiRamp"), rec = num("roiRec");
+      var emp = val("roiEmp"), hrs = val("roiHours"), rate = val("roiRate"),
+          hires = val("roiHires"), ramp = val("roiRamp");
       var searchMonth = emp * hrs * 4.33 * rate;
-      var searchYear = searchMonth * 12;
       var onbYear = hires * (ramp * 8 * rate * 0.5);
-      var totalYear = searchYear + onbYear;
-      var recoverYear = totalYear * (rec / 100);
-      set("roiRecoverYear", money(recoverYear));
+      var totalYear = searchMonth * 12 + onbYear;
+      set("roiRecLow", money1k(totalYear * 0.20));
+      set("roiRecHigh", money1k(totalYear * 0.40));
       set("roiSearchMonth", money(searchMonth));
       set("roiTotalYear", money(totalYear));
       set("roiOnbYear", money(onbYear));
-      set("roiEmpV", emp); set("roiHoursV", hrs); set("roiHiresV", hires);
-      set("roiRampV", ramp); set("roiRecV", Math.round(rec) + "%");
-      var hint = document.getElementById("roiRecHint");
-      if (hint) hint.textContent = t(rec <= 29 ? "roi.rec.cons" : rec <= 45 ? "roi.rec.real" : "roi.rec.opt");
-      fill("roiEmp", 1, 500); fill("roiHours", 0, 15); fill("roiHires", 0, 100);
-      fill("roiRamp", 10, 120); fill("roiRec", 10, 60);
+      for (var i = 0; i < pairs.length; i++) fillRange(pairs[i].r, pairs[i].min, pairs[i].max);
     }
-    for (var i = 0; i < inputs.length; i++) {
-      var el = document.getElementById(inputs[i]);
-      if (el) el.addEventListener("input", recompute);
-    }
-    // re-render (locale formatting + hint) when the language changes
+    pairs.forEach(function (p) {
+      var r = document.getElementById(p.r), n = document.getElementById(p.n);
+      if (r) r.addEventListener("input", function () { if (n) n.value = r.value; recompute(); });
+      if (n) {
+        n.addEventListener("input", function () {
+          var v = parseFloat(n.value);
+          if (!isNaN(v) && r) r.value = clamp(v, p.min, p.max); // math always uses the clamped slider value
+          recompute();
+        });
+        n.addEventListener("blur", function () {
+          var v = parseFloat(n.value); if (isNaN(v)) v = p.min;
+          v = clamp(v, p.min, p.max); n.value = v; if (r) r.value = v; recompute();
+        });
+      }
+    });
+    var rate = document.getElementById("roiRate");
+    if (rate) rate.addEventListener("input", recompute);
+    // re-render number locale formatting when the language changes
     ["langSel", "langSelMobile"].forEach(function (id) {
       var s = document.getElementById(id);
       if (s) s.addEventListener("change", function () { setTimeout(recompute, 0); });
