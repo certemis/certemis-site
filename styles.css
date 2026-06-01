@@ -232,13 +232,6 @@ a.feat:hover .feat-row svg{transform:translateX(4px);color:var(--ink)}
 @keyframes blink{50%{opacity:0}}
 .term-a{display:block;margin-top:14px;color:var(--muted-dk);font-size:.98rem}
 
-.steps{position:relative}
-.step{display:grid;grid-template-columns:96px 1fr;gap:30px;padding:34px 0;border-top:1px solid var(--line-dk);align-items:start}
-.step:last-child{border-bottom:1px solid var(--line-dk)}
-.step .idx{font-family:var(--display);font-size:1.6rem;font-weight:700;color:var(--muted-dk)}
-.step h3{font-size:1.38rem;color:#fff;margin-bottom:.25em}
-.step p{color:var(--muted-dk);margin:0;max-width:64ch;font-size:1.05rem}
-
 .offer-card{display:grid;grid-template-columns:.92fr 1.08fr;background:#fff;
   border:1px solid var(--line);border-radius:18px;overflow:hidden}
 @media(max-width:900px){.offer-card{grid-template-columns:1fr}}
@@ -517,4 +510,52 @@ footer{background:var(--ink);color:var(--muted-dk);padding:62px 0 42px}
 /* Very narrow phones: drop source labels for clarity */
 @media (max-width:480px){
   .ha-lbl{display:none}
+}
+
+/* ===================================================================
+   How-it-works vertical timeline (page-scoped). Single accent rail with
+   numbered nodes; line segments draw per-step on reveal (existing IO),
+   nodes pulse. Reduced motion / no JS: static line + nodes.
+   =================================================================== */
+.tl{position:relative;--n:64px;max-width:820px}
+.tl-item{position:relative;display:grid;grid-template-columns:var(--n) 1fr;gap:28px;align-items:start;padding:0 0 56px}
+.tl-item:last-child{padding-bottom:0}
+
+/* accent connecting line — one segment per step so variable text heights stay connected */
+.tl-item::before{content:"";position:absolute;left:calc(var(--n)/2 - 1px);top:0;bottom:0;width:2px;
+  background:var(--accent);opacity:.45;z-index:0;
+  transform:scaleY(0);transform-origin:top;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.tl-item:first-child::before{top:calc(var(--n)/2)}
+.tl-item:last-child::before{bottom:auto;height:calc(var(--n)/2)}
+.tl-item.in::before{transform:scaleY(1)}
+
+/* numbered node sitting on the rail */
+.tl-node{position:relative;z-index:2;width:var(--n);height:var(--n);border-radius:50%;display:grid;place-items:center;
+  background:var(--ink-2);border:2px solid var(--accent);box-shadow:0 0 22px -6px rgba(46,91,255,.6);
+  font-family:var(--display);font-weight:700;font-size:1.25rem;color:#fff}
+.tl-node span{position:relative;z-index:2}
+.tl-node::after{content:"";position:absolute;inset:-6px;border-radius:50%;border:1px solid var(--accent);opacity:0;pointer-events:none}
+
+.tl-body{padding-top:15px}
+.tl-body h3{font-size:1.4rem;color:#fff;margin:0 0 .32em}
+.tl-body p{color:var(--muted-dk);margin:0;max-width:60ch;font-size:1.06rem}
+
+@keyframes tl-pulse{0%{transform:scale(.92);opacity:.5}70%{transform:scale(1.6);opacity:0}100%{opacity:0}}
+@media (prefers-reduced-motion: no-preference){
+  .tl-node::after{animation:tl-pulse 3.2s ease-out infinite}
+  .tl-item.d1 .tl-node::after{animation-delay:.5s}
+  .tl-item.d2 .tl-node::after{animation-delay:1s}
+  .tl-item.d3 .tl-node::after{animation-delay:1.5s}
+}
+/* reduced motion: full static line, no draw/pulse */
+@media (prefers-reduced-motion: reduce){
+  .tl-item::before{transform:none;transition:none}
+}
+
+@media(max-width:560px){
+  .tl{--n:52px}
+  .tl-item{gap:18px;padding-bottom:42px}
+  .tl-node{font-size:1.05rem}
+  .tl-body{padding-top:11px}
+  .tl-body h3{font-size:1.22rem}
 }
