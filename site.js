@@ -14,6 +14,7 @@
     window.addEventListener("load", show); // failsafe if DOMContentLoaded was missed
   })();
 
+  // ===== i18n dictionary (EN / PL — keys must stay in parity) =====
   var I18N = {
     en: {
       "nav.about": "About",
@@ -91,10 +92,6 @@
       "term.title": "certemis — ask",
       "term.q": "Why did we drop the legacy auth flow?",
       "term.a": "// Pulled from the decision record and the discussion that led to it — scoped to your access.",
-      "hero.q": "How do we deploy the billing service?",
-      "hero.ans1": "Deploy through the staging pipeline,",
-      "hero.ans2": "then promote once checks are green.",
-      "hero.ansmeta": "Assembled from your repos, decisions and docs",
 
       "prod.kicker": "Product",
       "prod.h1": "One place to ask anything your company already figured out.",
@@ -310,8 +307,6 @@
       "ph.needs": "Onboarding speed, knowledge loss when people leave, scattered context...",
       "opt.choose": "Select...",
       "size.1": "1-29 people", "size.2": "30-80 people", "size.3": "81-150 people", "size.4": "150+ people",
-      "c.pl": "Poland", "c.de": "Germany", "c.uk": "United Kingdom", "c.nl": "Netherlands",
-      "c.fr": "France", "c.es": "Spain", "c.se": "Sweden", "c.other": "Other (EU / UK)",
       "ea.submit": "Apply for founding access",
       "ea.consent": "By applying you agree to receive launch updates from Certemis. Only product news and your founding-member offer - no spam, unsubscribe anytime.",
       "ea.faq.kicker": "Questions",
@@ -420,10 +415,6 @@
       "term.title": "certemis — zapytanie",
       "term.q": "Dlaczego porzuciliśmy stary system logowania?",
       "term.a": "// Wyciągnięte z zapisu decyzji i dyskusji, która do niej doprowadziła — w zakresie Twoich uprawnień.",
-      "hero.q": "Jak wdrażamy serwis płatności?",
-      "hero.ans1": "Wdrażaj przez pipeline staging,",
-      "hero.ans2": "potem promuj po zielonych testach.",
-      "hero.ansmeta": "Złożone z Twoich repozytoriów, decyzji i dokumentów",
 
       "prod.kicker": "Produkt",
       "prod.h1": "Jedno miejsce, by zapytać o wszystko, co Twoja firma już kiedyś rozgryzła.",
@@ -639,8 +630,6 @@
       "ph.needs": "Tempo onboardingu, utrata wiedzy przy odejściach, rozproszony kontekst…",
       "opt.choose": "Wybierz…",
       "size.1": "1–29 osób", "size.2": "30–80 osób", "size.3": "81–150 osób", "size.4": "150+ osób",
-      "c.pl": "Polska", "c.de": "Niemcy", "c.uk": "Wielka Brytania", "c.nl": "Holandia",
-      "c.fr": "Francja", "c.es": "Hiszpania", "c.se": "Szwecja", "c.other": "Inny (UE / UK)",
       "ea.submit": "Aplikuj o dostęp founding",
       "ea.consent": "Wysyłając zgodę, akceptujesz otrzymywanie informacji o starcie Certemis. Tylko wiadomości o produkcie i Twojej ofercie founding — bez spamu, rezygnacja w każdej chwili.",
       "ea.faq.kicker": "Pytania",
@@ -675,6 +664,7 @@
     }
   };
 
+  // ===== i18n engine — language state, lookup, DOM application =====
   var LS_KEY = "certemis_lang";
   var lang = localStorage.getItem(LS_KEY) || "en";
   if (!I18N[lang]) lang = "en";
@@ -704,6 +694,7 @@
     lang = l; localStorage.setItem(LS_KEY, l); apply();
   }
 
+  // ===== Main init: i18n apply, nav/menu, language switch, form, motion =====
   document.addEventListener("DOMContentLoaded", function () {
     apply();
 
