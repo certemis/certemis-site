@@ -973,3 +973,18 @@ footer{background:var(--ink);color:var(--muted-dk);padding:62px 0 42px}
 .int-logo:hover{color:var(--ink);border-color:var(--ink);transform:translateY(-3px)}
 .int-logo svg{width:26px;height:26px;flex:0 0 auto}
 .int-logo span{font-family:var(--body);font-weight:600;font-size:.92rem;letter-spacing:.01em;text-align:center;line-height:1.2}
+
+.cdemo{max-width:1080px;margin:0 auto;padding:80px 24px}
+.cdemo__head{text-align:center;max-width:640px;margin:0 auto 34px}
+.cdemo__eyebrow{font-family:'Rajdhani',sans-serif;font-weight:600;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#2E5BFF;margin-bottom:14px}
+.cdemo__title{font-family:'Orbitron',sans-serif;font-size:clamp(26px,4vw,40px);margin:0 0 12px}
+.cdemo__sub{color:#5b626e;font-size:16px;line-height:1.6;margin:0}
+.cdemo__frame{position:relative;border-radius:16px;overflow:hidden;border:1px solid rgba(0,0,0,.12);box-shadow:0 30px 80px rgba(0,0,0,.18);aspect-ratio:16/10;background:#0c0e12}
+.cdemo__iframe{position:absolute;top:0;left:0;width:200%;height:200%;transform:scale(.5);transform-origin:top left;border:0;pointer-events:none}
+.cdemo__overlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;text-decoration:none;background:radial-gradient(circle at center,rgba(8,10,14,.35),rgba(8,10,14,.72));transition:background .2s;cursor:pointer}
+.cdemo__overlay:hover{background:radial-gradient(circle at center,rgba(8,10,14,.22),rgba(8,10,14,.6))}
+.cdemo__play{width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#2E5BFF;color:#fff;box-shadow:0 8px 30px rgba(46,91,255,.5);transition:transform .2s}
+.cdemo__overlay:hover .cdemo__play{transform:scale(1.08)}
+.cdemo__btn{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:16px;letter-spacing:.04em;color:#fff;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.25);padding:12px 22px;border-radius:12px;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.cdemo__hint{text-align:center;color:#8a909c;font-size:13px;margin-top:16px}
+@media(max-width:640px){.cdemo__frame{aspect-ratio:4/3}}

@@ -108,6 +108,12 @@
       "prod.sec.p": "Encryption in transit and at rest, strict tenant isolation, EU data residency, a Data Processing Agreement with every customer, and a clear contractual commitment that your data is never used to train models.",
       "prod.cta": "Request early access",
 
+      "demo_eyebrow": "Live demo",
+      "demo_title": "See Certemis in action",
+      "demo_sub": "Open a fully interactive demo of the Certemis dashboard — ask questions, explore the sources behind every answer, switch the language. No signup.",
+      "demo_cta": "Click to test the live demo",
+      "demo_hint": "Opens in a new tab · works fullscreen · no signup needed",
+
       "how.kicker": "How it works",
       "how.h1": "Connected in an afternoon. Useful the same day.",
       "how.p": "Four steps from scattered knowledge to a memory your whole team can simply ask.",
@@ -430,6 +436,12 @@
       "prod.sec.h2": "Twoja wiedza traktowana jak najwrażliwszy zasób.",
       "prod.sec.p": "Szyfrowanie w tranzycie i w spoczynku, ścisła izolacja tenantów, rezydencja danych w UE, umowa powierzenia (DPA) z każdym klientem oraz jasne zobowiązanie umowne, że Twoje dane nigdy nie służą do trenowania modeli.",
       "prod.cta": "Poproś o wczesny dostęp",
+
+      "demo_eyebrow": "Demo na żywo",
+      "demo_title": "Zobacz Certemis w akcji",
+      "demo_sub": "Otwórz w pełni interaktywne demo pulpitu Certemis — zadawaj pytania, przeglądaj źródła każdej odpowiedzi, zmień język. Bez rejestracji.",
+      "demo_cta": "Kliknij, aby przetestować demo",
+      "demo_hint": "Otwiera się w nowej karcie · działa na pełnym ekranie · bez rejestracji",
 
       "how.kicker": "Jak to działa",
       "how.h1": "Podłączone w jedno popołudnie. Przydatne tego samego dnia.",
