@@ -33,15 +33,15 @@ $('modalMask').addEventListener('click',function(e){if(e.target===$('modalMask')
 /* ===== i18n ===== */
 var DICT={en:{},pl:{
  tour:"Przewodnik",language:"Język",notifications:"Powiadomienia",
- ntf1t:"Wykryto lukę w wiedzy",ntf1d:"5 pytań bez pewnej odpowiedzi w tym tygodniu.",
+ ntf1t:"Wykryto braki w wiedzy",ntf1d:"5 pytań bez pewnej odpowiedzi w tym tygodniu.",
  ntf2t:"Synchronizacja zakończona",ntf2d:"Slack zsynchronizował 14 nowych wiadomości.",
  ntf3t:"Nowy członek zespołu",ntf3d:"Aisha Said przyjęła zaproszenie.",
  back:"Wróć do strony",pricing:"Cennik",waitlist:"Dołącz do listy",
  g_operate:"Praca",nav_ask:"Pytaj i znajduj",nav_saved:"Zapisane odpowiedzi",
- g_knowledge:"Wiedza",nav_sources:"Połączone źródła",nav_ingestion:"Status synchronizacji",nav_gaps:"Luki w wiedzy",
+ g_knowledge:"Wiedza",nav_sources:"Połączone źródła",nav_ingestion:"Status synchronizacji",nav_gaps:"Braki w wiedzy",role_owner:"Właściciel",role_admin:"Administrator",role_member:"Członek",role_guest:"Gość",act_query:"zapytanie",act_sync:"synchronizacja",act_rolechange:"zmiana roli",act_sourceadded:"dodano źródło",act_excluded:"wykluczono",act_export:"eksport",
  g_team:"Zespół",nav_members:"Członkowie i role",nav_audit:"Dziennik audytu",
  g_insights:"Analizy",nav_analytics:"Analityka",nav_reports:"Raporty",nav_settings:"Ustawienia",
- ws_plan:"Demo · 42 miejsca",
+ ws_plan:"Demo · 42 miejsca",db_title:"Dane przykładowe",db_sub:"klikaj śmiało — nic tu nie jest prawdziwe",db_reset:"Reset demo",
  ask_title:"Zapytaj firmę o cokolwiek",ask_sub:"Wpisz pytanie zwykłym językiem. Certemis tworzy odpowiedź z Twoich narzędzi i pokazuje dokładne źródła.",
  ask_step1:"1 · Twoje pytanie",ask_btn:"Zapytaj",ask_step2:"2 · Odpowiedź",ask_genfrom:"Na podstawie",ask_sources_l:"źródeł",
  save:"Zapisz",copy:"Kopiuj",ask_helpful:"Pomocne?",ask_step3:"3 · Źródła tej odpowiedzi",
@@ -133,42 +133,65 @@ Object.assign(DICT.en,{
 });
 
 /* ===== ASK ===== */
-function srcRow(ico,name,doc,conf,access,accBadge){
+function L(en,pl){return (typeof LANG!=='undefined'&&LANG==='pl'&&pl!=null)?pl:en;}
+var ACCESS_PL={'All members':'Wszyscy','Engineering':'Inżynieria','Restricted':'Ograniczony','Project team':'Zespół projektu','All':'Wszyscy','Public only':'Tylko publiczne'};
+function accL(a){return LANG==='pl'?(ACCESS_PL[a]||a):a;}
+var ROLE_PL={'Owner':'Właściciel','Admin':'Administrator','Member':'Członek','Guest':'Gość'};
+function roleL(r){return LANG==='pl'?(ROLE_PL[r]||r):r;}
+var ACT_PL={'query':'zapytanie','sync':'synchronizacja','role change':'zmiana roli','source added':'dodano źródło','excluded':'wykluczono','export':'eksport'};
+function timeL(s){if(LANG!=='pl')return s;var m={'now':'teraz','yesterday':'wczoraj','just now':'przed chwilą','invited':'zaproszono'};if(m[s])return m[s];return s.replace(/(\d+)m ago/,'$1 min temu').replace(/(\d+)h ago/,'$1 godz. temu').replace(/(\d+)d ago/,'$1 dni temu').replace(' ago',' temu');}
+function sr(k,name,docEn,docPl,conf,access,accBadge){
   var cls=conf>=90?'ok':(conf>=75?'':'warn');
-  return '<tr><td><div class="row"><span class="src-ico">'+ico(arguments[0])+'</span> '+name+'</div></td><td>'+doc+'</td><td><div class="conf"><div class="conf-bar '+cls+'"><i style="width:'+conf+'%"></i></div><span class="conf-num">'+conf+'%</span></div></td><td><span class="badge '+accBadge+'">'+access+'</span></td></tr>';
-}
-function sr(k,name,doc,conf,access,accBadge){
-  var cls=conf>=90?'ok':(conf>=75?'':'warn');
-  return '<tr><td><div class="row"><span class="src-ico">'+ico(k)+'</span> '+name+'</div></td><td>'+doc+'</td><td><div class="conf"><div class="conf-bar '+cls+'"><i style="width:'+conf+'%"></i></div><span class="conf-num">'+conf+'%</span></div></td><td><span class="badge '+accBadge+'">'+access+'</span></td></tr>';
+  return '<tr><td><div class="row"><span class="src-ico">'+ico(k)+'</span> '+name+'</div></td><td>'+L(docEn,docPl)+'</td><td><div class="conf"><div class="conf-bar '+cls+'"><i style="width:'+conf+'%"></i></div><span class="conf-num">'+conf+'%</span></div></td><td><span class="badge '+accBadge+'">'+accL(access)+'</span></td></tr>';
 }
 var ASKDATA={
- payments:{q:"How did we resolve the payments outage in March, and who owns the runbook?",time:'3.1',a:'The March payments outage (Mar 14, 2026) was caused by the payment provider rejecting retries after a token refresh failure.<span class="cite">1</span> The team mitigated it by switching to the failover provider and shipping a fix to the retry logic that backs off and re-authenticates before retrying.<span class="cite">2</span> The incident was fully resolved in 1h 47m.<span class="cite">1</span><br><br>The <b>payment failover runbook</b> is owned by <b>Marta Kowalska (Platform lead)</b>, last reviewed Apr 2, 2026.<span class="cite">3</span> The retry fix was authored by <b>Daniel Reyes</b> and reviewed by Marta.<span class="cite">2</span>',
-  s:[['slack','Slack · #incidents','Postmortem: payments outage — Mar 14',96,'All members','neutral'],['github','GitHub · northwind/api','PR #1284 — retry backoff &amp; re-auth',92,'Engineering','neutral'],['confluence','Confluence','Runbook: payment provider failover',88,'Engineering','neutral'],['drive','Google Drive','Q1 incident review (deck)',74,'Restricted','acc']]},
- db:{q:"What did we decide about our database stack?",time:'2.4',a:'You standardised on <b>PostgreSQL with the pgvector extension</b> as the primary store — decided in <b>ADR-002</b> (Feb 2026).<span class="cite">1</span> The rationale: one database for both relational data and vector search, hosted in the EU, avoiding a separate vector database to operate.<span class="cite">2</span> Owner: <b>Daniel Reyes</b>. Recorded trade-off: revisit a dedicated vector store if embeddings exceed ~5M rows.<span class="cite">1</span>',
-  s:[['github','GitHub · northwind/stack','ADR-002 — database &amp; vector search',95,'Engineering','neutral'],['slack','Slack · #architecture','Thread: Postgres vs dedicated vector DB',90,'All members','neutral'],['confluence','Confluence','Data stack overview',86,'Engineering','neutral']]},
- onboard:{q:"How do I onboard a new backend engineer?",time:'2.8',a:'<b>Day 1:</b> request access via SSO in <b>#it</b>, clone <b>northwind/api</b> and run <code>make setup</code>.<span class="cite">1</span> <b>Week 1:</b> pair with your buddy on a starter ticket and read the <b>Architecture decisions</b> collection.<span class="cite">2</span> Across the last five hires, the <b>average time to first merged PR was 4 days</b>.<span class="cite">3</span>',
-  s:[['confluence','Confluence','Engineering onboarding checklist',94,'Engineering','neutral'],['slack','Slack · #onboarding','Buddy assignment thread',88,'All members','neutral'],['github','GitHub · northwind/api','README — local setup',85,'Engineering','neutral']]},
- atlas:{q:"What are the open risks on the Atlas Bank project?",time:'3.0',a:'There are <b>three open risks</b> on Atlas Bank: (1) security questionnaire due <b>Jun 12</b> — owner Marta;<span class="cite">1</span> (2) data residency must be <b>EU-only</b>, confirmed;<span class="cite">2</span> (3) third-party KYC vendor SLA <b>not yet signed</b> — blocking go-live.<span class="cite">3</span> Last status update was 3 days ago.',
-  s:[['drive','Google Drive','Atlas Bank — risk register',93,'Restricted','acc'],['slack','Slack · #client-atlas','Weekly status update',89,'Project team','neutral'],['jira','Jira · ATLAS','Epic: compliance &amp; go-live',82,'Project team','neutral']]},
- billing:{q:"Who knows our billing module best?",time:'2.2',a:'By contribution and recent activity, the strongest owner of the billing module is <b>Daniel Reyes</b> — 42 commits to <code>billing/*</code> and author of the invoicing service.<span class="cite">1</span> <b>Aisha Said</b> is the next best contact.<span class="cite">2</span> <b>Marta Kowalska</b> reviewed the original design.<span class="cite">3</span>',
-  s:[['github','GitHub · northwind/api','billing/ — commit history',96,'Engineering','neutral'],['slack','Slack · #billing','Recent invoicing fixes',87,'All members','neutral'],['confluence','Confluence','Billing architecture',84,'Engineering','neutral']]}
+ payments:{q:"How did we resolve the payments outage in March, and who owns the runbook?",q_pl:"Jak rozwiązaliśmy marcową awarię płatności i kto odpowiada za runbook?",time:'3.1',
+  a:'The March payments outage (Mar 14, 2026) was caused by the payment provider rejecting retries after a token refresh failure.<span class="cite">1</span> The team mitigated it by switching to the failover provider and shipping a fix to the retry logic that backs off and re-authenticates before retrying.<span class="cite">2</span> The incident was fully resolved in 1h 47m.<span class="cite">1</span><br><br>The <b>payment failover runbook</b> is owned by <b>Marta Kowalska (Platform lead)</b>, last reviewed Apr 2, 2026.<span class="cite">3</span> The retry fix was authored by <b>Daniel Reyes</b> and reviewed by Marta.<span class="cite">2</span>',
+  a_pl:'Marcowa awaria płatności (14 mar 2026) wynikała z odrzucania ponownych prób przez dostawcę płatności po nieudanym odświeżeniu tokenu.<span class="cite">1</span> Zespół opanował ją, przełączając się na dostawcę zapasowego i wdrażając poprawkę logiki ponawiania, która stosuje odczekanie i ponownie uwierzytelnia przed kolejną próbą.<span class="cite">2</span> Incydent rozwiązano w 1 godz. 47 min.<span class="cite">1</span><br><br>Za <b>runbook awaryjnego przełączania płatności</b> odpowiada <b>Marta Kowalska (Platform lead)</b>, ostatni przegląd 2 kwi 2026.<span class="cite">3</span> Poprawkę napisał <b>Daniel Reyes</b>, a przejrzała ją Marta.<span class="cite">2</span>',
+  s:[['slack','Slack · #incidents','Postmortem: payments outage — Mar 14','Postmortem: awaria płatności — 14 mar',96,'All members','neutral'],['github','GitHub · northwind/api','PR #1284 — retry backoff &amp; re-auth','PR #1284 — odczekanie i ponowne uwierzytelnienie',92,'Engineering','neutral'],['confluence','Confluence','Runbook: payment provider failover','Runbook: przełączanie awaryjne dostawcy płatności',88,'Engineering','neutral'],['drive','Google Drive','Q1 incident review (deck)','Przegląd incydentów Q1 (prezentacja)',74,'Restricted','acc']]},
+ db:{q:"What did we decide about our database stack?",q_pl:"Co zdecydowaliśmy w sprawie naszej bazy danych?",time:'2.4',
+  a:'You standardised on <b>PostgreSQL with the pgvector extension</b> as the primary store — decided in <b>ADR-002</b> (Feb 2026).<span class="cite">1</span> The rationale: one database for both relational data and vector search, hosted in the EU, avoiding a separate vector database to operate.<span class="cite">2</span> Owner: <b>Daniel Reyes</b>. Recorded trade-off: revisit a dedicated vector store if embeddings exceed ~5M rows.<span class="cite">1</span>',
+  a_pl:'Ustandaryzowaliście się na <b>PostgreSQL z rozszerzeniem pgvector</b> jako głównej bazie — decyzja w <b>ADR-002</b> (lut 2026).<span class="cite">1</span> Uzasadnienie: jedna baza do danych relacyjnych i wyszukiwania wektorowego, hostowana w UE, bez utrzymywania osobnej bazy wektorowej.<span class="cite">2</span> Właściciel: <b>Daniel Reyes</b>. Zapisany kompromis: wrócić do dedykowanej bazy wektorowej, gdy liczba embeddingów przekroczy ~5 mln wierszy.<span class="cite">1</span>',
+  s:[['github','GitHub · northwind/stack','ADR-002 — database &amp; vector search','ADR-002 — baza i wyszukiwanie wektorowe',95,'Engineering','neutral'],['slack','Slack · #architecture','Thread: Postgres vs dedicated vector DB','Wątek: Postgres vs dedykowana baza wektorowa',90,'All members','neutral'],['confluence','Confluence','Data stack overview','Przegląd stacku danych',86,'Engineering','neutral']]},
+ onboard:{q:"How do I onboard a new backend engineer?",q_pl:"Jak wdrożyć nowego inżyniera backendu?",time:'2.8',
+  a:'<b>Day 1:</b> request access via SSO in <b>#it</b>, clone <b>northwind/api</b> and run <code>make setup</code>.<span class="cite">1</span> <b>Week 1:</b> pair with your buddy on a starter ticket and read the <b>Architecture decisions</b> collection.<span class="cite">2</span> Across the last five hires, the <b>average time to first merged PR was 4 days</b>.<span class="cite">3</span>',
+  a_pl:'<b>Dzień 1:</b> poproś o dostęp przez SSO na <b>#it</b>, sklonuj <b>northwind/api</b> i uruchom <code>make setup</code>.<span class="cite">1</span> <b>Tydzień 1:</b> pracuj w parze z opiekunem nad zadaniem startowym i przejrzyj kolekcję <b>Decyzje architektoniczne</b>.<span class="cite">2</span> Przy ostatnich pięciu rekrutacjach <b>średni czas do pierwszego scalonego PR wyniósł 4 dni</b>.<span class="cite">3</span>',
+  s:[['confluence','Confluence','Engineering onboarding checklist','Lista kontrolna onboardingu inżyniera',94,'Engineering','neutral'],['slack','Slack · #onboarding','Buddy assignment thread','Wątek przydziału opiekuna',88,'All members','neutral'],['github','GitHub · northwind/api','README — local setup','README — konfiguracja lokalna',85,'Engineering','neutral']]},
+ atlas:{q:"What are the open risks on the Atlas Bank project?",q_pl:"Jakie są otwarte ryzyka na projekcie Atlas Bank?",time:'3.0',
+  a:'There are <b>three open risks</b> on Atlas Bank: (1) security questionnaire due <b>Jun 12</b> — owner Marta;<span class="cite">1</span> (2) data residency must be <b>EU-only</b>, confirmed;<span class="cite">2</span> (3) third-party KYC vendor SLA <b>not yet signed</b> — blocking go-live.<span class="cite">3</span> Last status update was 3 days ago.',
+  a_pl:'Na projekcie Atlas Bank są <b>trzy otwarte ryzyka</b>: (1) ankieta bezpieczeństwa z terminem <b>12 cze</b> — właściciel Marta;<span class="cite">1</span> (2) dane muszą pozostać <b>wyłącznie w UE</b>, potwierdzone;<span class="cite">2</span> (3) <b>niepodpisana</b> umowa SLA z zewnętrznym dostawcą KYC — blokuje uruchomienie.<span class="cite">3</span> Ostatnia aktualizacja statusu 3 dni temu.',
+  s:[['drive','Google Drive','Atlas Bank — risk register','Atlas Bank — rejestr ryzyk',93,'Restricted','acc'],['slack','Slack · #client-atlas','Weekly status update','Cotygodniowa aktualizacja statusu',89,'Project team','neutral'],['jira','Jira · ATLAS','Epic: compliance &amp; go-live','Epik: zgodność i uruchomienie',82,'Project team','neutral']]},
+ billing:{q:"Who knows our billing module best?",q_pl:"Kto najlepiej zna nasz moduł rozliczeń?",time:'2.2',
+  a:'By contribution and recent activity, the strongest owner of the billing module is <b>Daniel Reyes</b> — 42 commits to <code>billing/*</code> and author of the invoicing service.<span class="cite">1</span> <b>Aisha Said</b> is the next best contact.<span class="cite">2</span> <b>Marta Kowalska</b> reviewed the original design.<span class="cite">3</span>',
+  a_pl:'Pod względem wkładu i ostatniej aktywności najlepiej moduł rozliczeń zna <b>Daniel Reyes</b> — 42 commity w <code>billing/*</code> i autor usługi fakturowania.<span class="cite">1</span> Drugi najlepszy kontakt to <b>Aisha Said</b>.<span class="cite">2</span> Pierwotny projekt przeglądała <b>Marta Kowalska</b>.<span class="cite">3</span>',
+  s:[['github','GitHub · northwind/api','billing/ — commit history','billing/ — historia commitów',96,'Engineering','neutral'],['slack','Slack · #billing','Recent invoicing fixes','Ostatnie poprawki fakturowania',87,'All members','neutral'],['confluence','Confluence','Billing architecture','Architektura rozliczeń',84,'Engineering','neutral']]},
+ deploy:{q:"What is our deployment process?",q_pl:"Jak wygląda nasz proces wdrażania?",time:'2.6',
+  a:'Releases ship from <code>main</code>: tag the commit, CI builds and runs the test suite, deploy to <b>staging</b>, run the smoke test, then promote to <b>production</b>.<span class="cite">1</span> Rollback is a single command and takes under two minutes.<span class="cite">2</span> Production deploys are blocked unless CI is green and one reviewer approves.<span class="cite">3</span>',
+  a_pl:'Wydania wychodzą z gałęzi <code>main</code>: otagowanie commita, build i testy w CI, wdrożenie na <b>staging</b>, smoke test, a następnie promocja na <b>produkcję</b>.<span class="cite">1</span> Rollback to jedno polecenie i trwa poniżej dwóch minut.<span class="cite">2</span> Wdrożenia produkcyjne są blokowane, dopóki CI nie jest zielone i jeden recenzent nie zatwierdzi.<span class="cite">3</span>',
+  s:[['confluence','Confluence','Release &amp; deployment runbook','Runbook wydań i wdrożeń',93,'Engineering','neutral'],['github','GitHub · northwind/api','.github/workflows/deploy.yml','.github/workflows/deploy.yml',90,'Engineering','neutral'],['slack','Slack · #releases','Deploy checklist (pinned)','Lista kontrolna wdrożenia (przypięta)',85,'All members','neutral']]},
+ standards:{q:"What are our coding standards?",q_pl:"Jakie są nasze standardy kodowania?",time:'2.3',
+  a:'Every change needs <b>one approval</b>, a <b>green CI</b> and no direct pushes to <code>main</code>; security-sensitive changes require <b>two reviewers</b>.<span class="cite">1</span> The codebase is TypeScript with a shared ESLint + Prettier config, and PRs must include tests for new logic.<span class="cite">2</span>',
+  a_pl:'Każda zmiana wymaga <b>jednej akceptacji</b>, <b>zielonego CI</b> i zakazu bezpośrednich pushy do <code>main</code>; zmiany wrażliwe na bezpieczeństwo wymagają <b>dwóch recenzentów</b>.<span class="cite">1</span> Kod to TypeScript ze wspólną konfiguracją ESLint + Prettier, a PR-y muszą zawierać testy nowej logiki.<span class="cite">2</span>',
+  s:[['confluence','Confluence','Engineering handbook — code review','Podręcznik inżyniera — code review',92,'Engineering','neutral'],['github','GitHub · northwind/stack','CONTRIBUTING.md, .eslintrc','CONTRIBUTING.md, .eslintrc',88,'Engineering','neutral']]}
 };
-function fb(q){return{q:q,time:(2+Math.random()).toFixed(1),a:'I searched across Slack, GitHub, Confluence and Google Drive for <b>"'+q.replace(/</g,'&lt;')+'"</b>. Below are the most relevant sources — open any of them to read the detail.',s:[['slack','Slack · #general','Most relevant discussion',71,'All members','neutral'],['confluence','Confluence','Related page',64,'Engineering','neutral']]};}
+function fb(q){return{q:q,time:(2+Math.random()).toFixed(1),a:'I searched across Slack, GitHub, Confluence and Google Drive for <b>"'+q.replace(/</g,'&lt;')+'"</b>. Below are the most relevant sources — open any of them to read the detail.',a_pl:'Przeszukałem Slack, GitHub, Confluence i Google Drive w poszukiwaniu <b>„'+q.replace(/</g,'&lt;')+'"</b>. Poniżej najtrafniejsze źródła — otwórz dowolne, aby zobaczyć szczegóły.',s:[['slack','Slack · #general','Most relevant discussion','Najtrafniejsza dyskusja',71,'All members','neutral'],['confluence','Confluence','Related page','Powiązana strona',64,'Engineering','neutral']]};}
 var currentAns=null;
 function renderAns(d){
   currentAns=d;
   $('srcCount').textContent=d.s.length;$('genTime').textContent=d.time;
-  $('answerText').innerHTML=d.a;
-  $('srcBody').innerHTML=d.s.map(function(r){return sr(r[0],r[1],r[2],r[3],r[4],r[5])}).join('');
+  $('answerText').innerHTML=L(d.a,d.a_pl);
+  if(d.q)$('askInput').value=L(d.q,d.q_pl);
+  $('srcBody').innerHTML=d.s.map(function(r){return sr(r[0],r[1],r[2],r[3],r[4],r[5],r[6])}).join('');
   var sv=$('saveAns');sv.classList.remove('accent');sv.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>'+t('save');
 }
 function ask(d){$('srcCount').textContent='…';$('answerText').innerHTML='<span class="typing"><i></i><i></i><i></i></span>';$('srcBody').innerHTML='';setTimeout(function(){renderAns(d)},850);}
-function runInput(){var v=$('askInput').value.trim(),hit=null;for(var k in ASKDATA){if(ASKDATA[k].q.toLowerCase()===v.toLowerCase()){hit=ASKDATA[k];break}}ask(hit||fb(v||'(empty)'));}
+function runInput(){var v=$('askInput').value.trim().toLowerCase(),hit=null;for(var k in ASKDATA){var e=ASKDATA[k];if(e.q.toLowerCase()===v||(e.q_pl&&e.q_pl.toLowerCase()===v)){hit=e;break}}ask(hit||fb($('askInput').value.trim()||'(empty)'));}
+function renderChips(){document.querySelectorAll('.chip').forEach(function(c){var d=ASKDATA[c.getAttribute('data-key')];if(d)c.textContent=L(d.q,d.q_pl)})}
 run(function(){
-  renderAns(ASKDATA.payments);
+  renderAns(ASKDATA.payments);renderChips();
   $('askGo').addEventListener('click',runInput);
   $('askInput').addEventListener('keydown',function(e){if(e.key==='Enter')runInput()});
-  document.querySelectorAll('.chip').forEach(function(c){c.addEventListener('click',function(){var d=ASKDATA[c.getAttribute('data-key')];$('askInput').value=d.q;ask(d)})});
+  document.querySelectorAll('.chip').forEach(function(c){c.addEventListener('click',function(){var d=ASKDATA[c.getAttribute('data-key')];$('askInput').value=L(d.q,d.q_pl);ask(d)})});
   $('saveAns').addEventListener('click',function(){this.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>'+(LANG==='pl'?'Zapisano':'Saved');this.classList.add('accent');toast(t('t_saved'))});
   $('copyAns').addEventListener('click',function(){var tx=$('answerText').innerText;if(navigator.clipboard)navigator.clipboard.writeText(tx)['catch'](function(){});toast(t('t_copied'))});
   $('thumbUp').addEventListener('click',function(){toast(t('t_feedback'))});
@@ -177,17 +200,32 @@ run(function(){
 
 /* ===== SAVED collections ===== */
 var COLLECTIONS=[
- {id:'onboarding',name:'Onboarding',color:'#2E5BFF',desc:'Setup, accounts, who-does-what',n:12,when:'2d ago',icon:'<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM22 21v-2a4 4 0 0 0-3-3.9"/>',items:[{q:'How do I onboard a new backend engineer?',a:'Day 1 SSO access, clone repo, run make setup. Week 1 pair on a starter ticket. Avg 4 days to first merged PR.',src:'Confluence · Slack · GitHub'},{q:'What accounts does a new hire need?',a:'SSO, GitHub org, Slack, 1Password and EU staging. Requested in #it.',src:'Confluence'},{q:'Who is my onboarding buddy?',a:'Assigned by the team lead on day one, posted in #onboarding.',src:'Slack'}]},
- {id:'incidents',name:'Incidents & postmortems',color:'#ef4444',desc:'What broke, root cause, fixes',n:8,when:'6h ago',icon:'<path d="M10.3 3.6 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.6a2 2 0 0 0-3.4 0zM12 9v4M12 17h.01"/>',items:[{q:'How did we resolve the March payments outage?',a:'Provider rejected retries after token refresh failure. Failover + retry fix. Resolved in 1h 47m.',src:'Slack · GitHub · Confluence'},{q:'What is our incident severity scale?',a:'SEV1 outage, SEV2 degraded, SEV3 internal. SEV1/2 require a postmortem within 48h.',src:'Confluence'}]},
- {id:'architecture',name:'Architecture decisions',color:'#10b981',desc:'Why we chose what we chose',n:15,when:'1w ago',icon:'<path d="M12 2 2 7l10 5 10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>',items:[{q:'What did we decide about our database stack?',a:'PostgreSQL + pgvector, one store, EU-hosted. ADR-002. Owner: Daniel.',src:'GitHub · Slack · Confluence'},{q:'Why Next.js over a separate SPA?',a:'Single codebase, SSR for SEO and faster first paint, easier hiring. ADR-001.',src:'GitHub'}]},
- {id:'atlas',name:'Client: Atlas Bank',color:'#f59e0b',desc:'Scope, contacts, open risks',n:6,when:'3d ago',icon:'<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/>',items:[{q:'What are the open risks on Atlas Bank?',a:'Security questionnaire due Jun 12, EU residency confirmed, KYC vendor SLA unsigned.',src:'Drive · Slack · Jira'},{q:'Who is the client contact?',a:'Their Head of Security; weekly sync Thursdays in #client-atlas.',src:'Slack'}]},
- {id:'process',name:'Processes & policies',color:'#8b5cf6',desc:'Reviews, releases, security',n:11,when:'4d ago',icon:'<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>',items:[{q:'What is our code review policy?',a:'One approval, CI green, no direct pushes to main. Security changes need two reviewers.',src:'Confluence'},{q:'How do we ship a release?',a:'Tag main, CI builds, staging smoke test, promote to prod. Rollback is one command.',src:'GitHub · Confluence'}]}
+ {id:'onboarding',name:'Onboarding',name_pl:'Onboarding',color:'#2E5BFF',desc:'Setup, accounts, who-does-what',desc_pl:'Konfiguracja, konta, kto za co odpowiada',n:12,when:'2d ago',when_pl:'2 dni temu',icon:'<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM22 21v-2a4 4 0 0 0-3-3.9"/>',items:[
+   {q:'How do I onboard a new backend engineer?',q_pl:'Jak wdrożyć nowego inżyniera backendu?',a:'Day 1 SSO access, clone repo, run make setup. Week 1 pair on a starter ticket. Avg 4 days to first merged PR.',a_pl:'Dzień 1: dostęp przez SSO, klon repo, make setup. Tydzień 1: praca w parze nad zadaniem startowym. Średnio 4 dni do pierwszego scalonego PR.',src:'Confluence · Slack · GitHub'},
+   {q:'What accounts does a new hire need?',q_pl:'Jakich kont potrzebuje nowa osoba?',a:'SSO, GitHub org, Slack, 1Password and EU staging. Requested in #it.',a_pl:'SSO, organizacja GitHub, Slack, 1Password i staging w UE. Zgłoszenie na #it.',src:'Confluence'},
+   {q:'Who is my onboarding buddy?',q_pl:'Kto jest moim opiekunem onboardingu?',a:'Assigned by the team lead on day one, posted in #onboarding.',a_pl:'Przydzielany przez lidera zespołu pierwszego dnia, ogłaszany na #onboarding.',src:'Slack'},
+   {q:'Where are environment variables documented?',q_pl:'Gdzie udokumentowane są zmienne środowiskowe?',a:'In the repo .env.example and the Confluence "Local setup" page; secrets come from 1Password.',a_pl:'W repo .env.example oraz na stronie Confluence „Konfiguracja lokalna"; sekrety z 1Password.',src:'GitHub · Confluence'},
+   {q:'How soon can a new hire deploy?',q_pl:'Jak szybko nowa osoba może wdrażać?',a:'After the first buddy review and a green CI — usually within the first week.',a_pl:'Po pierwszej recenzji opiekuna i zielonym CI — zwykle w pierwszym tygodniu.',src:'Confluence'}]},
+ {id:'incidents',name:'Incidents & postmortems',name_pl:'Incydenty i postmortemy',color:'#ef4444',desc:'What broke, root cause, fixes',desc_pl:'Co się zepsuło, przyczyna, naprawy',n:8,when:'6h ago',when_pl:'6 godz. temu',icon:'<path d="M10.3 3.6 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.6a2 2 0 0 0-3.4 0zM12 9v4M12 17h.01"/>',items:[
+   {q:'How did we resolve the March payments outage?',q_pl:'Jak rozwiązaliśmy marcową awarię płatności?',a:'Provider rejected retries after token refresh failure. Failover + retry fix. Resolved in 1h 47m.',a_pl:'Dostawca odrzucał ponowne próby po nieudanym odświeżeniu tokenu. Przełączenie awaryjne + poprawka ponawiania. Rozwiązano w 1 godz. 47 min.',src:'Slack · GitHub · Confluence'},
+   {q:'What is our incident severity scale?',q_pl:'Jaka jest nasza skala ważności incydentów?',a:'SEV1 outage, SEV2 degraded, SEV3 internal. SEV1/2 require a postmortem within 48h.',a_pl:'SEV1 awaria, SEV2 pogorszenie, SEV3 wewnętrzny. SEV1/2 wymagają postmortemu w 48 godz.',src:'Confluence'}]},
+ {id:'architecture',name:'Architecture decisions',name_pl:'Decyzje architektoniczne',color:'#10b981',desc:'Why we chose what we chose',desc_pl:'Dlaczego wybraliśmy to, co wybraliśmy',n:15,when:'1w ago',when_pl:'tydzień temu',icon:'<path d="M12 2 2 7l10 5 10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>',items:[
+   {q:'What did we decide about our database stack?',q_pl:'Co zdecydowaliśmy w sprawie bazy danych?',a:'PostgreSQL + pgvector, one store, EU-hosted. ADR-002. Owner: Daniel.',a_pl:'PostgreSQL + pgvector, jedna baza, hosting w UE. ADR-002. Właściciel: Daniel.',src:'GitHub · Slack · Confluence'},
+   {q:'Why Next.js over a separate SPA?',q_pl:'Dlaczego Next.js zamiast osobnego SPA?',a:'Single codebase, SSR for SEO and faster first paint, easier hiring. ADR-001.',a_pl:'Jedna baza kodu, SSR dla SEO i szybszego renderu, łatwiejsza rekrutacja. ADR-001.',src:'GitHub'},
+   {q:'Where do we host and why?',q_pl:'Gdzie hostujemy i dlaczego?',a:'Vercel + Supabase for MVP speed; migrate compute to Hetzner (EU) once data residency matters. ADR-003.',a_pl:'Vercel + Supabase dla szybkości MVP; przeniesienie compute na Hetzner (UE), gdy liczy się rezydencja danych. ADR-003.',src:'GitHub · Confluence'},
+   {q:'Do we use a message queue?',q_pl:'Czy używamy kolejki komunikatów?',a:'Not yet — background jobs run on Postgres-backed workers. Revisit at higher volume.',a_pl:'Jeszcze nie — zadania w tle działają na workerach opartych o Postgres. Wrócić przy większym wolumenie.',src:'Slack · #architecture'}]},
+ {id:'atlas',name:'Client: Atlas Bank',name_pl:'Klient: Atlas Bank',color:'#f59e0b',desc:'Scope, contacts, open risks',desc_pl:'Zakres, kontakty, otwarte ryzyka',n:6,when:'3d ago',when_pl:'3 dni temu',icon:'<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/>',items:[
+   {q:'What are the open risks on Atlas Bank?',q_pl:'Jakie są otwarte ryzyka na Atlas Bank?',a:'Security questionnaire due Jun 12, EU residency confirmed, KYC vendor SLA unsigned.',a_pl:'Ankieta bezpieczeństwa do 12 cze, rezydencja w UE potwierdzona, niepodpisane SLA dostawcy KYC.',src:'Drive · Slack · Jira'},
+   {q:'Who is the client contact?',q_pl:'Kto jest kontaktem po stronie klienta?',a:'Their Head of Security; weekly sync Thursdays in #client-atlas.',a_pl:'Ich Head of Security; cotygodniowy sync w czwartki na #client-atlas.',src:'Slack'}]},
+ {id:'process',name:'Processes & policies',name_pl:'Procesy i polityki',color:'#8b5cf6',desc:'Reviews, releases, security',desc_pl:'Recenzje, wydania, bezpieczeństwo',n:11,when:'4d ago',when_pl:'4 dni temu',icon:'<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>',items:[
+   {q:'What is our code review policy?',q_pl:'Jaka jest nasza polityka code review?',a:'One approval, CI green, no direct pushes to main. Security changes need two reviewers.',a_pl:'Jedna akceptacja, zielone CI, brak bezpośrednich pushy do main. Zmiany bezpieczeństwa wymagają dwóch recenzentów.',src:'Confluence'},
+   {q:'How do we ship a release?',q_pl:'Jak wypuszczamy wydanie?',a:'Tag main, CI builds, staging smoke test, promote to prod. Rollback is one command.',a_pl:'Tag na main, build w CI, smoke test na staging, promocja na prod. Rollback to jedno polecenie.',src:'GitHub · Confluence'}]}
 ];
 function renderCollections(){
   var g=$('colGrid');g.innerHTML='';
   COLLECTIONS.forEach(function(c){
     var b=document.createElement('button');b.className='card col-card';
-    b.innerHTML='<div class="col-ico" style="background:'+c.color+';border-color:transparent"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2">'+c.icon+'</svg></div><div style="font-weight:600;font-size:15px">'+c.name+'</div><div class="tiny muted" style="margin-top:3px">'+c.desc+'</div><div class="row tiny muted" style="margin-top:14px;gap:14px"><span>'+c.n+' '+(LANG==='pl'?'odpowiedzi':'answers')+'</span><span>·</span><span>'+(LANG==='pl'?'Zaktualizowano':'Updated')+' '+c.when+'</span></div>';
+    b.innerHTML='<div class="col-ico" style="background:'+c.color+';border-color:transparent"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2">'+c.icon+'</svg></div><div style="font-weight:600;font-size:15px">'+L(c.name,c.name_pl)+'</div><div class="tiny muted" style="margin-top:3px">'+L(c.desc,c.desc_pl)+'</div><div class="row tiny muted" style="margin-top:14px;gap:14px"><span>'+c.n+' '+(LANG==='pl'?'odpowiedzi':'answers')+'</span><span>·</span><span>'+(LANG==='pl'?'Zaktualizowano':'Updated')+' '+L(c.when,c.when_pl)+'</span></div>';
     b.addEventListener('click',function(){openCollection(c)});
     g.appendChild(b);
   });
@@ -197,31 +235,31 @@ function renderCollections(){
 }
 function openCollection(c){
   $('savedGrid').style.display='none';$('savedDetail').style.display='block';
-  $('detTitle').textContent=c.name;$('detSub').textContent=c.n+' '+(LANG==='pl'?'zapisanych odpowiedzi · zaktualizowano':'saved answers · updated')+' '+c.when;
-  $('detList').innerHTML=c.items.map(function(it){return '<div class="det-row"><div class="det-q">'+it.q+'</div><div class="det-a">'+it.a+'</div><div class="det-meta"><span>'+(LANG==='pl'?'Źródła':'Sources')+': '+it.src+'</span></div></div>'}).join('');
+  $('detTitle').textContent=L(c.name,c.name_pl);$('detSub').textContent=c.n+' '+(LANG==='pl'?'zapisanych odpowiedzi · zaktualizowano':'saved answers · updated')+' '+L(c.when,c.when_pl);
+  $('detList').innerHTML=c.items.map(function(it){return '<div class="det-row"><div class="det-q">'+L(it.q,it.q_pl)+'</div><div class="det-a">'+L(it.a,it.a_pl)+'</div><div class="det-meta"><span>'+(LANG==='pl'?'Źródła':'Sources')+': '+it.src+'</span></div></div>'}).join('')||'<div class="muted" style="text-align:center;padding:30px 12px">'+(LANG==='pl'?'Ta kolekcja jest jeszcze pusta — zapisz tu pierwszą odpowiedź z zakładki Pytaj.':'This collection is empty — save your first answer from the Ask tab.')+'</div>';
   $('main').scrollTop=0;
 }
 function newCollection(){
   openModal('<div class="modal-h"><div><div class="mt">'+t('mt_newcol')+'</div><div class="md">'+t('md_newcol')+'</div></div><div class="x" id="mx">&#10005;</div></div>'+
-   '<div class="fld-row"><label class="fld-lbl">'+t('f_name')+'</label><input class="fld" id="ncName" placeholder="e.g. Security &amp; compliance"></div>'+
+   '<div class="fld-row"><label class="fld-lbl">'+t('f_name')+'</label><input class="fld" id="ncName" placeholder="'+(LANG==='pl'?'np. Bezpieczeństwo i zgodność':'e.g. Security &amp; compliance')+'"></div>'+
    '<div class="fld-row"><label class="fld-lbl">'+t('f_color')+'</label><div class="swatch-pick" id="ncColors">'+
      ['#2E5BFF','#ef4444','#10b981','#f59e0b','#8b5cf6','#0891b2'].map(function(c,i){return '<span class="swatch'+(i===0?' sel':'')+'" style="background:'+c+'" data-c="'+c+'"></span>'}).join('')+'</div></div>'+
    '<div class="modal-foot"><button class="btn" id="mc">'+t('m_cancel')+'</button><button class="btn accent" id="mok">'+t('m_create')+'</button></div>');
   var col='#2E5BFF';
   document.querySelectorAll('#ncColors .swatch').forEach(function(s){s.addEventListener('click',function(){document.querySelectorAll('#ncColors .swatch').forEach(function(x){x.classList.remove('sel')});s.classList.add('sel');col=s.getAttribute('data-c')})});
   $('mx').onclick=closeModal;$('mc').onclick=closeModal;
-  $('mok').onclick=function(){var nm=$('ncName').value.trim()||(LANG==='pl'?'Nowa kolekcja':'New collection');COLLECTIONS.push({id:'c'+Date.now(),name:nm,color:col,desc:LANG==='pl'?'Pusta kolekcja':'Empty collection',n:0,when:LANG==='pl'?'teraz':'just now',icon:'<path d="M3 7h18M3 12h18M3 17h18"/>',items:[]});renderCollections();closeModal();toast(t('t_colcreated'))};
+  $('mok').onclick=function(){var nm=$('ncName').value.trim()||(LANG==='pl'?'Nowa kolekcja':'New collection');COLLECTIONS.push({id:'c'+Date.now(),name:nm,name_pl:nm,color:col,desc:(LANG==='pl'?'Pusta kolekcja':'Empty collection'),desc_pl:'Pusta kolekcja',n:0,when:(LANG==='pl'?'teraz':'just now'),when_pl:'teraz',icon:'<path d="M3 7h18M3 12h18M3 17h18"/>',items:[]});renderCollections();closeModal();toast(t('t_colcreated'))};
 }
 run(function(){renderCollections();$('newColBtn').addEventListener('click',newCollection);$('detBack').addEventListener('click',function(){$('savedDetail').style.display='none';$('savedGrid').style.display='block'})});
 
 /* ===== SOURCES ===== */
 var SOURCES=[
- {id:'github',name:'GitHub',meta:'northwind org',connected:true,desc:'Code, PRs, issues and decisions.',stats:[['4','repos'],['2,841','items'],['3m','sync']]},
- {id:'slack',name:'Slack',meta:'demo.slack.com',connected:true,desc:'Discussions and decisions.',stats:[['18','channels'],['19,402','items'],['now','sync']]},
- {id:'confluence',name:'Confluence',meta:'Engineering space',connected:true,desc:'Wikis and runbooks.',stats:[['126','pages'],['126','items'],['12m','sync']]},
- {id:'drive',name:'Google Drive',meta:'Shared drive',connected:true,desc:'Docs, decks and specs.',stats:[['2','folders'],['438','items'],['1h','sync']]},
- {id:'notion',name:'Notion',meta:'',connected:false,desc:'Sync wikis, specs and meeting notes.'},
- {id:'jira',name:'Jira',meta:'',connected:false,desc:'Pull tickets, epics and resolutions.'}
+ {id:'github',name:'GitHub',meta:'northwind org',connected:true,desc:'Code, PRs, issues and decisions.',desc_pl:'Kod, PR-y, zgłoszenia i decyzje.',stats:[['4','repos'],['2,841','items'],['3m','sync']]},
+ {id:'slack',name:'Slack',meta:'demo.slack.com',connected:true,desc:'Discussions and decisions.',desc_pl:'Dyskusje i decyzje.',stats:[['18','channels'],['19,402','items'],['now','sync']]},
+ {id:'confluence',name:'Confluence',meta:'Engineering space',connected:true,desc:'Wikis and runbooks.',desc_pl:'Wiki i runbooki.',stats:[['126','pages'],['126','items'],['12m','sync']]},
+ {id:'drive',name:'Google Drive',meta:'Shared drive',connected:true,desc:'Docs, decks and specs.',desc_pl:'Dokumenty, prezentacje i specyfikacje.',stats:[['2','folders'],['438','items'],['1h','sync']]},
+ {id:'notion',name:'Notion',meta:'',connected:false,desc:'Sync wikis, specs and meeting notes.',desc_pl:'Synchronizuj wiki, specyfikacje i notatki ze spotkań.'},
+ {id:'jira',name:'Jira',meta:'',connected:false,desc:'Pull tickets, epics and resolutions.',desc_pl:'Pobieraj zgłoszenia, epiki i rozwiązania.'}
 ];
 function renderSources(){
   var g=$('srcGrid');g.innerHTML='';var cc=0;
@@ -233,7 +271,7 @@ function renderSources(){
       var st=(s.stats||[]).map(function(x){return '<div><div class="n">'+x[0]+'</div><div class="l">'+x[1]+'</div></div>'}).join('');
       body='<div class="src-stat">'+st+'</div><div class="src-actions"><button class="btn sm" data-cfg="'+idx+'"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19 12a7 7 0 0 0-.1-1l2-1.5-2-3.4-2.3 1a7 7 0 0 0-1.7-1l-.3-2.5h-4l-.3 2.5a7 7 0 0 0-1.7 1l-2.3-1-2 3.4 2 1.5a7 7 0 0 0 0 2l-2 1.5 2 3.4 2.3-1a7 7 0 0 0 1.7 1l.3 2.5h4l.3-2.5a7 7 0 0 0 1.7-1l2.3 1 2-3.4-2-1.5a7 7 0 0 0 .1-1z"/></svg>'+t('configure')+'</button><button class="btn sm danger" data-dis="'+idx+'">'+t('disconnect')+'</button></div>';
     } else {
-      body='<div class="src-stat tiny muted" style="padding-top:14px">'+s.desc+'</div><div class="src-actions"><button class="btn sm accent" data-con="'+idx+'" style="width:100%">'+t('connect')+'</button></div>';
+      body='<div class="src-stat tiny muted" style="padding-top:14px">'+L(s.desc,s.desc_pl)+'</div><div class="src-actions"><button class="btn sm accent" data-con="'+idx+'" style="width:100%">'+t('connect')+'</button></div>';
     }
     card.innerHTML=head+body;g.appendChild(card);
   });
@@ -258,9 +296,9 @@ function requestIntegration(){
    '<div class="modal-foot"><button class="btn" id="mc">'+t('m_cancel')+'</button><button class="btn accent" id="mok">'+t('m_send')+'</button></div>');
   $('mx').onclick=closeModal;$('mc').onclick=closeModal;$('mok').onclick=function(){closeModal();toast(t('t_reqsent'))};
 }
-var OFF=[{dot:'err',html:'Slack channels <b>#salaries</b>, <b>#founders</b> and any DM'},{dot:'err',html:'Google Drive folder <b>HR &amp; Contracts</b>'},{dot:'warn',html:'Restricted-source answers only shown to members with access'}];
+var OFF=[{dot:'err',html:'Slack channels <b>#salaries</b>, <b>#founders</b> and any DM',html_pl:'Kanały Slack <b>#salaries</b>, <b>#founders</b> i wszystkie DM-y'},{dot:'err',html:'Google Drive folder <b>HR &amp; Contracts</b>',html_pl:'Folder Google Drive <b>HR &amp; Contracts</b>'},{dot:'warn',html:'Restricted-source answers only shown to members with access',html_pl:'Odpowiedzi ze źródeł ograniczonych widoczne tylko dla osób z dostępem'}];
 function renderOff(){
-  $('offList').innerHTML=OFF.map(function(o,i){return '<div class="off-item"><span class="dot '+o.dot+'"></span> '+o.html+'<span class="rm" data-off="'+i+'" title="'+t('remove')+'">&#10005;</span></div>'}).join('');
+  $('offList').innerHTML=OFF.map(function(o,i){return '<div class="off-item"><span class="dot '+o.dot+'"></span> '+L(o.html,o.html_pl)+'<span class="rm" data-off="'+i+'" title="'+t('remove')+'">&#10005;</span></div>'}).join('');
   document.querySelectorAll('[data-off]').forEach(function(x){x.addEventListener('click',function(){OFF.splice(+x.getAttribute('data-off'),1);renderOff()})});
 }
 function addExclusion(){
@@ -293,16 +331,16 @@ run(function(){renderIng();$('syncAllBtn').addEventListener('click',function(){I
 
 /* ===== KNOWLEDGE GAPS ===== */
 var GAPS=[
- {q:'What is our refund and chargeback policy?',asked:14,conf:48,action:'add'},
- {q:'Which client owns the Helsinki data-center contract?',asked:9,conf:52,action:'assign'},
- {q:'What is the SLA for the mobile team?',asked:7,conf:61,action:'add'},
- {q:'Who approved the 2026 tooling budget?',asked:6,conf:39,action:'assign'},
- {q:'How do we handle GDPR data-deletion requests?',asked:5,conf:66,action:'add'}
+ {q:'What is our refund and chargeback policy?',q_pl:'Jaka jest nasza polityka zwrotów i chargebacków?',asked:14,conf:48,action:'add'},
+ {q:'Which client owns the Helsinki data-center contract?',q_pl:'Który klient jest stroną umowy na centrum danych w Helsinkach?',asked:9,conf:52,action:'assign'},
+ {q:'What is the SLA for the mobile team?',q_pl:'Jakie jest SLA zespołu mobilnego?',asked:7,conf:61,action:'add'},
+ {q:'Who approved the 2026 tooling budget?',q_pl:'Kto zatwierdził budżet na narzędzia na 2026?',asked:6,conf:39,action:'assign'},
+ {q:'How do we handle GDPR data-deletion requests?',q_pl:'Jak obsługujemy żądania usunięcia danych (RODO)?',asked:5,conf:66,action:'add'}
 ];
 function renderGaps(){
   $('gapBody').innerHTML=GAPS.map(function(g,i){
     var lbl=g.action==='add'?t('gap_addsrc'):t('gap_assign');
-    return '<tr><td style="max-width:280px">'+g.q+'</td><td>'+g.asked+'&times;</td><td><div class="conf"><div class="conf-bar warn"><i style="width:'+g.conf+'%"></i></div><span class="conf-num">'+g.conf+'%</span></div></td><td class="muted">'+(g.action==='add'?(LANG==='pl'?'Dodaj brakujące źródło':'Add the missing source'):(LANG==='pl'?'Przypisz właściciela wiedzy':'Assign a knowledge owner'))+'</td><td style="text-align:right;white-space:nowrap"><button class="btn sm accent" data-gap="'+i+'">'+lbl+'</button></td></tr>';
+    return '<tr><td style="max-width:280px">'+L(g.q,g.q_pl)+'</td><td>'+g.asked+'&times;</td><td><div class="conf"><div class="conf-bar warn"><i style="width:'+g.conf+'%"></i></div><span class="conf-num">'+g.conf+'%</span></div></td><td class="muted">'+(g.action==='add'?(LANG==='pl'?'Dodaj brakujące źródło':'Add the missing source'):(LANG==='pl'?'Przypisz właściciela wiedzy':'Assign a knowledge owner'))+'</td><td style="text-align:right;white-space:nowrap"><button class="btn sm accent" data-gap="'+i+'">'+lbl+'</button></td></tr>';
   }).join('')||'<tr><td colspan="5" class="muted" style="text-align:center;padding:26px">'+(LANG==='pl'?'Brak otwartych luk — świetna robota!':'No open gaps — great work!')+'</td></tr>';
   $('gapBody').querySelectorAll('[data-gap]').forEach(function(b){b.addEventListener('click',function(){GAPS.splice(+b.getAttribute('data-gap'),1);renderGaps();toast(LANG==='pl'?'Lukę oznaczono jako zamkniętą':'Gap marked as resolved')})});
 }
@@ -319,9 +357,9 @@ var MEM=[
 var ROLES=['Owner','Admin','Member','Guest'];
 function renderMembers(){
   $('memBody').innerHTML=MEM.map(function(m,i){
-    var opts=ROLES.map(function(r){return '<option'+(r===m.role?' selected':'')+'>'+r+'</option>'}).join('');
+    var opts=ROLES.map(function(r){return '<option value="'+r+'"'+(r===m.role?' selected':'')+'>'+roleL(r)+'</option>'}).join('');
     var rm=m.role==='Owner'?'':'<button class="iconbtn" data-rm="'+i+'" title="'+t('remove')+'"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/></svg></button>';
-    return '<tr><td><div class="row"><span class="avatar">'+m.init+'</span> '+m.name+'</div></td><td><select class="fld" style="width:auto;padding:6px 28px 6px 10px;height:auto" data-role="'+i+'">'+opts+'</select></td><td class="muted">'+m.scope+'</td><td class="muted">'+m.active+'</td><td style="text-align:right">'+rm+'</td></tr>';
+    return '<tr><td><div class="row"><span class="avatar">'+m.init+'</span> '+m.name+'</div></td><td><select class="fld" style="width:auto;padding:6px 28px 6px 10px;height:auto" data-role="'+i+'">'+opts+'</select></td><td class="muted">'+accL(m.scope)+'</td><td class="muted">'+timeL(m.active)+'</td><td style="text-align:right">'+rm+'</td></tr>';
   }).join('');
   $('memBody').querySelectorAll('[data-role]').forEach(function(s){s.addEventListener('change',function(){MEM[+s.getAttribute('data-role')].role=s.value;toast(t('t_rolechg'))})});
   $('memBody').querySelectorAll('[data-rm]').forEach(function(b){b.addEventListener('click',function(){MEM.splice(+b.getAttribute('data-rm'),1);renderMembers();updateSeats();toast(t('t_removed'))})});
@@ -357,7 +395,7 @@ var AUD=[
  ['07:40:55','system','sync','Google Drive · Shared drive','—']
 ];
 var auditShown=8;
-function actBadge(a){var m={'query':'acc','sync':'neutral','role change':'warn','source added':'ok','excluded':'neutral','export':'acc'};return '<span class="badge '+(m[a]||'neutral')+'">'+a+'</span>';}
+function actBadge(a){var m={'query':'acc','sync':'neutral','role change':'warn','source added':'ok','excluded':'neutral','export':'acc'};return '<span class="badge '+(m[a]||'neutral')+'">'+(LANG==='pl'?(ACT_PL[a]||a):a)+'</span>';}
 function renderAudit(){
   var q=($('auditSearch').value||'').toLowerCase();var f=$('auditFilter').value;
   var rows=AUD.filter(function(r){var okF=!f||r[2]===f;var okQ=!q||(r[1]+' '+r[2]+' '+r[3]).toLowerCase().indexOf(q)>=0;return okF&&okQ});
@@ -446,11 +484,11 @@ function showScreen(id){
   var el=$('screen-'+id);if(el)el.classList.add('active');
   document.querySelectorAll('.nav-item').forEach(function(n){n.classList.toggle('active',n.getAttribute('data-screen')===id)});
   $('main').scrollTop=0;
-  if(window.innerWidth<760)$('sidebar').classList.add('collapsed');
+  if(window.innerWidth<760){$('sidebar').classList.add('collapsed');var _bd=$('sideBackdrop');if(_bd)_bd.classList.remove('on');}
 }
 run(function(){
   document.querySelectorAll('.nav-item').forEach(function(n){n.addEventListener('click',function(){showScreen(n.getAttribute('data-screen'))})});
-  $('sideToggle').addEventListener('click',function(){$('sidebar').classList.toggle('collapsed')});
+  $('sideToggle').addEventListener('click',function(){var sb=$('sidebar');sb.classList.toggle('collapsed');var bd=$('sideBackdrop');if(bd)bd.classList.toggle('on',!sb.classList.contains('collapsed')&&window.innerWidth<760)});
 });
 function setTheme(th){
   document.documentElement.setAttribute('data-theme',th);
@@ -481,7 +519,7 @@ run(function(){
 });
 
 /* ===== rerender on language change ===== */
-function rerender(){run(function(){if(currentAns)renderAns(currentAns)});run(renderCollections);run(renderSources);run(renderOff);run(renderIng);run(renderGaps);run(renderMembers);run(updateSeats);run(renderAudit);run(function(){renderAnalytics(curRange)});run(renderReports);}
+function rerender(){run(renderChips);run(function(){if(currentAns)renderAns(currentAns)});run(renderCollections);run(renderSources);run(renderOff);run(renderIng);run(renderGaps);run(renderMembers);run(updateSeats);run(renderAudit);run(function(){renderAnalytics(curRange)});run(renderReports);}
 
 /* ===== guided tour ===== */
 var TOUR=[
@@ -524,12 +562,29 @@ run(function(){
   $('nudgeStart').addEventListener('click',openTour);$('nudgeNo').addEventListener('click',hideNudge);
 });
 
+/* ===== sample bar / reset / esc / mobile backdrop ===== */
+run(function(){
+  if($('demobarX'))$('demobarX').addEventListener('click',function(){$('demobar').style.display='none'});
+  if($('resetDemo'))$('resetDemo').addEventListener('click',function(){location.reload()});
+  var bd=$('sideBackdrop');
+  function closeSide(){$('sidebar').classList.add('collapsed');if(bd)bd.classList.remove('on');}
+  if(bd)bd.addEventListener('click',closeSide);
+  document.addEventListener('keydown',function(e){
+    if(e.key!=='Escape')return;
+    if($('modalMask').classList.contains('on')){closeModal();return;}
+    if($('coach').classList.contains('on')){closeTour();return;}
+    var any=false;document.querySelectorAll('.dd').forEach(function(x){if(x.classList.contains('on'))any=true;x.classList.remove('on')});
+    if(any)return;
+    if(bd&&bd.classList.contains('on'))closeSide();
+  });
+});
+
 /* ===== init ===== */
 run(function(){
   try{var sl=localStorage.getItem('certemis-demo-lang');if(sl)LANG=sl;}catch(e){}
   try{var stt=localStorage.getItem('certemis-demo-theme');setTheme(stt||'dark');}catch(e){setTheme('dark');}
   setLang(LANG);
-  if(window.innerWidth<760)$('sidebar').classList.add('collapsed');
+  if(window.innerWidth<760){$('sidebar').classList.add('collapsed');var _bd=$('sideBackdrop');if(_bd)_bd.classList.remove('on');}
   $('tourBtn').classList.add('pulse');
   setTimeout(function(){if(!tourOpen)$('nudge').classList.add('on')},800);
 });
