@@ -1,0 +1,6 @@
+# Certemis — security contact (RFC 9116)
+Contact: mailto:hubert@certemis.com
+Expires: 2027-06-09T00:00:00.000Z
+Policy: https://certemis.com/security
+Preferred-Languages: en, pl
+Canonical: https://certemis.com/.well-known/security.txt
