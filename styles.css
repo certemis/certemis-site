@@ -104,6 +104,8 @@ header.on-dark .burger{color:#fff}
 .btn-dark:hover{background:var(--ink-3);transform:translateY(-2px)}
 .btn-line{background:transparent;border-color:rgba(255,255,255,.26);color:#fff}
 .btn-line:hover{border-color:#fff}
+.btn-accent{background:var(--accent);color:#fff;box-shadow:0 10px 30px -12px rgba(46,91,255,.55)}
+.btn-accent:hover{background:var(--accent-dk);transform:translateY(-2px)}
 
 section{padding:110px 0}
 .center{text-align:center}
@@ -133,7 +135,8 @@ section{padding:110px 0}
 .kicker{font-family:var(--body);text-transform:uppercase;letter-spacing:.32em;font-size:.76rem;font-weight:700;
   color:var(--muted-dk);margin-bottom:26px;display:flex;align-items:center;gap:12px}
 .kicker::before{content:"";width:30px;height:2px;background:var(--accent)}
-.hero h1{margin-bottom:.32em}
+/* Hero headline is a full sentence — one step below the global h1 scale so it lands in ~3 lines, not a tall ragged block */
+.hero h1{margin-bottom:.32em;font-size:clamp(1.9rem,4vw,3.15rem)}
 .hero p.lead{font-size:1.22rem;color:#c6c6d0;max-width:52ch;margin-bottom:36px;font-weight:500}
 .actions{display:flex;flex-wrap:wrap;gap:15px;align-items:center}
 .hero-note{margin-top:22px;font-size:.92rem;color:var(--muted-dk);letter-spacing:.02em}
