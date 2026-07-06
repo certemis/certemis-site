@@ -27,6 +27,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="landing.css">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -35,12 +36,25 @@
   "url": "https://certemis.com/",
   "email": "hello@certemis.com",
   "logo": "https://certemis.com/assets/favicon.png",
-  "description": "Certemis is the operational memory layer for companies \u2014 knowledge that stays in the business, not in people's heads."
+  "description": "Certemis is the operational memory layer for companies — knowledge that stays in the business, not in people's heads."
 }
 </script>
 </head>
-<body>
+<body class="landing">
 <div id="progress"></div>
+
+<svg style="display:none" aria-hidden="true"><defs>
+  <symbol id="lg-github" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></symbol>
+  <symbol id="lg-gitlab" viewBox="0 0 24 24"><path d="m23.6004 9.5927-.0337-.0862L20.3.9814a.851.851 0 0 0-.3362-.405.8748.8748 0 0 0-.9997.0539.8748.8748 0 0 0-.29.4399l-2.2055 6.748H7.5375l-2.2057-6.748a.8573.8573 0 0 0-.29-.4412.8748.8748 0 0 0-.9997-.0537.8585.8585 0 0 0-.3362.4049L.4332 9.5015l-.0325.0862a6.0657 6.0657 0 0 0 2.0119 7.0105l.0113.0087.03.0213 4.976 3.7264 2.462 1.8633 1.4995 1.1321a1.0085 1.0085 0 0 0 1.2197 0l1.4995-1.1321 2.4619-1.8633 5.006-3.7489.0125-.01a6.0682 6.0682 0 0 0 2.0094-7.003z"/></symbol>
+  <symbol id="lg-slack" viewBox="0 0 24 24"><path d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527 2.527 0 0 1 2.522-2.52h2.52v2.52zM6.313 15.165a2.527 2.527 0 0 1 2.521-2.52 2.527 2.527 0 0 1 2.521 2.52v6.313A2.528 2.528 0 0 1 8.834 24a2.528 2.528 0 0 1-2.521-2.522v-6.313zM8.834 5.042a2.528 2.528 0 0 1-2.521-2.52A2.528 2.528 0 0 1 8.834 0a2.528 2.528 0 0 1 2.521 2.522v2.52H8.834zM8.834 6.313a2.528 2.528 0 0 1 2.521 2.521 2.528 2.528 0 0 1-2.521 2.521H2.522A2.528 2.528 0 0 1 0 8.834a2.528 2.528 0 0 1 2.522-2.521h6.312zM18.956 8.834a2.528 2.528 0 0 1 2.522-2.521A2.528 2.528 0 0 1 24 8.834a2.528 2.528 0 0 1-2.522 2.521h-2.522V8.834zM17.688 8.834a2.528 2.528 0 0 1-2.523 2.521 2.527 2.527 0 0 1-2.52-2.521V2.522A2.527 2.527 0 0 1 15.165 0a2.528 2.528 0 0 1 2.523 2.522v6.312zM15.165 18.956a2.528 2.528 0 0 1 2.523 2.522A2.528 2.528 0 0 1 15.165 24a2.527 2.527 0 0 1-2.52-2.522v-2.522h2.52zM15.165 17.688a2.527 2.527 0 0 1-2.52-2.523 2.526 2.526 0 0 1 2.52-2.52h6.313A2.527 2.527 0 0 1 24 15.165a2.528 2.528 0 0 1-2.522 2.523h-6.313z"/></symbol>
+  <symbol id="lg-teams" viewBox="0 0 24 24"><path d="M20.625 8.127q-.55 0-1.025-.205-.475-.205-.832-.563-.358-.357-.563-.832Q18 6.053 18 5.502q0-.54.205-1.02t.563-.837q.357-.358.832-.563.474-.205 1.025-.205.54 0 1.02.205t.837.563q.358.357.563.837.205.48.205 1.02 0 .55-.205 1.025-.205.475-.563.832-.357.358-.837.563-.48.205-1.02.205zm0-3.75q-.469 0-.797.328-.328.328-.328.797 0 .469.328.797.328.328.797.328.469 0 .797-.328.328-.328.328-.797 0-.469-.328-.797-.328-.328-.797-.328zM24 10.002v5.578q0 .774-.293 1.46-.293.685-.803 1.194-.51.51-1.195.803-.686.293-1.459.293-.445 0-.908-.105-.463-.106-.85-.329-.293.95-.855 1.729-.563.78-1.319 1.336-.756.557-1.67.861-.914.305-1.898.305-1.148 0-2.162-.398-1.014-.399-1.805-1.102-.79-.703-1.312-1.664t-.674-2.086h-5.8q-.411 0-.704-.293T0 16.881V6.873q0-.41.293-.703t.703-.293h8.59q-.34-.715-.34-1.5 0-.727.275-1.365.276-.639.75-1.114.475-.474 1.114-.75.638-.275 1.365-.275t1.365.275q.639.276 1.114.75.474.475.75 1.114.275.638.275 1.365t-.275 1.365q-.276.639-.75 1.113-.475.475-1.114.75-.638.276-1.365.276-.188 0-.375-.024-.188-.023-.375-.058v1.078h10.875q.469 0 .797.328.328.328.328.797zM12.75 2.373q-.41 0-.78.158-.368.158-.638.434-.27.275-.428.639-.158.363-.158.773 0 .41.158.78.159.368.428.638.27.27.639.428.369.158.779.158.41 0 .773-.158.364-.159.64-.428.274-.27.433-.639.158-.369.158-.779 0-.41-.158-.773-.159-.364-.434-.64-.275-.275-.639-.433-.363-.158-.773-.158zM6.937 9.814h2.25V7.94H2.814v1.875h2.25v6h1.875zm10.313 7.313v-6.75H12v6.504q0 .41-.293.703t-.703.293H8.309q.152.809.556 1.5.405.691.985 1.19.58.497 1.318.779.738.281 1.582.281.926 0 1.746-.352.82-.351 1.436-.966.615-.616.966-1.43.352-.815.352-1.752zm5.25-1.547v-5.203h-3.75v6.855q.305.305.691.452.387.146.809.146.469 0 .879-.176.41-.175.715-.48.304-.305.48-.715t.176-.879Z"/></symbol>
+  <symbol id="lg-email" viewBox="0 0 24 24"><path d="M3.5 5.5h17v13h-17z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M3.5 7l8.5 6.5L20.5 7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="lg-gdrive" viewBox="0 0 24 24"><path d="M12.01 1.485c-2.082 0-3.754.02-3.743.047.01.02 1.708 3.001 3.774 6.62l3.76 6.574h3.76c2.081 0 3.753-.02 3.742-.047-.005-.02-1.708-3.001-3.775-6.62l-3.76-6.574zm-4.76 1.73a789.828 789.861 0 0 0-3.63 6.319L0 15.868l1.89 3.298 1.885 3.297 3.62-6.335 3.618-6.33-1.88-3.287C8.1 4.704 7.255 3.22 7.25 3.214zm2.259 12.653-.203.348c-.114.198-.96 1.672-1.88 3.287a423.93 423.948 0 0 1-1.698 2.97c-.01.026 3.24.042 7.222.042h7.244l1.796-3.157c.992-1.734 1.85-3.23 1.906-3.323l.104-.167h-7.249z"/></symbol>
+  <symbol id="lg-notion" viewBox="0 0 24 24"><path d="M4.459 4.208c.746.606 1.026.56 2.428.466l13.215-.793c.28 0 .047-.28-.046-.326L17.86 1.968c-.42-.326-.981-.7-2.055-.607L3.01 2.295c-.466.046-.56.28-.374.466zm.793 3.08v13.904c0 .747.373 1.027 1.214.98l14.523-.84c.841-.046.935-.56.935-1.167V6.354c0-.606-.233-.933-.748-.887l-15.177.887c-.56.047-.747.327-.747.933zm14.337.745c.093.42 0 .84-.42.888l-.7.14v10.264c-.608.327-1.168.514-1.635.514-.748 0-.935-.234-1.495-.933l-4.577-7.186v6.952L12.21 19s0 .84-1.168.84l-3.222.186c-.093-.186 0-.653.327-.746l.84-.233V9.854L7.822 9.76c-.094-.42.14-1.026.793-1.073l3.456-.233 4.764 7.279v-6.44l-1.215-.139c-.093-.514.28-.887.747-.933zM1.936 1.035l13.31-.98c1.634-.14 2.055-.047 3.082.7l4.249 2.986c.7.513.934.653.934 1.213v16.378c0 1.026-.373 1.634-1.68 1.726l-15.458.934c-.98.047-1.448-.093-1.962-.747l-3.129-4.06c-.56-.747-.793-1.306-.793-1.96V2.667c0-.839.374-1.54 1.447-1.632z"/></symbol>
+  <symbol id="lg-confluence" viewBox="0 0 24 24"><path d="M.87 18.257c-.248.382-.53.875-.763 1.245a.764.764 0 0 0 .255 1.04l4.965 3.054a.764.764 0 0 0 1.058-.26c.199-.332.454-.763.733-1.221 1.967-3.247 3.945-2.853 7.508-1.146l4.957 2.337a.764.764 0 0 0 1.028-.382l2.364-5.346a.764.764 0 0 0-.382-1 599.851 599.851 0 0 1-4.965-2.361C10.911 10.97 5.224 11.185.87 18.257zM23.131 5.743c.249-.405.531-.875.764-1.25a.764.764 0 0 0-.256-1.034L18.675.404a.764.764 0 0 0-1.058.26c-.195.335-.451.763-.734 1.225-1.966 3.246-3.945 2.85-7.508 1.146L4.437.694a.764.764 0 0 0-1.027.382L1.046 6.422a.764.764 0 0 0 .382 1c1.039.49 3.105 1.467 4.965 2.361 6.698 3.246 12.392 3.029 16.738-4.04z"/></symbol>
+  <symbol id="lg-jira" viewBox="0 0 24 24"><path d="M11.571 11.513H0a5.218 5.218 0 0 0 5.232 5.215h2.13v2.057A5.215 5.215 0 0 0 12.575 24V12.518a1.005 1.005 0 0 0-1.005-1.005zm5.723-5.756H5.736a5.215 5.215 0 0 0 5.215 5.214h2.129v2.058a5.218 5.218 0 0 0 5.215 5.214V6.758a1.001 1.001 0 0 0-1.001-1.001zM23.013 0H11.455a5.215 5.215 0 0 0 5.215 5.215h2.129v2.057A5.215 5.215 0 0 0 24 12.483V1.005A1.001 1.001 0 0 0 23.013 0Z"/></symbol>
+  <symbol id="lg-linear" viewBox="0 0 24 24"><path d="M2.886 4.18A11.982 11.982 0 0 1 11.99 0C18.624 0 24 5.376 24 12.009c0 3.64-1.62 6.903-4.18 9.105L2.887 4.18ZM1.817 5.626l16.556 16.556c-.524.33-1.075.62-1.65.866L.951 7.277c.247-.575.537-1.126.866-1.65ZM.322 9.163l14.515 14.515c-.71.172-1.443.282-2.195.322L0 11.358a12 12 0 0 1 .322-2.195Zm-.17 4.862 9.823 9.824a12.02 12.02 0 0 1-9.824-9.824Z"/></symbol>
+</defs></svg>
 
 <header id="hd" class="on-dark">
   <div class="wrap nav">
@@ -66,237 +80,229 @@
   <a href="early-access.html" data-i18n="nav.cta">Join the waitlist</a>
 </nav>
 
-<section class="hero" data-hero-dark>
-  <svg style="display:none" aria-hidden="true"><defs>
-    <symbol id="lg-github" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></symbol>
-    <symbol id="lg-gitlab" viewBox="0 0 24 24"><path d="m23.6004 9.5927-.0337-.0862L20.3.9814a.851.851 0 0 0-.3362-.405.8748.8748 0 0 0-.9997.0539.8748.8748 0 0 0-.29.4399l-2.2055 6.748H7.5375l-2.2057-6.748a.8573.8573 0 0 0-.29-.4412.8748.8748 0 0 0-.9997-.0537.8585.8585 0 0 0-.3362.4049L.4332 9.5015l-.0325.0862a6.0657 6.0657 0 0 0 2.0119 7.0105l.0113.0087.03.0213 4.976 3.7264 2.462 1.8633 1.4995 1.1321a1.0085 1.0085 0 0 0 1.2197 0l1.4995-1.1321 2.4619-1.8633 5.006-3.7489.0125-.01a6.0682 6.0682 0 0 0 2.0094-7.003z"/></symbol>
-    <symbol id="lg-slack" viewBox="0 0 24 24"><path d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527 2.527 0 0 1 2.522-2.52h2.52v2.52zM6.313 15.165a2.527 2.527 0 0 1 2.521-2.52 2.527 2.527 0 0 1 2.521 2.52v6.313A2.528 2.528 0 0 1 8.834 24a2.528 2.528 0 0 1-2.521-2.522v-6.313zM8.834 5.042a2.528 2.528 0 0 1-2.521-2.52A2.528 2.528 0 0 1 8.834 0a2.528 2.528 0 0 1 2.521 2.522v2.52H8.834zM8.834 6.313a2.528 2.528 0 0 1 2.521 2.521 2.528 2.528 0 0 1-2.521 2.521H2.522A2.528 2.528 0 0 1 0 8.834a2.528 2.528 0 0 1 2.522-2.521h6.312zM18.956 8.834a2.528 2.528 0 0 1 2.522-2.521A2.528 2.528 0 0 1 24 8.834a2.528 2.528 0 0 1-2.522 2.521h-2.522V8.834zM17.688 8.834a2.528 2.528 0 0 1-2.523 2.521 2.527 2.527 0 0 1-2.52-2.521V2.522A2.527 2.527 0 0 1 15.165 0a2.528 2.528 0 0 1 2.523 2.522v6.312zM15.165 18.956a2.528 2.528 0 0 1 2.523 2.522A2.528 2.528 0 0 1 15.165 24a2.527 2.527 0 0 1-2.52-2.522v-2.522h2.52zM15.165 17.688a2.527 2.527 0 0 1-2.52-2.523 2.526 2.526 0 0 1 2.52-2.52h6.313A2.527 2.527 0 0 1 24 15.165a2.528 2.528 0 0 1-2.522 2.523h-6.313z"/></symbol>
-    <symbol id="lg-teams" viewBox="0 0 24 24"><path d="M20.625 8.127q-.55 0-1.025-.205-.475-.205-.832-.563-.358-.357-.563-.832Q18 6.053 18 5.502q0-.54.205-1.02t.563-.837q.357-.358.832-.563.474-.205 1.025-.205.54 0 1.02.205t.837.563q.358.357.563.837.205.48.205 1.02 0 .55-.205 1.025-.205.475-.563.832-.357.358-.837.563-.48.205-1.02.205zm0-3.75q-.469 0-.797.328-.328.328-.328.797 0 .469.328.797.328.328.797.328.469 0 .797-.328.328-.328.328-.797 0-.469-.328-.797-.328-.328-.797-.328zM24 10.002v5.578q0 .774-.293 1.46-.293.685-.803 1.194-.51.51-1.195.803-.686.293-1.459.293-.445 0-.908-.105-.463-.106-.85-.329-.293.95-.855 1.729-.563.78-1.319 1.336-.756.557-1.67.861-.914.305-1.898.305-1.148 0-2.162-.398-1.014-.399-1.805-1.102-.79-.703-1.312-1.664t-.674-2.086h-5.8q-.411 0-.704-.293T0 16.881V6.873q0-.41.293-.703t.703-.293h8.59q-.34-.715-.34-1.5 0-.727.275-1.365.276-.639.75-1.114.475-.474 1.114-.75.638-.275 1.365-.275t1.365.275q.639.276 1.114.75.474.475.75 1.114.275.638.275 1.365t-.275 1.365q-.276.639-.75 1.113-.475.475-1.114.75-.638.276-1.365.276-.188 0-.375-.024-.188-.023-.375-.058v1.078h10.875q.469 0 .797.328.328.328.328.797zM12.75 2.373q-.41 0-.78.158-.368.158-.638.434-.27.275-.428.639-.158.363-.158.773 0 .41.158.78.159.368.428.638.27.27.639.428.369.158.779.158.41 0 .773-.158.364-.159.64-.428.274-.27.433-.639.158-.369.158-.779 0-.41-.158-.773-.159-.364-.434-.64-.275-.275-.639-.433-.363-.158-.773-.158zM6.937 9.814h2.25V7.94H2.814v1.875h2.25v6h1.875zm10.313 7.313v-6.75H12v6.504q0 .41-.293.703t-.703.293H8.309q.152.809.556 1.5.405.691.985 1.19.58.497 1.318.779.738.281 1.582.281.926 0 1.746-.352.82-.351 1.436-.966.615-.616.966-1.43.352-.815.352-1.752zm5.25-1.547v-5.203h-3.75v6.855q.305.305.691.452.387.146.809.146.469 0 .879-.176.41-.175.715-.48.304-.305.48-.715t.176-.879Z"/></symbol>
-    <symbol id="lg-email" viewBox="0 0 24 24"><path d="M3.5 5.5h17v13h-17z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M3.5 7l8.5 6.5L20.5 7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
-    <symbol id="lg-gdrive" viewBox="0 0 24 24"><path d="M12.01 1.485c-2.082 0-3.754.02-3.743.047.01.02 1.708 3.001 3.774 6.62l3.76 6.574h3.76c2.081 0 3.753-.02 3.742-.047-.005-.02-1.708-3.001-3.775-6.62l-3.76-6.574zm-4.76 1.73a789.828 789.861 0 0 0-3.63 6.319L0 15.868l1.89 3.298 1.885 3.297 3.62-6.335 3.618-6.33-1.88-3.287C8.1 4.704 7.255 3.22 7.25 3.214zm2.259 12.653-.203.348c-.114.198-.96 1.672-1.88 3.287a423.93 423.948 0 0 1-1.698 2.97c-.01.026 3.24.042 7.222.042h7.244l1.796-3.157c.992-1.734 1.85-3.23 1.906-3.323l.104-.167h-7.249z"/></symbol>
-    <symbol id="lg-notion" viewBox="0 0 24 24"><path d="M4.459 4.208c.746.606 1.026.56 2.428.466l13.215-.793c.28 0 .047-.28-.046-.326L17.86 1.968c-.42-.326-.981-.7-2.055-.607L3.01 2.295c-.466.046-.56.28-.374.466zm.793 3.08v13.904c0 .747.373 1.027 1.214.98l14.523-.84c.841-.046.935-.56.935-1.167V6.354c0-.606-.233-.933-.748-.887l-15.177.887c-.56.047-.747.327-.747.933zm14.337.745c.093.42 0 .84-.42.888l-.7.14v10.264c-.608.327-1.168.514-1.635.514-.748 0-.935-.234-1.495-.933l-4.577-7.186v6.952L12.21 19s0 .84-1.168.84l-3.222.186c-.093-.186 0-.653.327-.746l.84-.233V9.854L7.822 9.76c-.094-.42.14-1.026.793-1.073l3.456-.233 4.764 7.279v-6.44l-1.215-.139c-.093-.514.28-.887.747-.933zM1.936 1.035l13.31-.98c1.634-.14 2.055-.047 3.082.7l4.249 2.986c.7.513.934.653.934 1.213v16.378c0 1.026-.373 1.634-1.68 1.726l-15.458.934c-.98.047-1.448-.093-1.962-.747l-3.129-4.06c-.56-.747-.793-1.306-.793-1.96V2.667c0-.839.374-1.54 1.447-1.632z"/></symbol>
-    <symbol id="lg-confluence" viewBox="0 0 24 24"><path d="M.87 18.257c-.248.382-.53.875-.763 1.245a.764.764 0 0 0 .255 1.04l4.965 3.054a.764.764 0 0 0 1.058-.26c.199-.332.454-.763.733-1.221 1.967-3.247 3.945-2.853 7.508-1.146l4.957 2.337a.764.764 0 0 0 1.028-.382l2.364-5.346a.764.764 0 0 0-.382-1 599.851 599.851 0 0 1-4.965-2.361C10.911 10.97 5.224 11.185.87 18.257zM23.131 5.743c.249-.405.531-.875.764-1.25a.764.764 0 0 0-.256-1.034L18.675.404a.764.764 0 0 0-1.058.26c-.195.335-.451.763-.734 1.225-1.966 3.246-3.945 2.85-7.508 1.146L4.437.694a.764.764 0 0 0-1.027.382L1.046 6.422a.764.764 0 0 0 .382 1c1.039.49 3.105 1.467 4.965 2.361 6.698 3.246 12.392 3.029 16.738-4.04z"/></symbol>
-    <symbol id="lg-jira" viewBox="0 0 24 24"><path d="M11.571 11.513H0a5.218 5.218 0 0 0 5.232 5.215h2.13v2.057A5.215 5.215 0 0 0 12.575 24V12.518a1.005 1.005 0 0 0-1.005-1.005zm5.723-5.756H5.736a5.215 5.215 0 0 0 5.215 5.214h2.129v2.058a5.218 5.218 0 0 0 5.215 5.214V6.758a1.001 1.001 0 0 0-1.001-1.001zM23.013 0H11.455a5.215 5.215 0 0 0 5.215 5.215h2.129v2.057A5.215 5.215 0 0 0 24 12.483V1.005A1.001 1.001 0 0 0 23.013 0Z"/></symbol>
-    <symbol id="lg-linear" viewBox="0 0 24 24"><path d="M2.886 4.18A11.982 11.982 0 0 1 11.99 0C18.624 0 24 5.376 24 12.009c0 3.64-1.62 6.903-4.18 9.105L2.887 4.18ZM1.817 5.626l16.556 16.556c-.524.33-1.075.62-1.65.866L.951 7.277c.247-.575.537-1.126.866-1.65ZM.322 9.163l14.515 14.515c-.71.172-1.443.282-2.195.322L0 11.358a12 12 0 0 1 .322-2.195Zm-.17 4.862 9.823 9.824a12.02 12.02 0 0 1-9.824-9.824Z"/></symbol>
-  </defs></svg>
-  <div class="wrap hero-grid">
-    <div>
-      <div class="kicker" data-i18n="home.kicker">Operational memory layer</div>
-      <h1 data-i18n="home.h1">Ask anything. Your company <span class="accent">already knows</span> the answer.</h1>
-      <p class="lead" data-i18n="home.lead">Certemis plugs into the tools your team already works in — code, chat, tickets, wikis, docs and email — and turns them into one permission-aware memory that answers with citations. No wiki to write, nothing to maintain.</p>
-      <div class="actions">
-        <a class="btn btn-accent" href="early-access.html" data-i18n="home.btn1">Join the waitlist</a>
-        <a class="btn btn-line" href="product.html#demo" data-i18n="home.btn2">See the live demo</a>
-      </div>
-      <p class="hero-note" data-i18n="home.note">Currently in private early access — we're onboarding a first group of founding teams.</p>
-    </div>
-    <div class="viz" aria-hidden="true">
-      <div class="hero-anim">
-        <svg class="ha-lines" viewBox="0 0 100 100" preserveAspectRatio="none">
-          <line class="ln" x1="50" y1="16" x2="50" y2="50"/>
-          <line class="ln" x1="78" y1="15" x2="50" y2="50"/>
-          <line class="ln" x1="82" y1="41" x2="50" y2="50"/>
-          <line class="ln" x1="93" y1="64" x2="50" y2="50"/>
-          <line class="ln" x1="69" y1="78" x2="50" y2="50"/>
-          <line class="ln" x1="50" y1="92" x2="50" y2="50"/>
-          <line class="ln" x1="31" y1="78" x2="50" y2="50"/>
-          <line class="ln" x1="7" y1="64" x2="50" y2="50"/>
-          <line class="ln" x1="18" y1="41" x2="50" y2="50"/>
-          <line class="ln" x1="22" y1="15" x2="50" y2="50"/>
-          <line class="fl f1" x1="50" y1="16" x2="50" y2="50"/>
-          <line class="fl f2" x1="78" y1="15" x2="50" y2="50"/>
-          <line class="fl f3" x1="82" y1="41" x2="50" y2="50"/>
-          <line class="fl f4" x1="93" y1="64" x2="50" y2="50"/>
-          <line class="fl f5" x1="69" y1="78" x2="50" y2="50"/>
-          <line class="fl f6" x1="50" y1="92" x2="50" y2="50"/>
-          <line class="fl f7" x1="31" y1="78" x2="50" y2="50"/>
-          <line class="fl f8" x1="7" y1="64" x2="50" y2="50"/>
-          <line class="fl f9" x1="18" y1="41" x2="50" y2="50"/>
-          <line class="fl f10" x1="22" y1="15" x2="50" y2="50"/>
-        </svg>
-        <div class="ha-node n1" title="GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#lg-github"/></svg></div>
-        <div class="ha-node n2 sm" title="Notion"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#lg-notion"/></svg></div>
-        <div class="ha-node n3" title="Jira"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#lg-jira"/></svg></div>
-        <div class="ha-node n4 sm" title="Confluence"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#lg-confluence"/></svg></div>
-        <div class="ha-node n5" title="Slack"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#lg-slack"/></svg></div>
-        <div class="ha-node n6 sm" title="Email"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#lg-email"/></svg><span class="ha-lbl" data-i18n="g.email">Email</span></div>
-        <div class="ha-node n7" title="Google Drive"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#lg-gdrive"/></svg></div>
-        <div class="ha-node n8 sm" title="Linear"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#lg-linear"/></svg></div>
-        <div class="ha-node n9" title="GitLab"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#lg-gitlab"/></svg></div>
-        <div class="ha-node n10 sm" title="Microsoft Teams"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#lg-teams"/></svg></div>
-        <div class="ha-orbit" aria-hidden="true"><i></i><i></i><i></i></div>
-        <div class="ha-core"><span class="ha-ping"></span><span class="ha-ping p2"></span><span class="ha-sym"></span></div>
-      </div>
-    </div>
-  </div>
+<!-- ═══ HERO + PRODUCT ═══ -->
+<section class="ld-hero" data-hero-dark>
+  <div class="ld-hero-glow plx" data-plx="0.25" aria-hidden="true"></div>
   <div class="wrap">
-    <div class="hero-strip">
-      <span class="hs-h" data-i18n="home.strip">Connects with what you already use</span>
-      <div class="hs-row">
-        <span class="hs-logo" title="GitHub"><svg viewBox="0 0 24 24" fill="currentColor" role="img" aria-label="GitHub"><use href="#lg-github"/></svg></span>
-        <span class="hs-logo" title="GitLab"><svg viewBox="0 0 24 24" fill="currentColor" role="img" aria-label="GitLab"><use href="#lg-gitlab"/></svg></span>
-        <span class="hs-logo" title="Slack"><svg viewBox="0 0 24 24" fill="currentColor" role="img" aria-label="Slack"><use href="#lg-slack"/></svg></span>
-        <span class="hs-logo" title="Microsoft Teams"><svg viewBox="0 0 24 24" fill="currentColor" role="img" aria-label="Microsoft Teams"><use href="#lg-teams"/></svg></span>
-        <span class="hs-logo" title="Email (IMAP / SMTP)"><svg viewBox="0 0 24 24" fill="currentColor" role="img" aria-label="Email"><use href="#lg-email"/></svg></span>
-        <span class="hs-logo" title="Google Drive"><svg viewBox="0 0 24 24" fill="currentColor" role="img" aria-label="Google Drive"><use href="#lg-gdrive"/></svg></span>
-        <span class="hs-logo" title="Notion"><svg viewBox="0 0 24 24" fill="currentColor" role="img" aria-label="Notion"><use href="#lg-notion"/></svg></span>
-        <span class="hs-logo" title="Confluence"><svg viewBox="0 0 24 24" fill="currentColor" role="img" aria-label="Confluence"><use href="#lg-confluence"/></svg></span>
-        <span class="hs-logo" title="Jira"><svg viewBox="0 0 24 24" fill="currentColor" role="img" aria-label="Jira"><use href="#lg-jira"/></svg></span>
-        <span class="hs-logo" title="Linear"><svg viewBox="0 0 24 24" fill="currentColor" role="img" aria-label="Linear"><use href="#lg-linear"/></svg></span>
-      </div>
+    <span class="ld-pill"><i></i><span data-i18n="ld.pill">Private early access — onboarding founding teams</span></span>
+    <h1 data-i18n="home.h1">Ask anything. Your company <span class="accent">already knows</span> the answer.</h1>
+    <p class="ld-lead" data-i18n="ld.lead">One permission-aware memory across your code, chat, tickets, wikis, docs and email — every answer backed by citations.</p>
+    <div class="ld-ctas">
+      <a class="ld-btn ld-btn-acc" href="early-access.html" data-i18n="home.btn1">Join the waitlist</a>
+      <a class="ld-btn ld-btn-ghost" href="product.html#demo" data-i18n="home.btn2">See the live demo</a>
     </div>
+    <p class="ld-note" data-i18n="ld.note">Real answers from your own sources — nothing made up.</p>
   </div>
-</section>
 
-<section class="soft">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow" data-i18n="home.s.kicker">The problem</span>
-      <h2 data-i18n="home.s.h2">Most of what your company knows is never written down.</h2>
-      <p data-i18n="home.s.p">It lives in conversations, inboxes and the heads of a few experienced people. The day they're unavailable — on holiday, between projects, or gone for good — recovering that context costs real time and invites expensive mistakes.</p>
-    </div>
-    <div class="sfx-prog" data-sfx="line" aria-hidden="true" style="margin-top:34px"><span class="fill"></span><i class="dot"></i></div>
-    <div class="strip" style="margin-top:32px">
-      <div class="stat reveal d1" data-count="65"><div class="num"><span class="v">0</span><span class="u txt" data-i18n="home.stat1u">days</span></div><div class="cap" data-i18n="home.stat1cap"></div></div>
-      <div class="stat reveal d2" data-count="47"><div class="num"><span class="v">0</span><span class="u">%</span></div><div class="cap" data-i18n="home.stat2cap"></div></div>
-      <div class="stat reveal d3" data-count="50"><div class="num"><span class="v">0</span><span class="u">%</span></div><div class="cap" data-i18n="home.stat3cap"></div></div>
-    </div>
-    <p style="font-size:.84rem;color:var(--muted);margin-top:18px" data-i18n="home.stat.note"></p>
-    <div class="sec-head reveal" style="margin-top:76px">
-      <span class="eyebrow" data-i18n="home.t.kicker">What Certemis is</span>
-      <h2 data-i18n="home.t.h2">A memory that stays, even when people move on.</h2>
-      <p data-i18n="home.t.p">Not another wiki to write and maintain. Certemis captures context from the tools you already use and turns it into answers — current, in plain language, and limited to what each person is allowed to see.</p>
-    </div>
-    <div class="reveal d1" style="margin-top:30px">
-      <a class="btn btn-dark" href="product.html"><span data-i18n="home.t.btn">Explore the product</span>
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-    </div>
-  </div>
-</section>
-
-<section class="dark" data-hero-dark>
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow" data-i18n="term.kicker">In practice</span>
-      <h2 data-i18n="term.h2">Ask a question. Get the answer your company already knows.</h2>
-    </div>
-    <div class="terminal reveal d1" aria-hidden="true">
-      <div class="term-bar"><i></i><i></i><i></i><span data-i18n="term.title">certemis — ask</span></div>
-      <div class="term-body">
-        <div><span class="term-prompt">&gt;</span> <span class="term-q type" data-i18n="term.q">Why did we drop the legacy auth flow?</span><span class="cursor"></span></div>
-        <span class="term-a" data-i18n="term.a">// Pulled together from your repos, decisions and docs — and limited to what you're allowed to see.</span>
+  <div class="ld-stage">
+    <div class="ld-app" data-tilt aria-label="Certemis — Questions view">
+      <div class="ld-chrome"><i></i><i></i><i></i>
+        <span class="url"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3l7 3v6c0 4.2-2.9 7.4-7 9-4.1-1.6-7-4.8-7-9V6l7-3z" stroke="currentColor" stroke-width="2.4"/></svg>app.certemis.com</span>
+      </div>
+      <div class="ld-appbody">
+        <aside class="ld-nav" aria-hidden="true">
+          <span class="logo"></span>
+          <span class="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><span data-i18n="mk.search">Search…</span></span>
+          <span class="ld-ni"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5L12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/></svg><span data-i18n="mk.start">Home</span></span>
+          <span class="ld-ni"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg><span data-i18n="mk.pulpit">My dashboard</span></span>
+          <span class="ld-ni"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M4 4h16v16H4z"/><path d="M9 4v16M15 4v10"/></svg><span data-i18n="mk.tablica">Board</span></span>
+          <span class="ld-ni"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.7 4.3L18 9l-4.3 1.7L12 15l-1.7-4.3L6 9l4.3-1.7z"/><path d="M18.5 15l.9 2.1 2.1.9-2.1.9-.9 2.1-.9-2.1-2.1-.9 2.1-.9z"/></svg><span data-i18n="mk.assistant">Assistant</span></span>
+          <span class="ld-ni"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linejoin="round"><path d="M5 6a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H9l-4 4V6z"/></svg><span data-i18n="mk.chat">Chat</span><span class="bdg">2</span></span>
+          <span class="ld-ni"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></svg><span data-i18n="mk.calendar">Calendar</span></span>
+          <div class="ld-grp">
+            <span class="ld-ni"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linejoin="round"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 19a2 2 0 0 1 2-2h13"/></svg><span data-i18n="mk.wiedza">Knowledge</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></span>
+            <div class="ld-sub">
+              <span class="ld-ni on"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linejoin="round"><path d="M5 6a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H9l-4 4V6z"/><path d="M9.6 9.2a2.4 2.4 0 1 1 3.4 2.2c-.6.3-1 .7-1 1.3v.3" stroke-linecap="round"/></svg><span data-i18n="mk.ask">Questions</span></span>
+              <span class="ld-ni"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linejoin="round"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4"/></svg><span data-i18n="mk.documents">Sources</span></span>
+              <span class="ld-ni"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h14v16l-7-3-7 3z"/></svg><span data-i18n="mk.notes">Notes</span></span>
+              <span class="ld-ni"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linejoin="round"><path d="M12 6c-1.5-1.2-3.5-2-6-2v13c2.5 0 4.5.8 6 2 1.5-1.2 3.5-2 6-2V4c-2.5 0-4.5.8-6 2z"/><path d="M12 6v13" stroke-linecap="round"/></svg><span data-i18n="mk.playbooki">Playbooks</span></span>
+              <span class="ld-ni"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21v-6l8-12 8 12v6"/><path d="M9 21v-4a3 3 0 0 1 6 0v4"/></svg><span data-i18n="mk.wdrozenie">Onboarding</span></span>
+            </div>
+          </div>
+          <span class="ld-ni"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linejoin="round"><path d="M4 6h16v12H4z"/><path d="M4 7l8 6 8-6" stroke-linecap="round"/></svg><span data-i18n="mk.poczta">Mail</span><span class="bdg">4</span></span>
+          <span class="ld-ni"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 19a5.5 5.5 0 0 1 11 0"/><circle cx="17" cy="9" r="2.6"/><path d="M15.5 14.6a4.6 4.6 0 0 1 5 4.4"/></svg><span data-i18n="mk.ludzie">People</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M9 6l6 6-6 6"/></svg></span>
+          <div class="foot"><span class="ava">MK</span><span>Marta K.</span></div>
+        </aside>
+        <div class="ld-main">
+          <div class="ld-top" aria-hidden="true">
+            <span class="t-item">14:32</span>
+            <span class="t-item"><svg class="spark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 3l1.7 4.3L18 9l-4.3 1.7L12 15l-1.7-4.3L6 9l4.3-1.7z"/></svg>⌘K</span>
+            <span class="t-item" data-i18n="mk.lang">EN</span>
+            <span class="bell"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 9a6 6 0 1 0-12 0c0 6-2 7-2 7h16s-2-1-2-7"/><path d="M10.3 20a2 2 0 0 0 3.4 0"/></svg><i></i></span>
+          </div>
+          <div class="ld-ask">
+            <div class="ld-conv">
+              <div class="ld-askhead">
+                <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M5 6a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H9l-4 4V6z"/></svg></span>
+                <div><h3 data-i18n="mk.title">Questions</h3><p data-i18n="mk.subtitle">Ask your knowledge — answers with citations from your sources</p></div>
+              </div>
+              <div class="ld-msgs">
+                <div class="ld-q" data-i18n="mk.q">Why did we drop the legacy auth flow?</div>
+                <div class="ld-arow">
+                  <span class="ava"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 3l1.7 4.3L18 9l-4.3 1.7L12 15l-1.7-4.3L6 9l4.3-1.7z"/><path d="M18.5 15l.9 2.1 2.1.9-2.1.9-.9 2.1-.9-2.1-2.1-.9 2.1-.9z"/></svg></span>
+                  <div class="ld-acol">
+                    <div class="ld-card" data-i18n="mk.a">The legacy flow was retired in March after the session-security audit <span class="ld-cite">1</span>. The decision was made in the #eng-core thread <span class="ld-cite">2</span> and documented in ADR-018 <span class="ld-cite">3</span>; the migration steps live in the runbook <span class="ld-cite">4</span>.</div>
+                    <div class="ld-acts" aria-hidden="true">
+                      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h14v16l-7-3-7 3z"/></svg><span data-i18n="mk.saveNote">Save to note</span></span>
+                      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4"/></svg><span data-i18n="mk.savePb">Save as playbook</span></span>
+                    </div>
+                    <div class="ld-srcs">
+                      <div class="sh"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4"/></svg><span data-i18n="mk.sources">Sources (4)</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></div>
+                      <div class="ld-srcgrid">
+                        <div class="ld-src"><span class="t"><span class="ic"><svg><use href="#lg-github"/></svg></span><b>PR #412 · auth: remove legacy flow</b><span class="n">1</span></span><span class="s" data-i18n="mk.s1">Removes the session-token flow deprecated after the audit; new tenants start on OAuth2…</span></div>
+                        <div class="ld-src"><span class="t"><span class="ic"><svg><use href="#lg-slack"/></svg></span><b>#eng-core</b><span class="n">2</span></span><span class="s" data-i18n="mk.s2">…agreed: we sunset the legacy flow by end of March. @piotr owns the tenant migration…</span></div>
+                        <div class="ld-src"><span class="t"><span class="ic"><svg><use href="#lg-confluence"/></svg></span><b>ADR-018 · Auth v2</b><span class="n">3</span></span><span class="s" data-i18n="mk.s3">Context: session-fixation risk identified during the security audit. Decision: retire…</span></div>
+                        <div class="ld-src"><span class="t"><span class="ic"><svg><use href="#lg-jira"/></svg></span><b>AUTH-203</b><span class="n">4</span></span><span class="s" data-i18n="mk.s4">Acceptance: all tenants on the OAuth2 flow, legacy endpoint disabled and monitored.</span></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="ld-composer">
+                <div class="ld-input">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.5l-8.5 8.5a5.7 5.7 0 0 1-8-8L13 4.5a3.8 3.8 0 0 1 5.4 5.4L10 18.3a1.9 1.9 0 0 1-2.7-2.7l7.8-7.8"/></svg>
+                  <span class="ph" data-i18n="mk.placeholder">Ask more in this thread… (e.g. “expand the last point”)</span>
+                  <span class="send"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></span>
+                </div>
+              </div>
+            </div>
+            <aside class="ld-threads" aria-hidden="true">
+              <span class="th"><span data-i18n="mk.threads">Threads (3)</span><span class="new">+ <span data-i18n="mk.newThread">New thread</span></span></span>
+              <div class="ld-thread on"><b data-i18n="mk.th1">Legacy auth flow</b><span data-i18n="mk.th1m">2 messages · 4 sources</span></div>
+              <div class="ld-thread"><b data-i18n="mk.th2">Acme onboarding — status</b><span data-i18n="mk.th2m">6 messages · 9 sources</span></div>
+              <div class="ld-thread"><b data-i18n="mk.th3">Security questionnaire Q3</b><span data-i18n="mk.th3m">4 messages · 12 sources</span></div>
+            </aside>
+          </div>
+        </div>
       </div>
     </div>
   </div>
+
+  <div class="wrap ld-strip">
+    <div class="row">
+      <span class="h" data-i18n="home.strip">Connects with what you already use</span>
+      <svg><use href="#lg-github"/></svg><svg><use href="#lg-gitlab"/></svg><svg><use href="#lg-slack"/></svg><svg><use href="#lg-teams"/></svg><svg style="fill:none;stroke:#fff"><use href="#lg-email"/></svg><svg><use href="#lg-gdrive"/></svg><svg><use href="#lg-notion"/></svg><svg><use href="#lg-confluence"/></svg><svg><use href="#lg-jira"/></svg><svg><use href="#lg-linear"/></svg>
+    </div>
+  </div>
+  <div style="height:84px"></div>
+  <div class="ld-divider"></div>
 </section>
 
-<section>
+<!-- ═══ PROBLEM / STATS ═══ -->
+<section class="ld-sec">
   <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow" data-i18n="cap.kicker">What it does</span>
-      <h2 data-i18n="cap.h2">Not just memory — the brain that does the work with you.</h2>
-      <p data-i18n="cap.p">Certemis answers from what your company already knows, then helps you act on it — drafting replies, filling in documents and pointing you to the right person.</p>
+    <div class="reveal">
+      <span class="ld-eyebrow" data-i18n="home.s.kicker">The problem</span>
+      <h2 class="ld-h2" data-i18n="home.s.h2">Most of what your company knows is never written down.</h2>
+      <p class="ld-p" data-i18n="home.s.p">It lives in conversations, inboxes and the heads of a few experienced people. The day they're unavailable — on holiday, between projects, or gone for good — recovering that context costs real time and invites expensive mistakes.</p>
     </div>
-    <div class="features" style="margin-top:54px">
-      <div class="feat reveal d1"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M7.5 18a4 4 0 0 1-.5-7.97 5 5 0 0 1 9.6-1A3.5 3.5 0 0 1 17 18H7.5z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 14h6M9 11h4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div><h3 data-i18n="cap.1t">Answers with citations</h3><p style="font-size:.95rem" data-i18n="cap.1p">Ask in plain language and get an answer backed by the exact sources it came from — built to ground every reply in your data, not to make things up.</p></div>
-      <div class="feat reveal d2"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 6h16v12H4z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M4 7l8 6 8-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3 data-i18n="cap.2t">Reply to email in one click</h3><p style="font-size:.95rem" data-i18n="cap.2p">An email copilot that drafts the response, pulls the right attachment from your knowledge base, and lets you send — without leaving the thread.</p></div>
-      <div class="feat reveal d3"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M7 3h7l4 4v14H7z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M14 3v4h4M10 13h5M10 16h5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3 data-i18n="cap.3t">Documents, RFPs & questionnaires</h3><p style="font-size:.95rem" data-i18n="cap.3p">Generate letters and proposals, and auto-fill security questionnaires and RFPs from what your company has already answered before.</p></div>
-      <div class="feat reveal d1"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M9 8l-4 4 4 4M15 8l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3 data-i18n="cap.4t">Connects to your sources</h3><p style="font-size:.95rem" data-i18n="cap.4p">GitHub, GitLab, Slack, Teams, Google Drive, Notion, Confluence, Jira, Linear and any mailbox (IMAP / SMTP): Gmail, Outlook, Proton… — plus upload of PDF / DOCX and scans with OCR.</p></div>
-      <div class="feat reveal d2"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 3l8 4-8 4-8-4 8-4z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M4 12l8 4 8-4M4 16l8 4 8-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3 data-i18n="cap.5t">Onboarding brain</h3><p style="font-size:.95rem" data-i18n="cap.5p">A step-by-step onboarding guide built from your company's own knowledge, so new people find their footing without interrupting your seniors.</p></div>
-      <div class="feat reveal d3"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M5 4h14v16l-7-3-7 3z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 9h6M9 12h4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div><h3 data-i18n="cap.6t">Notes, playbooks & team board</h3><p style="font-size:.95rem" data-i18n="cap.6p">Capture notes, write reusable playbooks and keep a shared team board — so the way you work is written down once and stays current.</p></div>
-      <div class="feat reveal d1"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="9" cy="8" r="3" stroke="currentColor" stroke-width="1.6"/><path d="M4 19a5 5 0 0 1 10 0" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M16 9l2 2 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3 data-i18n="cap.7t">"Who can help"</h3><p style="font-size:.95rem" data-i18n="cap.7p">Don't know who owns it? Certemis points you to the right person on the team — and drafts the message to reach out to them.</p></div>
-      <div class="feat reveal d2"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 3l7 3v6c0 4.2-2.9 7.4-7 9-4.1-1.6-7-4.8-7-9V6l7-3z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3 data-i18n="cap.8t">Control & oversight for leaders</h3><p style="font-size:.95rem" data-i18n="cap.8p">Roles and per-source access — including for clients — plus aggregated analytics, so the people in charge keep full visibility and control.</p></div>
+    <div class="ld-stats">
+      <div class="ld-stat reveal d1" data-count="65"><div class="num"><span class="v">0</span><span class="u" data-i18n="home.stat1u">days</span></div><div class="cap" data-i18n="home.stat1cap"></div></div>
+      <div class="ld-stat reveal d2" data-count="47"><div class="num"><span class="v">0</span><span class="u">%</span></div><div class="cap" data-i18n="home.stat2cap"></div></div>
+      <div class="ld-stat reveal d3" data-count="50"><div class="num"><span class="v">0</span><span class="u">%</span></div><div class="cap" data-i18n="home.stat3cap"></div></div>
     </div>
-    <p style="font-size:.84rem;color:var(--muted);margin-top:18px" data-i18n="cap.note">Connectors and capabilities roll out during early access.</p>
+    <p class="ld-srcnote reveal" data-i18n="home.stat.note"></p>
   </div>
 </section>
 
-<section class="soft">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow" data-i18n="int.kicker">Designed to connect with</span>
-      <h2 data-i18n="int.h2">Your knowledge, wherever it already lives.</h2>
-      <p data-i18n="int.p"></p>
-    </div>
-    <div class="features" style="margin-top:54px">
-      <div class="feat reveal d1"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M9 8l-4 4 4 4M15 8l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3 data-i18n="int.1t">Code &amp; repos</h3><p style="font-size:.92rem" data-i18n="int.1s">GitHub, GitLab</p></div>
-      <div class="feat reveal d2"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M5 6a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H9l-4 4V6z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></div><h3 data-i18n="int.2t">Team chat</h3><p style="font-size:.92rem" data-i18n="int.2s">Slack, Microsoft Teams</p></div>
-      <div class="feat reveal d3"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M7.5 18a4 4 0 0 1-.5-7.97 5 5 0 0 1 9.6-1A3.5 3.5 0 0 1 17 18H7.5z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></div><h3 data-i18n="int.3t">Docs &amp; drives</h3><p style="font-size:.92rem" data-i18n="int.3s">Google Drive + PDF / DOCX upload with OCR</p></div>
-      <div class="feat reveal d1"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 6c-1.5-1.2-3.5-2-6-2v13c2.5 0 4.5.8 6 2 1.5-1.2 3.5-2 6-2V4c-2.5 0-4.5.8-6 2z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M12 6v13" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div><h3 data-i18n="int.4t">Wikis &amp; notes</h3><p style="font-size:.92rem" data-i18n="int.4s">Confluence, Notion</p></div>
-      <div class="feat reveal d2"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 5h6.5l9.5 9.5-6.5 6.5L4 11.5V5z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="8" cy="9" r="1.3" fill="currentColor"/></svg></div><h3 data-i18n="int.5t">Tickets &amp; projects</h3><p style="font-size:.92rem" data-i18n="int.5s">Jira, Linear</p></div>
-      <div class="feat reveal d3"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 6h16v12H4z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M4 7l8 6 8-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3 data-i18n="int.6t">Email</h3><p style="font-size:.92rem" data-i18n="int.6s">Any mailbox (IMAP / SMTP) — Gmail, Outlook, Proton…</p></div>
-    </div>
-    <div class="int-logos">
-      <span class="eyebrow int-logos-h" data-i18n="int.logos.h">On the integration roadmap</span>
-      <div class="int-logos-row">
-        <div class="int-logo reveal d1"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><use href="#lg-github"/></svg><span>GitHub</span></div>
-        <div class="int-logo reveal d2"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><use href="#lg-gitlab"/></svg><span>GitLab</span></div>
-        <div class="int-logo reveal d3"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><use href="#lg-slack"/></svg><span>Slack</span></div>
-        <div class="int-logo reveal d4"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><use href="#lg-teams"/></svg><span>Microsoft Teams</span></div>
-        <div class="int-logo reveal d1"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><use href="#lg-email"/></svg><span data-i18n="g.email">Email</span></div>
-        <div class="int-logo reveal d2"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><use href="#lg-gdrive"/></svg><span>Google Drive</span></div>
-        <div class="int-logo reveal d3"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><use href="#lg-notion"/></svg><span>Notion</span></div>
-        <div class="int-logo reveal d4"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><use href="#lg-confluence"/></svg><span>Confluence</span></div>
-        <div class="int-logo reveal d1"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><use href="#lg-jira"/></svg><span>Jira</span></div>
-        <div class="int-logo reveal d2"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><use href="#lg-linear"/></svg><span>Linear</span></div>
-      </div>
-    </div>
-    <p style="font-size:.84rem;color:var(--muted);margin-top:18px" data-i18n="int.note"></p>
-  </div>
-</section>
+<div class="wrap"><div class="ld-divider"></div></div>
 
-<section>
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow" data-i18n="aud.kicker">Who it's for</span>
-      <h2 data-i18n="aud.h2">For any company — the brain that runs your business.</h2>
-      <p data-i18n="aud.p">Software houses and agencies are where we started, but the problem isn't theirs alone. Anywhere knowledge lives in people rather than systems, Certemis becomes your company's operational memory.</p>
+<!-- ═══ CAPABILITIES ═══ -->
+<section class="ld-sec">
+  <div class="wrap ld-caps">
+    <div class="ld-caps-head reveal">
+      <span class="ld-eyebrow" data-i18n="cap.kicker">What it does</span>
+      <h2 class="ld-h2" data-i18n="cap.h2">Not just memory — the brain that does the work with you.</h2>
+      <p class="ld-p" data-i18n="cap.p">Certemis answers from what your company already knows, then helps you act on it — drafting replies, filling in documents and pointing you to the right person.</p>
+      <div style="margin-top:26px"><a class="ld-btn ld-btn-ghost" href="product.html" data-i18n="home.t.btn">Explore the product</a></div>
     </div>
-    <div class="features" style="margin-top:54px">
-      <div class="feat reveal d1"><div class="no">01</div><h3 data-i18n="aud.1t">Commerce & services</h3><p data-i18n="aud.1p"></p></div>
-      <div class="feat reveal d2"><div class="no">02</div><h3 data-i18n="aud.2t">Software houses & agencies</h3><p data-i18n="aud.2p"></p></div>
-      <div class="feat reveal d3"><div class="no">03</div><h3 data-i18n="aud.3t">Consulting, manufacturing & SMBs</h3><p data-i18n="aud.3p"></p></div>
+    <div class="ld-caps-grid">
+      <div class="ld-feat reveal d1"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M7.5 18a4 4 0 0 1-.5-7.97 5 5 0 0 1 9.6-1A3.5 3.5 0 0 1 17 18H7.5z"/><path d="M9 14h6M9 11h4" stroke-linecap="round"/></svg></div><h3 data-i18n="cap.1t">Answers with citations</h3><p data-i18n="cap.1p"></p></div>
+      <div class="ld-feat reveal d2"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M4 6h16v12H4z"/><path d="M4 7l8 6 8-6" stroke-linecap="round"/></svg></div><h3 data-i18n="cap.2t">Reply to email in one click</h3><p data-i18n="cap.2p"></p></div>
+      <div class="ld-feat reveal d3"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4M10 13h5M10 16h5" stroke-linecap="round"/></svg></div><h3 data-i18n="cap.3t">Documents, RFPs &amp; questionnaires</h3><p data-i18n="cap.3p"></p></div>
+      <div class="ld-feat reveal d4"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 8l-4 4 4 4M15 8l4 4-4 4"/></svg></div><h3 data-i18n="cap.4t">Connects to your sources</h3><p data-i18n="cap.4p"></p></div>
+      <div class="ld-feat reveal d1"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3l8 4-8 4-8-4 8-4z"/><path d="M4 12l8 4 8-4M4 16l8 4 8-4" stroke-linecap="round"/></svg></div><h3 data-i18n="cap.5t">Onboarding brain</h3><p data-i18n="cap.5p"></p></div>
+      <div class="ld-feat reveal d2"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M5 4h14v16l-7-3-7 3z"/><path d="M9 9h6M9 12h4" stroke-linecap="round"/></svg></div><h3 data-i18n="cap.6t">Notes, playbooks &amp; team board</h3><p data-i18n="cap.6p"></p></div>
+      <div class="ld-feat reveal d3"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M4 19a5 5 0 0 1 10 0"/><path d="M16 9l2 2 4-4"/></svg></div><h3 data-i18n="cap.7t">"Who can help"</h3><p data-i18n="cap.7p"></p></div>
+      <div class="ld-feat reveal d4"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4.2-2.9 7.4-7 9-4.1-1.6-7-4.8-7-9V6l7-3z"/><path d="M9 12l2 2 4-4" stroke-linecap="round"/></svg></div><h3 data-i18n="cap.8t">Control &amp; oversight for leaders</h3><p data-i18n="cap.8p"></p></div>
     </div>
   </div>
 </section>
 
-<section class="soft">
+<div class="wrap"><div class="ld-divider"></div></div>
+
+<!-- ═══ INTEGRATIONS ═══ -->
+<section class="ld-sec">
   <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow" data-i18n="cmp.kicker">Not another wiki</span>
-      <h2 data-i18n="cmp.h2">The difference is who keeps it up to date.</h2>
+    <div class="reveal">
+      <span class="ld-eyebrow" data-i18n="int.kicker">Integrations</span>
+      <h2 class="ld-h2" data-i18n="int.h2">Your knowledge, wherever it already lives.</h2>
+      <p class="ld-p" data-i18n="int.p"></p>
     </div>
-    <div class="compare reveal d1" style="margin-top:50px">
-      <div class="old">
+    <div class="ld-int-cats">
+      <div class="ld-cat reveal d1"><h3 data-i18n="int.1t">Code &amp; repos</h3><p data-i18n="int.1s">GitHub, GitLab</p></div>
+      <div class="ld-cat reveal d2"><h3 data-i18n="int.2t">Team chat</h3><p data-i18n="int.2s">Slack, Microsoft Teams</p></div>
+      <div class="ld-cat reveal d3"><h3 data-i18n="int.3t">Docs &amp; drives</h3><p data-i18n="int.3s">Google Drive + PDF / DOCX upload with OCR</p></div>
+      <div class="ld-cat reveal d1"><h3 data-i18n="int.4t">Wikis &amp; notes</h3><p data-i18n="int.4s">Confluence, Notion</p></div>
+      <div class="ld-cat reveal d2"><h3 data-i18n="int.5t">Tickets &amp; projects</h3><p data-i18n="int.5s">Jira, Linear</p></div>
+      <div class="ld-cat reveal d3"><h3 data-i18n="int.6t">Email</h3><p data-i18n="int.6s">Any mailbox (IMAP / SMTP) — Gmail, Outlook, Proton…</p></div>
+    </div>
+    <div class="reveal" style="margin-top:44px"><span class="ld-eyebrow" data-i18n="int.logos.h">Live in early access</span></div>
+    <div class="ld-logo-row">
+      <a class="ld-logo reveal d1"><svg><use href="#lg-github"/></svg><span>GitHub</span></a>
+      <a class="ld-logo reveal d2"><svg><use href="#lg-gitlab"/></svg><span>GitLab</span></a>
+      <a class="ld-logo reveal d3"><svg><use href="#lg-slack"/></svg><span>Slack</span></a>
+      <a class="ld-logo reveal d4"><svg><use href="#lg-teams"/></svg><span>Microsoft Teams</span></a>
+      <a class="ld-logo reveal d1"><svg style="fill:none;stroke:currentColor"><use href="#lg-email"/></svg><span data-i18n="g.email">Email</span></a>
+      <a class="ld-logo reveal d2"><svg><use href="#lg-gdrive"/></svg><span>Google Drive</span></a>
+      <a class="ld-logo reveal d3"><svg><use href="#lg-notion"/></svg><span>Notion</span></a>
+      <a class="ld-logo reveal d4"><svg><use href="#lg-confluence"/></svg><span>Confluence</span></a>
+      <a class="ld-logo reveal d1"><svg><use href="#lg-jira"/></svg><span>Jira</span></a>
+      <a class="ld-logo reveal d2"><svg><use href="#lg-linear"/></svg><span>Linear</span></a>
+    </div>
+    <p class="ld-srcnote reveal" data-i18n="int.note"></p>
+  </div>
+</section>
+
+<div class="wrap"><div class="ld-divider"></div></div>
+
+<!-- ═══ WHO IT'S FOR + COMPARE ═══ -->
+<section class="ld-sec">
+  <div class="wrap">
+    <div class="reveal">
+      <span class="ld-eyebrow" data-i18n="aud.kicker">Who it's for</span>
+      <h2 class="ld-h2" data-i18n="aud.h2">For any company — the brain that runs your business.</h2>
+      <p class="ld-p" data-i18n="aud.p"></p>
+    </div>
+    <div class="ld-who">
+      <div class="ld-cat reveal d1"><h3 data-i18n="aud.1t">Commerce &amp; services</h3><p data-i18n="aud.1p"></p></div>
+      <div class="ld-cat reveal d2"><h3 data-i18n="aud.2t">Software houses &amp; agencies</h3><p data-i18n="aud.2p"></p></div>
+      <div class="ld-cat reveal d3"><h3 data-i18n="aud.3t">Consulting, manufacturing &amp; SMBs</h3><p data-i18n="aud.3p"></p></div>
+    </div>
+    <div class="ld-cmp">
+      <div class="ld-cmp-col reveal d1">
         <h3 data-i18n="cmp.old.h">The manual way</h3>
-        <div class="cmp-li"><svg class="mk" width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span data-i18n="cmp.o1"></span></div>
-        <div class="cmp-li"><svg class="mk" width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span data-i18n="cmp.o2"></span></div>
-        <div class="cmp-li"><svg class="mk" width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span data-i18n="cmp.o3"></span></div>
+        <div class="ld-cmp-li x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg><span data-i18n="cmp.o1"></span></div>
+        <div class="ld-cmp-li x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg><span data-i18n="cmp.o2"></span></div>
+        <div class="ld-cmp-li x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg><span data-i18n="cmp.o3"></span></div>
       </div>
-      <div class="new">
+      <div class="ld-cmp-col good reveal d2">
         <h3 data-i18n="cmp.new.h">With Certemis</h3>
-        <div class="cmp-li"><svg class="mk" width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="cmp.n1"></span></div>
-        <div class="cmp-li"><svg class="mk" width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="cmp.n2"></span></div>
-        <div class="cmp-li"><svg class="mk" width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4L19 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="cmp.n3"></span></div>
+        <div class="ld-cmp-li v"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4L19 7"/></svg><span data-i18n="cmp.n1"></span></div>
+        <div class="ld-cmp-li v"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4L19 7"/></svg><span data-i18n="cmp.n2"></span></div>
+        <div class="ld-cmp-li v"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4L19 7"/></svg><span data-i18n="cmp.n3"></span></div>
       </div>
-    </div>
-    <div class="center reveal d2" style="margin-top:46px">
-      <a class="btn btn-dark" href="early-access.html"><span data-i18n="nav.cta">Join the waitlist</span>
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
     </div>
   </div>
 </section>
 
-<section>
+<!-- ═══ FINAL CTA ═══ -->
+<section class="ld-cta">
   <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow" data-i18n="exp.kicker">Explore</span>
-      <h2 data-i18n="exp.h2">Go deeper into Certemis.</h2>
-    </div>
-    <div class="features" style="margin-top:54px">
-      <a class="feat reveal d1" href="use-cases.html"><div class="feat-row"><h3 data-i18n="exp.1t">Use cases</h3><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div><p data-i18n="exp.1p">Where memory earns its keep.</p></a>
-      <a class="feat reveal d2" href="security.html"><div class="feat-row"><h3 data-i18n="exp.2t">Security</h3><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div><p data-i18n="exp.2p">How we protect your knowledge.</p></a>
-      <a class="feat reveal d3" href="pricing.html"><div class="feat-row"><h3 data-i18n="exp.3t">Pricing</h3><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div><p data-i18n="exp.3p">Plans that grow with your team.</p></a>
+    <div class="reveal">
+      <h2 data-i18n="ld.cta.h2">Your company already knows the answer. Give your team access to it.</h2>
+      <p data-i18n="ld.cta.p">Private early access — we're onboarding a first group of founding teams now.</p>
+      <a class="ld-btn ld-btn-acc" href="early-access.html" data-i18n="nav.cta">Join the waitlist</a>
     </div>
   </div>
 </section>
@@ -328,6 +334,7 @@
   </div>
 </footer>
 <script src="site.js"></script>
+<script src="landing.js"></script>
 <script src="https://app.certemis.com/embed.js" data-certemis-key="pk_r8xnfzLELcNbUHna9-RcPxlk" async></script>
 </body>
 </html>
