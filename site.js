@@ -40,6 +40,7 @@
       "g.docs": "Documents", "g.slack": "Slack", "g.repos": "Repos",
       "g.decisions": "Decisions", "g.tickets": "Tickets", "g.wiki": "Wiki",
       "g.github": "GitHub", "g.gitlab": "GitLab", "g.gmail": "Gmail", "g.gdrive": "Google Drive",
+      "g.email": "Email",
 
       "home.s.kicker": "The problem",
       "home.s.h2": "Most of what your company knows is never written down.",
@@ -398,6 +399,7 @@
       "g.docs": "Dokumenty", "g.slack": "Slack", "g.repos": "Repozytoria",
       "g.decisions": "Decyzje", "g.tickets": "Zgłoszenia", "g.wiki": "Wiki",
       "g.github": "GitHub", "g.gitlab": "GitLab", "g.gmail": "Gmail", "g.gdrive": "Google Drive",
+      "g.email": "E-mail",
 
       "home.s.kicker": "Problem",
       "home.s.h2": "Większość tego, co wie Twoja firma, nigdy nie zostaje zapisana.",
