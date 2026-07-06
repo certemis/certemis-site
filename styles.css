@@ -160,6 +160,7 @@ section{padding:110px 0}
 .stat{background:var(--paper);padding:40px 34px}
 .stat .num{font-family:var(--display);font-size:2.6rem;font-weight:700;line-height:1}
 .stat .num .u{color:var(--muted)}
+.stat .num .u.txt{font-size:1.05rem;font-family:var(--body);font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-left:8px}
 .stat .cap{color:var(--muted);font-size:1rem;margin-top:14px}
 
 .features{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
