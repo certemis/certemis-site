@@ -6,22 +6,22 @@
   --muted:#6C6C74; --muted-dk:#90909C;
   --accent:#2E5BFF; --accent-dk:#1E45D8; --accent-soft:rgba(46,91,255,.10);
   --maxw:1180px;
-  --display:"Orbitron",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-  --body:"Rajdhani",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-  --mono:"Rajdhani",ui-monospace,monospace;
+  --display:"Space Grotesk",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --body:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --mono:"Space Grotesk",ui-monospace,monospace;
 }
 /* === Base, typography & shared helpers === */
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);
-  font-size:18px;line-height:1.62;font-weight:500;-webkit-font-smoothing:antialiased;
+  font-size:16.5px;line-height:1.62;font-weight:400;-webkit-font-smoothing:antialiased;
   text-rendering:optimizeLegibility;overflow-x:hidden}
 a{color:inherit;text-decoration:none}
 img{display:block;max-width:100%}
-h1,h2,h3{font-family:var(--display);font-weight:700;line-height:1.06;letter-spacing:.002em;margin:0 0 .4em}
-h1{font-size:clamp(2.05rem,5.2vw,4rem)}
-h2{font-size:clamp(1.7rem,3.1vw,2.65rem)}
-h3{font-size:1.16rem;letter-spacing:.01em}
+h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.12;letter-spacing:-.018em;margin:0 0 .4em}
+h1{font-size:clamp(1.9rem,4.6vw,3.4rem)}
+h2{font-size:clamp(1.5rem,2.8vw,2.35rem)}
+h3{font-size:1.14rem;letter-spacing:-.008em}
 p{margin:0 0 1em}
 .wrap{max-width:var(--maxw);margin:0 auto;padding:0 30px}
 .accent{color:var(--accent)}
@@ -51,8 +51,8 @@ header.on-dark.solid{background:rgba(10,10,11,.72);border-bottom:1px solid var(-
 header.on-dark .brand{color:#fff}
 @media(max-width:520px){.brand .mark{width:140px;height:36px}}
 
-.nav-mid{display:flex;gap:40px;align-items:center}
-.nav-mid a{font-family:var(--body);font-weight:600;font-size:.94rem;letter-spacing:.05em;
+.nav-mid{display:flex;gap:32px;align-items:center}
+.nav-mid a{font-family:var(--body);font-weight:600;font-size:.84rem;letter-spacing:.04em;
   text-transform:uppercase;color:var(--muted);transition:color .2s;position:relative;padding:6px 0;white-space:nowrap}
 .nav-mid a:hover{color:var(--ink)}
 .nav-mid a.active{color:var(--ink)}
@@ -79,8 +79,8 @@ header.on-dark .lang select{border-color:var(--line-dk);color:#fff;
 header.on-dark .lang select:hover{border-color:#fff}
 .lang option{color:#111;background:#fff}
 
-.cta{font-family:var(--body);font-weight:700;font-size:.9rem;letter-spacing:.07em;text-transform:uppercase;
-  padding:12px 22px;border-radius:9px;background:var(--ink);color:#fff;transition:.2s;white-space:nowrap}
+.cta{font-family:var(--body);font-weight:600;font-size:.82rem;letter-spacing:.05em;text-transform:uppercase;
+  padding:11px 18px;border-radius:9px;background:var(--ink);color:#fff;transition:.2s;white-space:nowrap}
 .cta:hover{background:var(--ink-3);transform:translateY(-1px)}
 header.on-dark .cta{background:#fff;color:var(--ink)}
 header.on-dark .cta:hover{background:var(--paper-2)}
@@ -94,8 +94,8 @@ header.on-dark .burger{color:#fff}
 .mobile a{display:block;padding:18px 30px;border-top:1px solid var(--line-dk);
   text-transform:uppercase;letter-spacing:.05em;font-weight:600}
 
-.btn{display:inline-flex;align-items:center;gap:11px;font-family:var(--body);font-weight:700;font-size:1rem;
-  letter-spacing:.05em;text-transform:uppercase;padding:16px 30px;border-radius:11px;cursor:pointer;
+.btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--body);font-weight:600;font-size:.92rem;
+  letter-spacing:.045em;text-transform:uppercase;padding:13px 22px;border-radius:10px;cursor:pointer;
   border:1px solid transparent;transition:.2s}
 .btn svg{transition:transform .2s}.btn:hover svg{transform:translateX(4px)}
 .btn-light{background:#fff;color:var(--ink)}
@@ -135,9 +135,9 @@ section{padding:110px 0}
 .kicker{font-family:var(--body);text-transform:uppercase;letter-spacing:.32em;font-size:.76rem;font-weight:700;
   color:var(--muted-dk);margin-bottom:26px;display:flex;align-items:center;gap:12px}
 .kicker::before{content:"";width:30px;height:2px;background:var(--accent)}
-/* Hero headline is a full sentence — one step below the global h1 scale so it lands in ~3 lines, not a tall ragged block */
-.hero h1{margin-bottom:.32em;font-size:clamp(1.9rem,4vw,3.15rem)}
-.hero p.lead{font-size:1.22rem;color:#c6c6d0;max-width:52ch;margin-bottom:36px;font-weight:500}
+/* Hero headline is a full sentence — one step below the global h1 scale so it lands in 2–3 lines, not a tall ragged block */
+.hero h1{margin-bottom:.36em;font-size:clamp(1.62rem,3.5vw,2.85rem);line-height:1.14}
+.hero p.lead{font-size:1.13rem;line-height:1.58;color:#c6c6d0;max-width:54ch;margin-bottom:32px;font-weight:400}
 .actions{display:flex;flex-wrap:wrap;gap:15px;align-items:center}
 .hero-note{margin-top:22px;font-size:.92rem;color:var(--muted-dk);letter-spacing:.02em}
 
@@ -331,7 +331,25 @@ footer{background:var(--ink);color:var(--muted-dk);padding:62px 0 42px}
 @media(max-width:560px){
   section{padding:74px 0}
   .phero{padding:104px 0 64px}
-  .hero{padding:104px 0 80px}
+}
+/* Phones: the whole hero (headline -> constellation) should read on ONE screen:
+   compact type, compact CTAs, constellation pulled up and shrunk instead of
+   pushed below the fold */
+@media(max-width:600px){
+  .hero{padding:88px 0 36px}
+  .hero-grid{gap:8px}
+  .hero .kicker{font-size:.68rem}
+  .hero h1{font-size:1.5rem;line-height:1.2}
+  .hero p.lead{font-size:.99rem;line-height:1.5;margin-bottom:20px}
+  .hero .actions{gap:9px}
+  .hero .actions .btn{padding:11px 15px;font-size:.8rem;letter-spacing:.035em}
+  .hero-note{margin-top:12px;font-size:.78rem}
+  .viz{max-width:288px;margin:20px auto 0}
+  .ha-lbl{top:calc(100% + 5px)}
+  .hero-strip{margin-top:30px;padding-top:16px;gap:10px 18px}
+  .hs-h{font-size:.64rem;letter-spacing:.18em}
+  .hs-row{gap:12px 16px}
+  .hs-logo svg{width:17px;height:17px}
 }
 /* Phones: roomier form by trimming the large card padding */
 @media(max-width:520px){
