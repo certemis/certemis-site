@@ -225,6 +225,12 @@ body.landing .ld-strip{padding:56px 0 8px}
 @media(max-width:920px){.ld-int-cats{grid-template-columns:1fr 1fr}.ld-logo-row{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:560px){.ld-int-cats{grid-template-columns:1fr}.ld-logo-row{grid-template-columns:1fr 1fr}}
 
+/* Konstelacja narzędzi — centralny wizual sekcji integracji (relokacja z hero).
+   Cała animacja/rozkład = .hero-anim/.ha-* z styles.css; tu tylko kontener,
+   który go centruje i skaluje w sekcji (zamiast hero-owego .viz). */
+.ld-constviz{position:relative;width:100%;max-width:520px;margin:38px auto 46px;aspect-ratio:1/1}
+@media(max-width:560px){.ld-constviz{max-width:340px;margin:26px auto 34px}}
+
 /* ── WHO / COMPARE ──────────────────────────────────────── */
 .ld-who{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:40px}
 .ld-cmp{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:44px}
