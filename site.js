@@ -39,9 +39,7 @@
       "home.note": "Currently in private early access — we're onboarding a first group of founding teams.",
       "home.strip": "Connects with what you already use",
 
-      "ld.pill": "Private early access — onboarding founding teams",
-      "ld.lead": "One permission-aware memory across your code, chat, tickets, wikis, docs and email — every answer backed by citations.",
-      "ld.note": "Real answers from your own sources — nothing made up.",
+      "ld.lead": "One permission-aware memory across your tools — every answer backed by citations.",
       "ld.cta.h2": "Your company already knows the answer. Give your team access to it.",
       "ld.cta.p": "Private early access — we're onboarding a first group of founding teams now.",
 
@@ -426,9 +424,7 @@
       "home.note": "Obecnie w prywatnym wczesnym dostępie — wdrażamy pierwszą grupę zespołów founding.",
       "home.strip": "Łączy się z tym, czego już używasz",
 
-      "ld.pill": "Prywatny wczesny dostęp — wdrażamy pierwsze zespoły",
-      "ld.lead": "Jedna pamięć firmy ponad kodem, czatem, zgłoszeniami, wiki, dokumentami i pocztą — każda odpowiedź poparta cytatami i zgodna z uprawnieniami.",
-      "ld.note": "Prawdziwe odpowiedzi z Twoich źródeł — nic zmyślonego.",
+      "ld.lead": "Jedna pamięć firmy ponad wszystkimi narzędziami — każda odpowiedź poparta cytatami.",
       "ld.cta.h2": "Twoja firma już zna odpowiedź. Daj zespołowi do niej dostęp.",
       "ld.cta.p": "Prywatny wczesny dostęp — właśnie wdrażamy pierwszą grupę zespołów founding.",
 
