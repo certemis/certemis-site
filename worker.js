@@ -39,7 +39,7 @@ function emailHtml(copy) {
   return (
     '<div style="margin:0;padding:32px 16px;background:#f5f6fa;font-family:-apple-system,BlinkMacSystemFont,\'Segoe UI\',Roboto,Helvetica,Arial,sans-serif">' +
       '<div style="max-width:560px;margin:0 auto;background:#ffffff;border:1px solid #e5e8f0;border-radius:12px;overflow:hidden">' +
-        '<div style="background:#2E5BFF;padding:18px 32px">' +
+        '<div style="background:#0A0A0A;padding:18px 32px">' +
           '<img src="https://certemis.com/assets/email-logo.png" alt="CERTEMIS" width="138" height="32" style="display:block;border:0;outline:none">' +
         "</div>" +
         '<div style="padding:32px">' +
