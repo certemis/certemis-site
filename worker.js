@@ -7,7 +7,7 @@ var FIELDS = ["name", "email", "company", "website", "country", "size", "role", 
 
 var COPY = {
   en: {
-    subject: "You're on the Certemis waitlist",
+    subject: "Welcome to Certemis — you're in 🎉",
     paragraphs: [
       "Hi,",
       "Thanks for applying for founding access to Certemis — the operational memory layer for companies.",
@@ -17,12 +17,12 @@ var COPY = {
     ]
   },
   pl: {
-    subject: "Jesteś na liście Certemis",
+    subject: "Witaj w Certemis — jesteś na liście 🎉",
     paragraphs: [
       "Cześć,",
-      "Dziękujemy za zgłoszenie do dostępu founding w Certemis — operacyjnej pamięci firmy.",
-      "Otrzymaliśmy Twoje zgłoszenie. Przyjmujemy pierwszą grupę zespołów founding (pierwszych 20 firm dostaje 50% zniżki na zawsze) i odezwiemy się osobiście, gdy zwolnią się miejsca.",
-      "Masz pytanie w międzyczasie? Po prostu odpowiedz na tego maila — trafi prosto do mnie.",
+      "dziękujemy za zgłoszenie do programu founderskiego Certemis — operacyjnej pamięci firmy.",
+      "Twoje zgłoszenie do nas dotarło. Zapraszamy na razie niewielką grupę pierwszych zespołów (pierwsze 20 firm dostaje 50% zniżki na zawsze) i odezwiemy się osobiście, gdy tylko zwolni się miejsce.",
+      "Masz w międzyczasie jakieś pytanie? Po prostu odpowiedz na tego maila — trafi prosto do mnie.",
       "Do usłyszenia,"
     ]
   }
@@ -40,7 +40,7 @@ function emailHtml(copy) {
     '<div style="margin:0;padding:32px 16px;background:#f5f6fa;font-family:-apple-system,BlinkMacSystemFont,\'Segoe UI\',Roboto,Helvetica,Arial,sans-serif">' +
       '<div style="max-width:560px;margin:0 auto;background:#ffffff;border:1px solid #e5e8f0;border-radius:12px;overflow:hidden">' +
         '<div style="background:#2E5BFF;padding:18px 32px">' +
-          '<span style="color:#ffffff;font-size:14px;font-weight:700;letter-spacing:.14em">CERTEMIS</span>' +
+          '<img src="https://certemis.com/assets/email-logo.png" alt="CERTEMIS" width="138" height="32" style="display:block;border:0;outline:none">' +
         "</div>" +
         '<div style="padding:32px">' +
           body +

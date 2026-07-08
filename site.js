@@ -421,12 +421,12 @@
       "home.lead": "Certemis wpina się w narzędzia, w których Twój zespół już pracuje — kod, czat, zgłoszenia, wiki, dokumenty i pocztę — i zamienia je w jedną wspólną pamięć, która odpowiada ze źródłami. Każdy widzi tylko to, do czego ma dostęp. Bez pisania wiki, bez utrzymywania.",
       "home.btn1": "Dołącz do listy",
       "home.btn2": "Zobacz live demo",
-      "home.note": "Obecnie w prywatnym wczesnym dostępie — wdrażamy pierwszą grupę zespołów founding.",
+      "home.note": "Trwa zamknięty wczesny dostęp — właśnie wdrażamy pierwsze zespoły z programu founderskiego.",
       "home.strip": "Łączy się z tym, czego już używasz",
 
       "ld.lead": "Jedna pamięć ze wszystkich Waszych narzędzi — każda odpowiedź ma źródła, a każdy widzi tylko to, do czego ma dostęp.",
       "ld.cta.h2": "Twoja firma już zna odpowiedź. Daj zespołowi do niej dostęp.",
-      "ld.cta.p": "Prywatny wczesny dostęp — właśnie wdrażamy pierwszą grupę zespołów founding.",
+      "ld.cta.p": "Zamknięty wczesny dostęp — właśnie wdrażamy pierwsze zespoły z programu founderskiego.",
 
       "mk.search": "Szukaj…", "mk.start": "Start", "mk.pulpit": "Mój pulpit", "mk.tablica": "Tablica",
       "mk.assistant": "Asystent", "mk.chat": "Czat", "mk.calendar": "Kalendarz", "mk.wiedza": "Wiedza",
@@ -609,16 +609,16 @@
       "price.e.f5": "Dedykowana rezydencja danych",
       "price.e.f6": "SLA + dedykowany kontakt",
       "price.e.cta": "Skontaktuj się",
-      "price.note": "Ceny w EUR, rozliczenie miesięczne. <a href=\"early-access.html\">Founding members: -50% na zawsze.</a>",
+      "price.note": "Ceny w EUR, rozliczenie miesięczne. <a href=\"early-access.html\">Pierwsze 20 firm płaci o połowę mniej — na zawsze.</a>",
       "price.faq.kicker": "Pytania",
       "price.faq.h2": "Cennik bez tajemnic",
       "price.q1": "Czy mogę później zmienić plan?",
       "price.a1": "Tak. Plan możesz zmienić w górę lub w dół w dowolnym momencie, a zmiana obowiązuje od następnego okresu rozliczeniowego - bez kar za przejście, gdy zespół rośnie lub zmieniają się potrzeby.",
       "price.q2": "Czym jest zapytanie i czy obowiązuje fair use?",
       "price.a2": "Zapytanie to jedno pytanie, które zespół zadaje Certemis i na które dostaje odpowiedź. Miesięczne limity utrzymują przewidywalność cen; gdy zbliżasz się do limitu, uprzedzimy Cię odpowiednio wcześnie i pomożemy dobrać właściwy plan, zamiast odcinać dostęp w środku miesiąca.",
-      "price.q3": "Jak działa rabat founding-member -50%?",
-      "price.a3": "Pierwszych 20 klientów z listy zapisów blokuje 50% od tych cen na cały czas aktywnej subskrypcji. Aplikuj o wczesny dostęp, by zdobyć rabat przed startem.",
-      "price.cta.h": "Zablokuj cenę founding-member przed startem.",
+      "price.q3": "Jak działa founderska zniżka −50%?",
+      "price.a3": "Pierwszych 20 klientów z listy zachowuje 50% zniżki od tych cen przez cały czas trwania subskrypcji. Zgłoś się po wczesny dostęp i zajmij miejsce przed startem.",
+      "price.cta.h": "Zarezerwuj cenę founderską, zanim wystartujemy.",
       "price.cta.btn": "Dołącz do listy",
       "roi.kicker": "Kalkulator ROI",
       "roi.h2": "Zobacz, ile kosztuje zapominanie — i ile Certemis może odzyskać.",
@@ -733,39 +733,39 @@
       "sec.cta.btn": "Dołącz do listy",
 
       "ea.kicker": "Wczesny dostęp",
-      "ea.h1": "Founding members: pierwszych 20 klientów, 50% taniej na zawsze.",
-      "ea.p": "Otwieramy ograniczoną grupę founding. Opowiedz nam o swoim zespole i zablokuj cenę founding-member na starcie.",
-      "ea.ribbon": "Oferta founding — tylko 20 miejsc",
+      "ea.h1": "Pierwszych 20 klientów płaci o połowę mniej — na zawsze.",
+      "ea.p": "Otwieramy niewielki program founderski. Opowiedz nam o swoim zespole i zarezerwuj founderską cenę na start.",
+      "ea.ribbon": "Oferta founderska — tylko 20 miejsc",
       "ea.price.ctx": "od ceny standardowej",
-      "ea.price.sub": "Dożywotni rabat dla pierwszych 20 klientów — utrzymany tak długo, jak aktywna jest subskrypcja.",
-      "ea.term1": "<b>50% taniej na zawsze</b> — przez cały czas, gdy jesteś klientem.",
+      "ea.price.sub": "Zniżka na zawsze dla pierwszych 20 klientów — obowiązuje, dopóki subskrypcja pozostaje aktywna.",
+      "ea.term1": "<b>50% taniej na zawsze</b> — przez cały czas, kiedy jesteś naszym klientem.",
       "ea.term2": "Zarezerwowane dla <b>pierwszych 20 klientów</b> z listy.",
-      "ea.term3": "Dostępne <b>tylko dla osób z listy</b> — wypełnij formularz, by się kwalifikować.",
-      "ea.term4": "Utrzymane przy <b>ciągłości subskrypcji</b>. Po przerwie cena founding wygasa.",
-      "ea.meta.l": "Grupa founding się zapełnia", "ea.meta.r": "20 miejsc",
+      "ea.term3": "Dostępne <b>tylko dla osób z listy</b> — wyślij zgłoszenie poniżej, żeby wziąć udział.",
+      "ea.term4": "Obowiązuje przy <b>nieprzerwanej subskrypcji</b>. Po przerwie cena founderska przepada.",
+      "ea.meta.l": "Grupa founderska się zapełnia", "ea.meta.r": "20 miejsc",
 
-      "ea.form.h3": "Aplikuj o dostęp founding",
-      "ea.form.sub": "Napisz nam trochę o swojej firmie, byśmy dopasowali wczesny dostęp.",
+      "ea.form.h3": "Zgłoś firmę do programu founderskiego",
+      "ea.form.sub": "Opowiedz nam krótko o swojej firmie — dopasujemy wczesny dostęp do Waszych potrzeb.",
       "l.name": "Imię i nazwisko", "l.email": "E-mail służbowy", "l.company": "Firma",
       "l.website": "Strona firmy", "l.country": "Kraj", "l.size": "Wielkość firmy",
-      "l.role": "Twoja rola", "l.needs": "Co Certemis mialby rozwiazac u Was?",
+      "l.role": "Twoja rola", "l.needs": "Co Certemis miałby u Was rozwiązać?",
       "ph.name": "Jan Kowalski", "ph.email": "ty@firma.com", "ph.company": "Nazwa firmy",
       "ph.website": "firma.pl", "ph.country": "Zacznij wpisywać kraj…", "ph.role": "np. CTO, Head of Engineering",
       "ph.needs": "Tempo onboardingu, utrata wiedzy przy odejściach, rozproszony kontekst…",
       "opt.choose": "Wybierz…",
       "size.1": "1–29 osób", "size.2": "30–80 osób", "size.3": "81–150 osób", "size.4": "150+ osób",
-      "ea.submit": "Aplikuj o dostęp founding",
-      "ea.consent": "Wysyłając zgodę, akceptujesz otrzymywanie informacji o starcie Certemis. Tylko wiadomości o produkcie i Twojej ofercie founding — bez spamu, rezygnacja w każdej chwili.",
+      "ea.submit": "Wyślij zgłoszenie",
+      "ea.consent": "Wysyłając zgłoszenie, zgadzasz się na wiadomości o starcie Certemis. Tylko informacje o produkcie i Twoja oferta founderska — bez spamu, a wypisać się możesz w każdej chwili.",
       "ea.faq.kicker": "Pytania",
       "ea.faq.h2": "Warto wiedzieć",
-      "q1": "Czy produkt jest już dostępny?", "a1": "Jeszcze nie. Jesteśmy w prywatnym wczesnym dostępie. Po aplikacji powiadomimy Cię w chwili startu — aplikujący mają pierwszeństwo do oferty founding.",
-      "q2": "Jak działa oferta 50% na zawsze?", "a2": "Pierwszych 20 klientów z listy blokuje 50% od ceny standardowej na cały czas subskrypcji, dopóki pozostaje ona aktywna bez przerw.",
-      "q3": "Co jeśli wstrzymam lub zrezygnuję?", "a3": "Rabat founding jest powiązany z ciągłością subskrypcji. Po przerwie cena founding wygasa i obowiązuje cennik standardowy.",
+      "q1": "Czy produkt jest już dostępny?", "a1": "Jeszcze nie — trwa zamknięty wczesny dostęp. Wyślij zgłoszenie, a damy Ci znać w dniu startu; zgłoszone firmy mają pierwszeństwo w ofercie founderskiej.",
+      "q2": "Jak działa oferta 50% na zawsze?", "a2": "Pierwsze 20 firm z listy zachowuje 50% zniżki od ceny standardowej tak długo, jak długo subskrypcja pozostaje aktywna bez przerwy.",
+      "q3": "Co jeśli wstrzymam lub zrezygnuję?", "a3": "Zniżka founderska wymaga nieprzerwanej subskrypcji. Po przerwie przepada, a przy powrocie obowiązuje cennik standardowy.",
       "q4": "Dla kogo jest Certemis?", "a4": "Dla każdej firmy — od handlu i usług, przez software house'y i agencje, po konsulting, produkcję i MŚP. Wszędzie tam, gdzie wiedza operacyjna jest kluczowa, a ludzie przychodzą i odchodzą, odpowiedź na „jak my to robimy?” nie powinna zależeć od dostępności jednej osoby.",
       "q5": "Jak chronione są nasze dane?", "a5": "Rezydencja danych w UE, zgodność z RODO, DPA z każdym klientem, szyfrowanie w tranzycie i spoczynku, ścisłe oddzielenie danych klientów od siebie i brak treningu modeli na Twoich danych.",
       "msg.invalid": "Podaj prawidłowy e-mail służbowy.",
-      "msg.demo": "Dziękujemy — Twoja aplikacja została zapisana. (Tryb demo: podłącz endpoint formularza, by odbierać zgłoszenia.)",
-      "msg.ok": "Dziękujemy — aplikacja przyjęta. Odezwiemy się w okolicach startu.",
+      "msg.demo": "Dziękujemy — Twoje zgłoszenie zostało zapisane. (Tryb demo: podłącz endpoint formularza, by odbierać zgłoszenia.)",
+      "msg.ok": "Dziękujemy — zgłoszenie przyjęte! Odezwiemy się przed startem.",
       "msg.err": "Coś poszło nie tak. Napisz na hello@certemis.com, a dodamy Cię ręcznie.",
 
       "nav.privacy": "Prywatność",
@@ -870,6 +870,44 @@
 
     var FORM_ACTION = "/api/apply";
 
+    // Konfetti po udanym zgłoszeniu — lekki canvas bez zależności; nic przy reduced motion.
+    function confettiBurst(fromEl) {
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      var cv = document.createElement("canvas");
+      cv.style.cssText = "position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:9999";
+      document.body.appendChild(cv);
+      var ctx = cv.getContext("2d");
+      var W = cv.width = window.innerWidth, H = cv.height = window.innerHeight;
+      var r = fromEl ? fromEl.getBoundingClientRect() : null;
+      var ox = r ? r.left + r.width / 2 : W / 2, oy = r ? r.top + r.height / 2 : H * .4;
+      var colors = ["#2E5BFF", "#7B9CFF", "#10B981", "#FFC53D", "#F7F8F8"];
+      var parts = [], i, a, sp;
+      for (i = 0; i < 140; i++) {
+        a = -Math.PI / 2 + (Math.random() - .5) * 1.5;
+        sp = 6 + Math.random() * 10;
+        parts.push({ x: ox, y: oy, vx: Math.cos(a) * sp, vy: Math.sin(a) * sp,
+          w: 4 + Math.random() * 5, h: 7 + Math.random() * 6, rot: Math.random() * Math.PI,
+          vr: (Math.random() - .5) * .3, c: colors[i % colors.length], life: 110 + Math.random() * 50 });
+      }
+      var frame = 0;
+      (function tick() {
+        ctx.clearRect(0, 0, W, H);
+        var alive = 0;
+        for (var j = 0; j < parts.length; j++) {
+          var p = parts[j];
+          if (frame > p.life) continue;
+          alive++;
+          p.vy += .18; p.vx *= .992; p.x += p.vx; p.y += p.vy; p.rot += p.vr;
+          ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.rot);
+          ctx.globalAlpha = Math.max(0, 1 - frame / p.life);
+          ctx.fillStyle = p.c; ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+          ctx.restore();
+        }
+        frame++;
+        if (alive) requestAnimationFrame(tick); else cv.remove();
+      })();
+    }
+
     var form = document.getElementById("apply");
     if (form) {
       var msg = document.getElementById("formMsg");
@@ -881,9 +919,10 @@
         if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { show("err", "msg.invalid"); return; }
         var langEl = form.querySelector("[name=lang]");
         if (langEl) langEl.value = lang;
-        if (!FORM_ACTION) { show("ok", "msg.demo"); form.reset(); return; }
+        var submitBtn = form.querySelector(".btn-submit");
+        if (!FORM_ACTION) { show("ok", "msg.demo"); form.reset(); confettiBurst(submitBtn); return; }
         fetch(FORM_ACTION, { method: "POST", headers: { "Accept": "application/json" }, body: new FormData(form) })
-          .then(function (r) { if (r.ok) { show("ok", "msg.ok"); form.reset(); } else { show("err", "msg.err"); } })
+          .then(function (r) { if (r.ok) { show("ok", "msg.ok"); form.reset(); confettiBurst(submitBtn); } else { show("err", "msg.err"); } })
           .catch(function () { show("err", "msg.err"); });
       });
     }
