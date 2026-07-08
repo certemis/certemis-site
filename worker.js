@@ -79,6 +79,24 @@ async function handleApply(request, env) {
   var lang = form.get("lang") === "pl" ? "pl" : "en";
   var copy = COPY[lang];
 
+  // TYMCZASOWA diagnostyka produkcyjna (do usunięcia): zwraca surową odpowiedź
+  // Resend przy tajnym nagłówku; nie forwarduje do Formspree.
+  if (request.headers.get("x-certemis-debug") === "05eade8ed9ce579f84fbd58c") {
+    var dbg = { debug: true, hasKey: typeof env.RESEND_API_KEY === "string" && env.RESEND_API_KEY.length > 0, keyLen: (env.RESEND_API_KEY || "").length };
+    try {
+      var dr = await fetch("https://api.resend.com/emails", {
+        method: "POST",
+        headers: { "Authorization": "Bearer " + env.RESEND_API_KEY, "Content-Type": "application/json" },
+        body: JSON.stringify({ from: "Certemis <hello@certemis.com>", reply_to: "hubert@certemis.com", to: [email], subject: copy.subject, text: emailText(copy), html: emailHtml(copy) })
+      });
+      dbg.resendStatus = dr.status;
+      dbg.resendBody = await dr.text();
+    } catch (e) {
+      dbg.fetchError = String(e);
+    }
+    return json(dbg, 200);
+  }
+
   var resendPromise = fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: {
