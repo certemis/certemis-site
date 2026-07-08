@@ -1,7 +1,9 @@
 {
   "name": "certemis-site",
+  "main": "worker.js",
   "compatibility_date": "2025-05-01",
   "assets": {
-    "directory": "."
+    "directory": ".",
+    "binding": "ASSETS"
   }
 }

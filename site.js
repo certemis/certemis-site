@@ -868,7 +868,7 @@
     var counts = document.querySelectorAll("[data-count]");
     for (var m = 0; m < counts.length; m++) cio.observe(counts[m]);
 
-    var FORM_ACTION = "https://formspree.io/f/xnjryoyq";
+    var FORM_ACTION = "/api/apply";
 
     var form = document.getElementById("apply");
     if (form) {
@@ -879,6 +879,8 @@
         var emailEl = form.querySelector("[name=email]");
         var email = emailEl ? emailEl.value.trim() : "";
         if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { show("err", "msg.invalid"); return; }
+        var langEl = form.querySelector("[name=lang]");
+        if (langEl) langEl.value = lang;
         if (!FORM_ACTION) { show("ok", "msg.demo"); form.reset(); return; }
         fetch(FORM_ACTION, { method: "POST", headers: { "Accept": "application/json" }, body: new FormData(form) })
           .then(function (r) { if (r.ok) { show("ok", "msg.ok"); form.reset(); } else { show("err", "msg.err"); } })
