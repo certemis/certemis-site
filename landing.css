@@ -44,16 +44,16 @@ body.landing .ld-sec{position:relative;padding:104px 0}
 .ld-divider{height:1px;background:linear-gradient(90deg,transparent,var(--ld-line2),transparent)}
 
 /* ── HERO ───────────────────────────────────────────────── */
-body.landing .ld-hero{position:relative;padding:92px 0 0;text-align:center;overflow:visible}
+body.landing .ld-hero{position:relative;padding:72px 0 0;text-align:center;overflow:visible}
 .ld-hero-glow{position:absolute;inset:-120px 0 auto;height:640px;pointer-events:none;
   background:
     radial-gradient(46% 42% at 50% 18%,rgba(46,91,255,.16),transparent 70%),
     radial-gradient(70% 40% at 50% 0%,rgba(120,140,255,.07),transparent 70%)}
-body.landing .ld-hero h1{font-size:clamp(1.85rem,3.1vw,2.6rem);font-weight:600;letter-spacing:-.03em;line-height:1.1;
+body.landing .ld-hero h1{font-size:clamp(1.7rem,2.5vw,2.2rem);font-weight:600;letter-spacing:-.03em;line-height:1.1;
   max-width:44ch;margin:0 auto;text-wrap:balance;color:var(--ld-txt)}
 .ld-hero h1 em{font-style:normal;color:var(--acc-hi)}
-.ld-lead{color:var(--ld-mut);font-size:clamp(.95rem,1.2vw,1.06rem);max-width:78ch;margin:10px auto 0;text-wrap:balance}
-.ld-ctas{display:flex;justify-content:center;gap:12px;margin-top:18px;flex-wrap:wrap}
+.ld-lead{color:var(--ld-mut);font-size:clamp(.9rem,1.1vw,1rem);max-width:78ch;margin:6px auto 0;text-wrap:balance}
+.ld-ctas{display:flex;justify-content:center;gap:12px;margin-top:12px;flex-wrap:wrap}
 body.landing .ld-btn{display:inline-flex;align-items:center;gap:9px;font-weight:600;font-size:.9rem;letter-spacing:0;
   text-transform:none;padding:11px 20px;border-radius:10px;border:1px solid transparent;transition:.18s}
 .ld-btn-acc{background:var(--acc);color:#fff;box-shadow:0 0 0 1px rgba(255,255,255,.08) inset,0 14px 40px -14px rgba(46,91,255,.7)}
@@ -62,7 +62,7 @@ body.landing .ld-btn{display:inline-flex;align-items:center;gap:9px;font-weight:
 .ld-btn-ghost:hover{border-color:rgba(255,255,255,.34)}
 
 /* ── APP MOCKUP (the money shot) ────────────────────────── */
-.ld-stage{position:relative;margin:18px auto 0;max-width:1210px;padding:0 24px;perspective:1400px}
+.ld-stage{position:relative;margin:10px auto 0;max-width:1210px;padding:0 24px;perspective:1400px}
 .ld-stage::after{content:"";position:absolute;left:10%;right:10%;bottom:-70px;height:200px;pointer-events:none;
   background:radial-gradient(50% 100% at 50% 0%,rgba(46,91,255,.14),transparent 75%)}
 .ld-app{position:relative;transform:rotateX(var(--rx,10deg)) scale(var(--sc,.955)) translateY(var(--ty,18px));
@@ -164,7 +164,7 @@ body.landing .ld-btn{display:inline-flex;align-items:center;gap:9px;font-weight:
 
 /* mockup responsive: phone shows the ask column only — like the real mobile app */
 @media(max-width:920px){
-  body.landing .ld-hero{padding-top:88px}
+  body.landing .ld-hero{padding-top:72px}
   body.landing .ld-hero h1{font-size:clamp(1.55rem,6.4vw,1.85rem)}
   .ld-appbody{grid-template-columns:1fr;min-height:0}
   .ld-nav,.ld-threads{display:none}
@@ -253,12 +253,15 @@ body.landing .ld-cta{position:relative;text-align:center;padding:130px 0 140px;o
 body.landing .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
 body.landing .reveal.in{opacity:1;transform:none}
 .plx{will-change:transform}
+/* Wejście hero startuje dopiero z .page-in (fade-in strony z site.js) — wcześniej
+   body ma opacity:0, więc animacja odpalona od razu kończyłaby się "za kurtyną"
+   i hero pojawiałby się bez ruchu. Bez JS / z reduced motion: wszystko widoczne od razu. */
 @media (prefers-reduced-motion: no-preference){
-  body.landing .ld-hero h1,body.landing .ld-hero .ld-lead,
-  body.landing .ld-hero .ld-ctas{animation:ld-in .8s cubic-bezier(.2,.7,.2,1) both}
-  body.landing .ld-hero .ld-lead{animation-delay:.08s}
-  body.landing .ld-hero .ld-ctas{animation-delay:.16s}
-  .ld-stage{animation:ld-in 1s cubic-bezier(.2,.7,.2,1) .26s both}
+  body.landing.page-in .ld-hero h1,body.landing.page-in .ld-hero .ld-lead,
+  body.landing.page-in .ld-hero .ld-ctas{animation:ld-in .8s cubic-bezier(.2,.7,.2,1) both}
+  body.landing.page-in .ld-hero .ld-lead{animation-delay:.1s}
+  body.landing.page-in .ld-hero .ld-ctas{animation-delay:.2s}
+  body.landing.page-in .ld-stage{animation:ld-in 1s cubic-bezier(.2,.7,.2,1) .3s both}
 }
 @keyframes ld-in{from{opacity:0;transform:translateY(18px);filter:blur(6px)}to{opacity:1;transform:none;filter:blur(0)}}
 @media (prefers-reduced-motion: reduce){

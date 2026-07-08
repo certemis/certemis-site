@@ -1,6 +1,6 @@
 /* ═══════════════════════════════════════════════════════════════════════
    Certemis — live demo (100% client-side, fake data). One fictional company
-   ("Northwind"). Every view mirrors the production app; nothing is persisted
+   ("Demo Company"). Every view mirrors the production app; nothing is persisted
    and nothing is sent to a backend. Full EN/PL parity via tx(en, pl).
    ═══════════════════════════════════════════════════════════════════════ */
 (function () {
@@ -18,6 +18,7 @@ function initials(name) { return name.split(" ").map(function (w) { return w[0];
 var IP = {
   home: '<path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/>',
   dashboard: '<rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/>',
+  layout: '<rect x="3" y="3" width="18" height="7" rx="1.5"/><rect x="3" y="14" width="8" height="7" rx="1.5"/><rect x="15" y="14" width="6" height="7" rx="1.5"/>',
   board: '<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 9v11"/>',
   spark: '<path d="M12 3l1.9 4.6L18.5 9.5 13.9 11.4 12 16l-1.9-4.6L5.5 9.5l4.6-1.9z"/><path d="M19 15l.7 1.8 1.8.7-1.8.7-.7 1.8-.7-1.8-1.8-.7 1.8-.7z"/>',
   chat: '<path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.5 8.5 8.5 0 0 1-3.8-.9L3 21l1.9-5.7A8.38 8.38 0 0 1 4 11.5 8.5 8.5 0 0 1 12.5 3 8.38 8.38 0 0 1 21 11.5z"/>',
@@ -28,6 +29,9 @@ var IP = {
   notes: '<path d="M5 3.5h14v17l-3-2-2 2-2-2-2 2-2-2-1 1z"/><path d="M9 8h6M9 12h6"/>',
   playbook: '<path d="M4 5a2 2 0 0 1 2-2h9l4 4v14H6a2 2 0 0 1-2-2z"/><path d="M9 8h5M9 12h7M9 16h4"/>',
   flag: '<path d="M5 21V4M5 4h11l-2 3 2 3H5"/>',
+  cap: '<path d="M22 9.5 12 4.5 2 9.5l10 5 10-5z"/><path d="M6 12v4.5c0 1.4 2.7 2.5 6 2.5s6-1.1 6-2.5V12"/>',
+  gear: '<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .34 1.87l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.7 1.7 0 0 0-1.87-.34 1.7 1.7 0 0 0-1.03 1.56V21a2 2 0 1 1-4 0v-.09a1.7 1.7 0 0 0-1.11-1.56 1.7 1.7 0 0 0-1.87.34l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.7 1.7 0 0 0 .34-1.87 1.7 1.7 0 0 0-1.56-1.03H3a2 2 0 1 1 0-4h.09a1.7 1.7 0 0 0 1.56-1.11 1.7 1.7 0 0 0-.34-1.87l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.7 1.7 0 0 0 1.87.34h.01a1.7 1.7 0 0 0 1.03-1.56V3a2 2 0 1 1 4 0v.09c0 .69.4 1.3 1.03 1.56a1.7 1.7 0 0 0 1.87-.34l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.7 1.7 0 0 0-.34 1.87v.01c.26.63.87 1.03 1.56 1.03H21a2 2 0 1 1 0 4h-.09a1.7 1.7 0 0 0-1.51.95z"/>',
+  logout: '<path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5M21 12H9"/>',
   mail: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5 12 13l8.5-6.5"/>',
   inbox: '<path d="M3 13h4l1.5 3h7L17 13h4"/><path d="M4 13 6 5h12l2 8v6a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1z"/>',
   reply: '<path d="M9 17l-6-5 6-5"/><path d="M3 12h9a8 8 0 0 1 8 8"/>',
@@ -94,7 +98,7 @@ function t(k) { var d = DICT[k]; return d ? tx(d[0], d[1]) : k; }
 
 /* ── people / company ─────────────────────────────────────────────────── */
 var PEOPLE = [
-  { name: "Marta Kowalska", role: "owner", title_en: "Co-founder", title_pl: "Współzałożycielka", color: "#0f6e56" },
+  { name: "Demo Tester", role: "owner", title_en: "Demo account", title_pl: "Konto demo", color: "#0f6e56" },
   { name: "Piotr Nowak", role: "admin", title_en: "Engineering lead", title_pl: "Lider inżynierii", color: "#2563eb" },
   { name: "Ania Wójcik", role: "member", title_en: "Product manager", title_pl: "Product manager", color: "#7c3aed" },
   { name: "Tomasz Zieliński", role: "member", title_en: "Backend engineer", title_pl: "Inżynier backendu", color: "#d97706" },
@@ -112,15 +116,15 @@ var ROLE = { owner: ["Owner", "Właściciel"], admin: ["Admin", "Administrator"]
 
 /* ── nav model (mirrors nav-model.ts) ─────────────────────────────────── */
 var NAV = [
-  { leaf: "start", icon: "home" },
-  { leaf: "pulpit", icon: "dashboard" },
+  { leaf: "start", icon: "dashboard" },
+  { leaf: "pulpit", icon: "layout" },
   { leaf: "tablica", icon: "board" },
   { leaf: "assistant", icon: "spark" },
   { leaf: "chat", icon: "chat", badge: 3 },
   { leaf: "calendar", icon: "calendar" },
   { group: "wiedza", icon: "book", children: [
     { leaf: "ask", icon: "ask" }, { leaf: "documents", icon: "file" },
-    { leaf: "notes", icon: "notes" }, { leaf: "playbooki", icon: "playbook" }, { leaf: "wdrozenie", icon: "flag" } ] },
+    { leaf: "notes", icon: "notes" }, { leaf: "playbooki", icon: "playbook" }, { leaf: "wdrozenie", icon: "cap" } ] },
   { group: "poczta", icon: "mail", children: [
     { leaf: "mailbox", icon: "inbox", badge: 5 }, { leaf: "needsReply", icon: "reply", badge: 2 } ] },
   { group: "widget", icon: "widgets", children: [
@@ -128,10 +132,23 @@ var NAV = [
   { group: "ludzie", icon: "people", children: [
     { leaf: "experts", icon: "help" }, { leaf: "team", icon: "team" }, { leaf: "clients", icon: "briefcase" } ] }
 ];
-var collapsed = {};
+// Jak w produkcji: grupy startują zwinięte, aktywny widok rozwija swojego rodzica.
+var collapsed = { wiedza: 1, poczta: 1, widget: 1, ludzie: 1 };
+function expandParentOf(view) {
+  NAV.forEach(function (e) {
+    if (e.group && e.children.some(function (c) { return c.leaf === view; })) collapsed[e.group] = 0;
+  });
+}
 
 function renderNav() {
-  var h = '<div class="side-search">' + svg("search") + '<span>' + t("search") + '</span><kbd style="margin-left:auto;font-size:11px">⌘K</kbd></div>';
+  var h = '<a class="brand side-brand" href="index.html" title="Certemis">' +
+    '<svg class="mark" viewBox="0 0 130 120" fill="none">' +
+      '<path d="M97 27 A48 48 0 1 0 97 89" stroke-width="7" stroke-linecap="round"/>' +
+      '<g stroke-width="3.4" stroke-linejoin="round" stroke-linecap="round"><path d="M64 32 C55 26 44 27 41 34 C32 32 26 40 30 46 C23 49 24 59 31 60 C27 68 33 75 42 73 C45 80 58 80 64 74"/><path d="M64 32 C73 26 84 27 87 34 C96 32 102 40 98 46 C105 49 104 59 97 60 C101 68 95 75 86 73 C83 80 70 80 64 74"/><line x1="64" y1="33" x2="64" y2="74"/></g>' +
+      '<g stroke-width="2.4" stroke-linecap="round"><line x1="64" y1="44" x2="80" y2="44"/><line x1="64" y1="57" x2="85" y2="57"/><line x1="64" y1="44" x2="48" y2="44"/><line x1="64" y1="57" x2="43" y2="57"/></g>' +
+      '<g><circle cx="82" cy="44" r="3.4"/><circle cx="87" cy="57" r="3.4"/><circle cx="46" cy="44" r="3.4"/><circle cx="41" cy="57" r="3.4"/></g>' +
+    '</svg><span>CERTEMIS</span></a>';
+  h += '<div class="side-search">' + svg("search") + '<span>' + t("search") + '</span></div>';
   NAV.forEach(function (e) {
     if (e.leaf) { h += navItem(e, false); return; }
     var isC = collapsed[e.group];
@@ -141,7 +158,8 @@ function renderNav() {
     e.children.forEach(function (c) { h += navItem(c, true); });
     h += '</div></div>';
   });
-  h += '<div class="side-foot"><div class="ws"><div class="ws-logo">N</div><div><div class="ws-name">Northwind</div><div class="ws-plan">' + tx("Team · 8 seats", "Zespół · 8 miejsc") + '</div></div></div></div>';
+  h += '<div class="side-foot"><button class="nav-item" data-fake>' + svg("gear") + '<span>' + tx("Settings", "Ustawienia") + '</span></button>' +
+    '<div class="ws"><span class="avatar md">DT</span><div style="flex:1;min-width:0"><div class="ws-name trunc">Demo Tester</div><div class="ws-plan trunc">demo@democompany.com</div></div><button class="iconbtn" data-fake title="' + tx("Sign out", "Wyloguj") + '">' + svg("logout") + '</button></div></div>';
   var s = $("sidebar"); s.innerHTML = h;
   s.querySelectorAll("[data-view]").forEach(function (b) { b.onclick = function () { go(b.getAttribute("data-view")); closeMob(); }; });
   s.querySelectorAll("[data-toggle]").forEach(function (b) { b.onclick = function () { var g = b.getAttribute("data-toggle"); collapsed[g] = !collapsed[g]; renderNav(); }; });
@@ -156,8 +174,8 @@ function phead(title, sub, actions) {
   return '<div class="phead"><div class="ph-main"><h1 class="ptitle">' + esc(title) + ' <span class="i">i</span></h1>' +
     (sub ? '<p class="psub">' + esc(sub) + '</p>' : '') + '</div>' + (actions ? '<div class="pact">' + actions + '</div>' : '') + '</div>';
 }
-function aibar(ph) {
-  return '<form class="aibar" data-fake><span class="spk">' + svg("spark") + '</span><input placeholder="' + esc(ph) + '"><button class="btn primary" type="submit">' + svg("spark") + tx("Ask", "Zapytaj") + '</button></form>';
+function aibar(ph, btnLabel) {
+  return '<form class="aibar" data-fake><span class="spk">' + svg("spark") + '</span><input placeholder="' + esc(ph) + '"><button class="btn primary" type="submit">' + svg("spark") + (btnLabel || tx("Ask", "Zapytaj")) + '</button></form>';
 }
 function chip(label) { return '<button class="chip" data-fake>' + svg("spark") + esc(label) + '</button>'; }
 function sectitle(icon, title, link) { return '<div class="sectitle">' + svg(icon) + '<span>' + esc(title) + '</span>' + (link ? '<a class="seelink" data-fake>' + t("seeall") + ' →</a>' : '') + '</div>'; }
@@ -171,21 +189,29 @@ var VIEWS = {};
 
 /* HOME */
 VIEWS.start = function () {
-  var hi = tx("Good afternoon, Marta", "Dzień dobry, Marto");
-  var date = tx("Northwind · Monday, 7 July", "Northwind · poniedziałek, 7 lipca");
+  // Powitanie wg pory dnia + data — dokładnie jak hero Startu w produkcji.
+  var hr = new Date().getHours();
+  var hi = (hr < 12 ? tx("Good morning", "Dzień dobry") : hr < 18 ? tx("Good afternoon", "Dzień dobry") : tx("Good evening", "Dobry wieczór")) + ", Demo tester";
+  var now = new Date();
+  var months = LANG === "pl"
+    ? ["stycznia", "lutego", "marca", "kwietnia", "maja", "czerwca", "lipca", "sierpnia", "września", "października", "listopada", "grudnia"]
+    : ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  var date = "Demo Company · " + (LANG === "pl"
+    ? now.getDate() + " " + months[now.getMonth()] + " " + now.getFullYear()
+    : months[now.getMonth()] + " " + now.getDate() + ", " + now.getFullYear());
   var tiles = [
-    { icon: "file", v: "1,564", l: tx("Documents indexed", "Zaindeksowane dokumenty"), d: "+82" },
+    { icon: "file", v: "1,564", l: tx("Documents", "Dokumenty"), d: "+82" },
     { icon: "ask", v: "37", l: tx("Questions this week", "Pytania w tym tygodniu"), d: "+12" },
-    { icon: "clock", v: tx("6.4 h", "6,4 godz."), l: tx("Time saved this week", "Zaoszczędzony czas"), d: "+1.1h" },
-    { icon: "people", v: "8", l: tx("Active members", "Aktywni członkowie"), d: "" }
+    { icon: "clock", v: tx("6.4 h", "6,4 godz."), l: tx("Est. time saved", "Szac. oszczędzony czas"), d: "+1.1h" },
+    { icon: "people", v: "8", l: tx("Members", "Członkowie"), d: "" }
   ];
   var h = '<div class="screen fade stack gap6">';
   h += '<div class="card pad" style="background:linear-gradient(135deg,var(--accent-soft),var(--surface) 65%)">' +
-    '<h1 style="font-size:22px;font-weight:600;letter-spacing:-.02em">' + hi + '</h1>' +
+    '<h1 class="ptitle" style="font-size:22px">' + hi + ' <span class="i">i</span></h1>' +
     '<p class="t3" style="font-size:13px;margin-top:3px">' + date + '</p>' +
-    '<div style="margin-top:16px">' + aibar(tx("Ask your company brain… e.g. “Why did we drop the legacy auth flow?”", "Zapytaj firmowy mózg… np. „Dlaczego zrezygnowaliśmy ze starego flow autoryzacji?”")) + '</div>' +
+    '<div style="margin-top:16px">' + aibar(tx("Ask your company brain… e.g. “Why did we drop the legacy auth flow?”", "Zapytaj firmowy mózg… np. „Dlaczego zrezygnowaliśmy ze starego flow autoryzacji?”"), tx("Ask a question", "Zadaj pytanie")) + '</div>' +
     '<div class="row wrap" style="margin-top:12px">' + chip(tx("Refund policy for annual plans", "Polityka zwrotów dla planów rocznych")) + chip(tx("Who owns Acme onboarding?", "Kto prowadzi wdrożenie Acme?")) + chip(tx("Status of Q3 security review", "Status przeglądu bezpieczeństwa Q3")) + '</div></div>';
-  h += '<div><div class="eyebrow" style="margin-bottom:10px">' + tx("This week", "Ten tydzień") + '</div><div class="tiles">';
+  h += '<div><div class="eyebrow" style="margin-bottom:10px">' + tx("Pulse", "Puls") + '</div><div class="tiles">';
   tiles.forEach(function (x) { h += '<div class="tile"><div class="icosq n ti">' + svg(x.icon) + '</div><div class="tv tnum">' + x.v + '</div><div class="tl">' + x.l + '</div>' + (x.d ? '<div class="td up">▲ ' + x.d + '</div>' : '') + '</div>'; });
   h += '</div></div>';
   h += '<div class="grid" style="grid-template-columns:1.6fr 1fr">';
@@ -197,21 +223,21 @@ VIEWS.start = function () {
     ["flag", tx("Onboarding step overdue: connect Jira", "Zaległy krok wdrożenia: podłącz Jira"), tx("Assigned to you", "Przypisane do Ciebie"), "1d"]
   ].forEach(function (r) { h += lrow(r[0], r[1], r[2], r[3]); });
   h += '</div></div>';
-  h += '<div class="card pad">' + sectitle("clock", tx("Recent activity", "Ostatnia aktywność"), 1) + '<div class="stack" style="margin-top:10px">';
+  h += '<div class="card pad"><div class="spread">' + sectitle("clock", tx("Recent activity", "Ostatnia aktywność")) + '<button class="btn sm sec" data-fake>' + svg("dashboard") + tx("Customize", "Dostosuj") + '</button></div><div class="stack" style="margin-top:10px">';
   [
     ["github", "Piotr Nowak " + tx("merged PR #412 · auth: remove legacy flow", "scalił PR #412 · auth: remove legacy flow"), "GitHub · #eng-core", "15m"],
-    ["ask", tx("You asked “What's our refund policy for annual plans?”", "Zapytałaś „Jaka jest polityka zwrotów dla planów rocznych?”"), tx("3 sources · Notion, Confluence, Gmail", "3 źródła · Notion, Confluence, Gmail"), "1h"],
+    ["ask", tx("You asked: “What's our refund policy for annual plans?”", "Twoje pytanie: „Jaka jest polityka zwrotów dla planów rocznych?”"), tx("3 sources · Notion, Confluence, Gmail", "3 źródła · Notion, Confluence, Gmail"), "1h"],
     ["notion", "Ania Wójcik " + tx("updated “Q3 Roadmap”", "zaktualizowała „Roadmapa Q3”"), "Notion", "3h"],
-    ["linear", "Tomasz Zieliński " + tx("closed NW-238 · rate-limit tuning", "zamknął NW-238 · rate-limit tuning"), "Linear", "5h"]
+    ["linear", "Tomasz Zieliński " + tx("closed DC-238 · rate-limit tuning", "zamknął DC-238 · rate-limit tuning"), "Linear", "5h"]
   ].forEach(function (r) { h += lrow2(r[0], r[1], r[2], r[3]); });
   h += '</div></div></div>';
   h += '<div class="stack gap5">' + recapCard() + upcomingCard() +
-    '<div class="card pad">' + sectitle("bolt", tx("Quick actions", "Szybkie akcje")) + '<div class="grid" style="grid-template-columns:1fr 1fr;margin-top:12px;gap:10px">' +
-    qa("ask", tx("Ask a question", "Zadaj pytanie"), "ask") + qa("plus", tx("Add a source", "Dodaj źródło"), "documents") +
-    qa("notes", tx("New note", "Nowa notatka"), "notes") + qa("board", tx("Post to board", "Wpis na tablicę"), "tablica") +
+    '<div>' + sectitle("bolt", tx("Quick actions", "Szybkie akcje")) + '<div class="grid" style="grid-template-columns:1fr 1fr;margin-top:12px;gap:10px">' +
+    qa("ask", tx("Questions", "Pytania"), "ask") + qa("spark", tx("Assistant", "Asystent"), "assistant") +
+    qa("inbox", tx("Inbox", "Skrzynka"), "mailbox") + qa("help", tx("Find help", "Kto pomoże"), "experts") +
     '</div></div></div>';
   h += '</div>';
-  h += '<div class="card pad"><div class="spread"><div class="row gap3"><b style="font-size:14px">' + tx("Finish setting up Northwind", "Dokończ konfigurację Northwind") + '</b><span class="pill acc">4/6</span></div><div class="prog" style="width:120px"><i style="width:66%"></i></div></div>' +
+  h += '<div class="card pad"><div class="spread"><div class="row gap3"><b style="font-size:14px">' + tx("Set up Certemis", "Skonfiguruj Certemis") + '</b><span class="pill acc">4/6</span></div><div class="prog" style="width:120px"><i style="width:66%"></i></div></div>' +
     '<div class="row wrap" style="margin-top:12px;gap:8px">' +
     ostep(tx("Connect first source", "Podłącz pierwsze źródło"), 1) + ostep(tx("Invite your team", "Zaproś zespół"), 1) +
     ostep(tx("Ask your first question", "Zadaj pierwsze pytanie"), 1) + ostep(tx("Create a playbook", "Utwórz playbook"), 1) +
@@ -249,22 +275,17 @@ function upcomingCard() {
 /* MY DASHBOARD */
 VIEWS.pulpit = function () {
   var h = '<div class="screen fade">' + phead(tx("My dashboard", "Mój pulpit"), tx("Your personalized tiles. Drag to reorder, add or remove — everything you care about in one place.", "Twoje spersonalizowane kafelki. Przeciągaj, dodawaj lub usuwaj — wszystko, co ważne, w jednym miejscu."), '<button class="btn sec" data-fake>' + svg("dashboard") + tx("Customize", "Dostosuj") + '</button>');
+  // Domyślne kafle jak w produkcji: Puls (szeroki) → Szybkie akcje → Ostatnie pytania → Nowe leady.
   h += '<div class="grid" style="grid-template-columns:1fr 1fr">';
-  h += '<div class="card pad" style="grid-column:span 2">' + sectitle("chart", tx("Widget & knowledge stats", "Statystyki widgetu i wiedzy"), 1) + '<div class="grid" style="grid-template-columns:repeat(4,1fr);margin-top:12px;gap:12px">' +
-    kpi("214", tx("Widget chats (30d)", "Rozmowy widgetu (30d)")) + kpi("92%", tx("Auto-resolved", "Auto-rozwiązane")) + kpi("37", tx("Team questions", "Pytania zespołu")) + kpi("1,564", tx("Sources", "Źródła")) + '</div></div>';
+  h += '<div class="card pad" style="grid-column:span 2">' + sectitle("chart", tx("Pulse", "Puls")) + '<div class="grid" style="grid-template-columns:repeat(4,1fr);margin-top:12px;gap:12px">' +
+    kpi("1,564", tx("Documents", "Dokumenty")) + kpi("37", tx("Questions (7d)", "Pytania (7 dni)")) + kpi("384", tx("Minutes saved", "Zaoszczędzone min")) + kpi("8", tx("Members", "Członkowie")) + '</div></div>';
+  h += '<div class="card pad">' + sectitle("bolt", tx("Quick actions", "Szybkie akcje")) + '<div class="grid" style="grid-template-columns:1fr 1fr;margin-top:12px;gap:10px">' +
+    qa2("ask", tx("Questions", "Pytania"), "ask") + qa2("spark", tx("Assistant", "Asystent"), "assistant") +
+    qa2("inbox", tx("Inbox", "Skrzynka"), "mailbox") + qa2("help", tx("Find help", "Kto pomoże"), "experts") + '</div></div>';
   h += tile("ask", tx("Recent questions", "Ostatnie pytania"), listRows([
     [tx("Why did we drop the legacy auth flow?", "Dlaczego zrezygnowaliśmy ze starego flow?"), "4 " + tx("sources", "źródła"), "1h"],
     [tx("Refund policy for annual plans?", "Polityka zwrotów dla planów rocznych?"), "3 " + tx("sources", "źródła"), "3h"],
     [tx("Who owns Acme onboarding?", "Kto prowadzi wdrożenie Acme?"), "3 " + tx("sources", "źródła"), tx("yest.", "wcz.")]
-  ]));
-  h += tile("file", tx("Sources to review", "Źródła do przeglądu"), listRows([
-    [tx("Q3 Security Questionnaire.pdf", "Ankieta bezpieczeństwa Q3.pdf"), "Google Drive", tx("urgent", "pilne"), 1],
-    ["ADR-019 · Rate limiting", "Confluence", "2d"],
-    [tx("Acme MSA (draft).docx", "Acme MSA (szkic).docx"), "Google Drive", "3d"]
-  ]));
-  h += tile("notes", tx("My notes", "Moje notatki"), listRows([
-    [tx("Pricing objections — cheat sheet", "Obiekcje cenowe — ściąga"), tx("pinned", "przypięta"), "1d"],
-    [tx("Onboarding checklist v2", "Checklista wdrożenia v2"), "", "4d"]
   ]));
   h += tile("userplus", tx("New leads", "Nowe leady"), listRows([
     ["Acme Corp — Robert K.", tx("Demo requested", "Prośba o demo"), "2h"],
@@ -274,6 +295,7 @@ VIEWS.pulpit = function () {
   h += '</div>' + joinbar() + '</div>';
   return h;
   function kpi(v, l) { return '<div style="background:var(--surface-2);border-radius:11px;padding:13px 15px"><div style="font-size:23px;font-weight:600" class="tnum">' + v + '</div><div class="t3" style="font-size:12px;margin-top:3px">' + l + '</div></div>'; }
+  function qa2(icon, label, view) { return '<button class="card-hover" data-goto="' + view + '" style="border:1px solid var(--border);background:var(--surface);border-radius:11px;padding:11px;display:flex;align-items:center;gap:9px;text-align:left"><span class="icosq n" style="width:30px;height:30px">' + svg(icon) + '</span><span style="font-size:13px;font-weight:500">' + label + '</span></button>'; }
   function tile(icon, title, body) { return '<div class="card pad">' + sectitle(icon, title, 1) + '<div style="margin-top:8px">' + body + '</div></div>'; }
   function listRows(rows) {
     return '<div class="stack">' + rows.map(function (r) {
@@ -286,7 +308,7 @@ VIEWS.pulpit = function () {
 VIEWS.tablica = function () {
   var posts = [
     { who: "Piotr Nowak", time: tx("2h ago", "2 godz. temu"), pin: 1, body: tx("🚀 The <b>OAuth2 tenant migration is live</b>. Legacy auth flow is disabled and monitored (PR #412, ADR-018). If a customer reports login issues, check the runbook first and ping me in #eng-core.", "🚀 <b>Migracja tenantów na OAuth2 jest live</b>. Stary flow autoryzacji wyłączony i monitorowany (PR #412, ADR-018). Jeśli klient zgłasza problem z logowaniem, sprawdź najpierw runbook i pisz do mnie na #eng-core."), likes: 12, comments: [["Ania Wójcik", tx("Huge — thank you!", "Ogromna robota — dzięki!")], ["Ewa Dąbrowska", tx("Runbook link saved to the support playbook 👌", "Link do runbooka zapisany w playbooku wsparcia 👌")]] },
-    { who: "Karolina Mazur", time: tx("5h ago", "5 godz. temu"), pin: 0, body: tx("New dashboard tiles shipped to staging. Grab a look before Thursday's review — feedback in the thread.", "Nowe kafelki pulpitu na staging. Zerknijcie przed czwartkowym review — uwagi w wątku."), img: 1, likes: 7, comments: [["Marta Kowalska", tx("Love the recap card at the top.", "Kafelek podsumowania na górze jest świetny.")]] },
+    { who: "Karolina Mazur", time: tx("5h ago", "5 godz. temu"), pin: 0, body: tx("New dashboard tiles shipped to staging. Grab a look before Thursday's review — feedback in the thread.", "Nowe kafelki pulpitu na staging. Zerknijcie przed czwartkowym review — uwagi w wątku."), img: 1, likes: 7, comments: [["Demo Tester", tx("Love the recap card at the top.", "Kafelek podsumowania na górze jest świetny.")]] },
     { who: "Jakub Lewandowski", time: tx("yesterday", "wczoraj"), pin: 0, body: tx("Acme signed the pilot 🎉 60 seats, security review is the last blocker. @Ania let's line up onboarding for next week.", "Acme podpisało pilotaż 🎉 60 miejsc, przegląd bezpieczeństwa to ostatni blocker. @Ania ustawmy wdrożenie na przyszły tydzień."), likes: 18, comments: [] }
   ];
   var h = '<div class="screen fade">';
@@ -380,7 +402,7 @@ var DOCS = [
   ["gdrive", tx("Q3 Security Questionnaire.pdf", "Ankieta bezpieczeństwa Q3.pdf"), "Google Drive · Ania Wójcik", "3h", "processing"],
   ["confluence", "ADR-018 · Auth v2", "Confluence · Engineering", tx("yesterday", "wczoraj"), "ready"],
   ["notion", tx("Billing & Refunds policy", "Polityka rozliczeń i zwrotów"), "Notion · Finance", "1d", "ready"],
-  ["linear", "NW-238 · rate-limit tuning", "Linear · Backend", "1d", "ready"],
+  ["linear", "DC-238 · rate-limit tuning", "Linear · Backend", "1d", "ready"],
   ["gdrive", tx("Acme — onboarding plan.xlsx", "Acme — plan wdrożenia.xlsx"), "Google Drive · Jakub L.", "2d", "ready"],
   ["slack", "#eng-core — auth migration thread", "Slack", "2d", "ready"],
   ["jira", "AUTH-203 · disable legacy endpoint", "Jira · AUTH", "2d", "ready"],
@@ -388,7 +410,7 @@ var DOCS = [
   ["notion", tx("Q3 Roadmap", "Roadmapa Q3"), "Notion · Ania Wójcik", "3d", "ready"],
   ["confluence", "ADR-019 · Rate limiting", "Confluence · Engineering", "4d", "ready"],
   ["github", "README · widget-embed", "GitHub · certemis", "4d", "ready"],
-  ["email", tx("Acme billing thread", "Wątek faktur Acme"), "Gmail · support@northwind", "5d", "ready"],
+  ["email", tx("Acme billing thread", "Wątek faktur Acme"), "Gmail · support@democompany", "5d", "ready"],
   ["linear", tx("Project: Acme onboarding", "Projekt: wdrożenie Acme"), "Linear", "5d", "ready"]
 ];
 VIEWS.documents = function () {
@@ -428,7 +450,7 @@ var NOTES = [
   { pin: 0, t: tx("Acme call — notes", "Call z Acme — notatki"), f: tx("60 seats, SSO required, security review before go-live. Robert is the champion.", "60 miejsc, wymagane SSO, przegląd bezpieczeństwa przed startem. Robert to sponsor."), who: "Jakub Lewandowski", d: "2d" },
   { pin: 0, t: tx("Auth migration retro", "Retro migracji auth"), f: tx("What went well: staged rollout. To improve: earlier comms to support.", "Co poszło dobrze: etapowe wdrożenie. Do poprawy: wcześniejsza komunikacja do wsparcia."), who: "Piotr Nowak", d: "4d" },
   { pin: 0, t: tx("Competitor teardown", "Analiza konkurencji"), f: tx("Their search is keyword-only, no citations, no permission awareness. Our edge.", "Ich wyszukiwanie działa tylko na słowa kluczowe, bez cytatów i uprawnień. Nasza przewaga."), who: "Ania Wójcik", d: "6d" },
-  { pin: 0, t: tx("Q3 goals draft", "Szkic celów Q3"), f: tx("Ship dashboard v2, close 3 pilots, reduce support first-response to < 1h.", "Wdrożyć pulpit v2, zamknąć 3 pilotaże, skrócić pierwszą odpowiedź wsparcia < 1 godz."), who: "Marta Kowalska", d: "1w" }
+  { pin: 0, t: tx("Q3 goals draft", "Szkic celów Q3"), f: tx("Ship dashboard v2, close 3 pilots, reduce support first-response to < 1h.", "Wdrożyć pulpit v2, zamknąć 3 pilotaże, skrócić pierwszą odpowiedź wsparcia < 1 godz."), who: "Demo Tester", d: "1w" }
 ];
 VIEWS.notes = function () {
   var h = '<div class="screen fade">' + phead(tx("Notes", "Notatki"), tx("Personal and shared notes — summarize with AI or promote to a playbook.", "Notatki osobiste i wspólne — podsumuj z AI lub awansuj do playbooka."), '<button class="btn primary" data-fake>' + svg("plus") + tx("New note", "Nowa notatka") + '</button>');
@@ -475,18 +497,18 @@ var CUR_CH = "eng-core";
 var CHAT_MSGS = {
   "eng-core": [
     ["Piotr Nowak", "10:02", tx("Legacy auth endpoint is now disabled in prod. Watching 401 rates — all flat so far. 🎉", "Stary endpoint auth wyłączony na prod. Obserwuję 401 — na razie płasko. 🎉"), 0],
-    ["Tomasz Zieliński", "10:05", tx("Nice. I bumped the rate-limit config in NW-238, deploying in ~10.", "Super. Podbiłem rate-limit w NW-238, deploy za ~10 min."), 0],
-    ["Marta Kowalska", "10:09", tx("Can we post a short summary to the Board so support has context?", "Wrzućmy krótkie podsumowanie na Tablicę, żeby wsparcie miało kontekst?"), 1],
+    ["Tomasz Zieliński", "10:05", tx("Nice. I bumped the rate-limit config in DC-238, deploying in ~10.", "Super. Podbiłem rate-limit w DC-238, deploy za ~10 min."), 0],
+    ["Demo Tester", "10:09", tx("Can we post a short summary to the Board so support has context?", "Wrzućmy krótkie podsumowanie na Tablicę, żeby wsparcie miało kontekst?"), 1],
     ["Piotr Nowak", "10:11", tx("On it — linking the runbook and ADR-018.", "Robię — podlinkuję runbook i ADR-018."), 0]
   ],
   "accounts": [
     ["Jakub Lewandowski", "09:40", tx("Acme signed the pilot — 60 seats! Security review is the last blocker.", "Acme podpisało pilotaż — 60 miejsc! Przegląd bezpieczeństwa to ostatni blocker."), 0],
     ["Ania Wójcik", "09:44", tx("I'll own onboarding. Kickoff Thursday, I'll set up the Linear project.", "Biorę wdrożenie. Kickoff w czwartek, ustawię projekt w Linear."), 0],
-    ["Marta Kowalska", "09:46", tx("Perfect. Let's make sure the security packet is ready before the call.", "Idealnie. Upewnijmy się, że pakiet bezpieczeństwa jest gotowy przed callem."), 1]
+    ["Demo Tester", "09:46", tx("Perfect. Let's make sure the security packet is ready before the call.", "Idealnie. Upewnijmy się, że pakiet bezpieczeństwa jest gotowy przed callem."), 1]
   ],
   "support": [
     ["Ewa Dąbrowska", "08:30", tx("Acme asked about EU data residency again — pointing them to the security packet.", "Acme znów pyta o rezydencję danych w UE — kieruję ich do pakietu bezpieczeństwa."), 0],
-    ["Marta Kowalska", "08:33", tx("👍 Robert emailed me too, I'll take that one.", "👍 Robert napisał też do mnie, wezmę to."), 1]
+    ["Demo Tester", "08:33", tx("👍 Robert emailed me too, I'll take that one.", "👍 Robert napisał też do mnie, wezmę to."), 1]
   ],
   "random": [
     ["Karolina Mazur", "12:10", tx("New office plants have arrived 🌱", "Przyjechały nowe rośliny do biura 🌱"), 0],
@@ -548,11 +570,11 @@ VIEWS.calendar = function () {
 
 /* MAILBOX */
 var MAILS = [
-  ["Robert Kowal", "Acme Corp", tx("Re: Pilot agreement & security review", "Re: Umowa pilotażowa i przegląd bezpieczeństwa"), tx("Thanks Marta — we're ready to sign once the security packet is in. One question on data residency…", "Dzięki Marto — podpiszemy, gdy dostaniemy pakiet bezpieczeństwa. Jedno pytanie o rezydencję danych…"), "09:12", 1, 2, "#0891b2"],
+  ["Robert Kowal", "Acme Corp", tx("Re: Pilot agreement & security review", "Re: Umowa pilotażowa i przegląd bezpieczeństwa"), tx("Thanks — we're ready to sign once the security packet is in. One question on data residency…", "Dzięki — podpiszemy, gdy dostaniemy pakiet bezpieczeństwa. Jedno pytanie o rezydencję danych…"), "09:12", 1, 2, "#0891b2"],
   ["Sarah Miller", "Globex", tx("Pricing for 25 seats", "Cennik dla 25 miejsc"), tx("Hi, could you send an annual quote for 25 seats? We saw the demo and liked the citations.", "Cześć, prześlecie ofertę roczną na 25 miejsc? Widzieliśmy demo, cytaty robią wrażenie."), "08:47", 1, 0, "#7c3aed"],
-  ["Stripe", "billing", tx("Your invoice for June is ready", "Faktura za czerwiec jest gotowa"), tx("Invoice NW-2026-06 for €1,240 has been paid. View or download your receipt.", "Faktura NW-2026-06 na 1240 € została opłacona. Zobacz lub pobierz potwierdzenie."), tx("yest.", "wcz."), 0, 1, "#635bff"],
+  ["Stripe", "billing", tx("Your invoice for June is ready", "Faktura za czerwiec jest gotowa"), tx("Invoice DC-2026-06 for €1,240 has been paid. View or download your receipt.", "Faktura DC-2026-06 na 1240 € została opłacona. Zobacz lub pobierz potwierdzenie."), tx("yest.", "wcz."), 0, 1, "#635bff"],
   ["Bill Lumbergh", "Initech", tx("Question from your website chat", "Pytanie z czatu na stronie"), tx("The assistant on your site answered most of it, but I wanted to talk to a human about SSO.", "Asystent na stronie odpowiedział na większość, ale chciałbym pogadać z człowiekiem o SSO."), tx("yest.", "wcz."), 0, 0, "#d97706"],
-  ["Ania Wójcik", "Northwind", tx("Acme onboarding plan — draft", "Plan wdrożenia Acme — szkic"), tx("Shared the week-by-week plan in Drive. Can you review the security-review step before the kickoff?", "Wrzuciłam plan tydzień po tygodniu na Drive. Zerkniesz na krok przeglądu bezpieczeństwa przed kickoffem?"), "Mon", 0, 1, "#7c3aed"]
+  ["Ania Wójcik", "Demo Company", tx("Acme onboarding plan — draft", "Plan wdrożenia Acme — szkic"), tx("Shared the week-by-week plan in Drive. Can you review the security-review step before the kickoff?", "Wrzuciłam plan tydzień po tygodniu na Drive. Zerkniesz na krok przeglądu bezpieczeństwa przed kickoffem?"), "Mon", 0, 1, "#7c3aed"]
 ];
 VIEWS.mailbox = function () {
   var h = '<div class="fade" style="display:flex;flex-direction:column;height:calc(100vh - 52px);padding:14px clamp(14px,2vw,24px)">';
@@ -572,7 +594,7 @@ VIEWS.mailbox = function () {
   var m = MAILS[0];
   h += '<div class="card" style="overflow:auto"><div style="padding:18px 20px;border-bottom:1px solid var(--border)"><h2 style="font-size:17px;font-weight:600">' + m[2] + '</h2><div class="row gap2" style="margin-top:10px"><span class="mail-av" style="background:' + m[7] + '">' + initials(m[0]) + '</span><div><div style="font-size:13.5px;font-weight:600">' + m[0] + ' <span class="t3" style="font-weight:400">· ' + m[1] + '</span></div><div class="t3" style="font-size:11.5px">' + tx("to me · ", "do mnie · ") + m[4] + '</div></div></div></div>' +
     '<div style="padding:20px;font-size:14px;line-height:1.7">' +
-    '<p>' + tx("Hi Marta,", "Cześć Marto,") + '</p><p style="margin-top:12px">' + tx("Thanks for the walkthrough last week — the team was impressed, especially with how every answer cites the underlying source. We're ready to sign the pilot for 60 seats.", "Dzięki za prezentację w zeszłym tygodniu — zespół był pod wrażeniem, zwłaszcza tym, że każda odpowiedź cytuje źródło. Jesteśmy gotowi podpisać pilotaż na 60 miejsc.") + '</p>' +
+    '<p>' + tx("Hi,", "Cześć,") + '</p><p style="margin-top:12px">' + tx("Thanks for the walkthrough last week — the team was impressed, especially with how every answer cites the underlying source. We're ready to sign the pilot for 60 seats.", "Dzięki za prezentację w zeszłym tygodniu — zespół był pod wrażeniem, zwłaszcza tym, że każda odpowiedź cytuje źródło. Jesteśmy gotowi podpisać pilotaż na 60 miejsc.") + '</p>' +
     '<p style="margin-top:12px">' + tx("One question before we proceed: where is our data stored, and can we keep it in the EU? Our security team will need this for the review.", "Jedno pytanie: gdzie przechowywane są nasze dane i czy mogą zostać w UE? Nasz zespół bezpieczeństwa będzie tego potrzebował do przeglądu.") + '</p>' +
     '<p style="margin-top:12px">' + tx("Best,", "Pozdrawiam,") + '<br>Robert</p>' +
     '<div class="card pad-sm" style="margin-top:16px;background:var(--surface-2)"><div class="row gap2"><span class="icosq acc" style="width:26px;height:26px">' + svg("spark") + '</span><b style="font-size:12.5px">' + tx("Suggested reply · from your playbook", "Sugerowana odpowiedź · z playbooka") + '</b></div><p class="muted" style="font-size:12.5px;margin-top:8px">' + tx("Data is stored in the EU (Frankfurt). Security packet with sub-processors and data-residency details is attached — happy to book a call with your security team.", "Dane przechowywane w UE (Frankfurt). Pakiet bezpieczeństwa z podprocesorami i szczegółami rezydencji w załączniku — chętnie umówimy call z Waszym zespołem bezpieczeństwa.") + '</p></div>' +
@@ -620,7 +642,7 @@ VIEWS.team = function () {
 /* ASSISTANT */
 VIEWS.assistant = function () {
   var h = '<div class="screen fade" style="max-width:820px">' + phead(tx("Assistant", "Asystent"), tx("Ask the assistant to do things across your workspace — it can draft, schedule and summarize.", "Poproś asystenta, żeby coś zrobił w workspace — napisze, zaplanuje i podsumuje."), '');
-  h += '<div class="card pad stack gap4"><div class="row gap3" style="align-items:flex-start"><span class="avatar md" style="background:var(--accent-soft);color:var(--accent)"><span style="width:16px;height:16px;display:block">' + svg("spark") + '</span></span><div class="ans" style="flex:1">' + tx("Hi Marta 👋 I can help across Northwind. Try: <b>“Draft a reply to Robert about data residency”</b>, <b>“Schedule the Acme onboarding call Thursday 3pm”</b>, or <b>“Summarize this week for the board”</b>.", "Cześć Marto 👋 Pomogę w całym Northwind. Spróbuj: <b>„Napisz odpowiedź do Roberta o rezydencji danych”</b>, <b>„Zaplanuj call wdrożeniowy Acme czwartek 15:00”</b> lub <b>„Podsumuj tydzień dla zarządu”</b>.") + '</div></div>';
+  h += '<div class="card pad stack gap4"><div class="row gap3" style="align-items:flex-start"><span class="avatar md" style="background:var(--accent-soft);color:var(--accent)"><span style="width:16px;height:16px;display:block">' + svg("spark") + '</span></span><div class="ans" style="flex:1">' + tx("Hi 👋 I can help across Demo Company. Try: <b>“Draft a reply to Robert about data residency”</b>, <b>“Schedule the Acme onboarding call Thursday 3pm”</b>, or <b>“Summarize this week for the board”</b>.", "Cześć 👋 Pomogę w całym Demo Company. Spróbuj: <b>„Napisz odpowiedź do Roberta o rezydencji danych”</b>, <b>„Zaplanuj call wdrożeniowy Acme czwartek 15:00”</b> lub <b>„Podsumuj tydzień dla zarządu”</b>.") + '</div></div>';
   h += '<div class="row wrap gap2">' + chip(tx("Draft reply to Robert", "Napisz odpowiedź do Roberta")) + chip(tx("Schedule Acme call", "Zaplanuj call Acme")) + chip(tx("Weekly summary", "Podsumowanie tygodnia")) + '</div>';
   h += aibar(tx("Ask the assistant to do something…", "Poproś asystenta o coś…")) + '</div>' + joinbar() + '</div>';
   return h;
@@ -679,10 +701,10 @@ VIEWS.widget = function () {
   var h = '<div class="screen fade">' + phead(tx("Widget settings", "Ustawienia widgetu"), tx("An embeddable assistant that answers your website visitors from your public knowledge.", "Osadzalny asystent, który odpowiada odwiedzającym stronę na podstawie Twojej publicznej wiedzy."), '');
   h += '<div class="grid" style="grid-template-columns:1fr 1fr">';
   h += '<div class="card pad stack gap4"><div class="eyebrow">' + tx("Appearance", "Wygląd") + '</div>' +
-    '<label style="font-size:13px">' + tx("Greeting", "Powitanie") + '<input class="inp" style="margin-top:6px" value="' + esc(tx("Hi! Ask me anything about Northwind.", "Cześć! Zapytaj mnie o Northwind.")) + '"></label>' +
+    '<label style="font-size:13px">' + tx("Greeting", "Powitanie") + '<input class="inp" style="margin-top:6px" value="' + esc(tx("Hi! Ask me anything about Demo Company.", "Cześć! Zapytaj mnie o Demo Company.")) + '"></label>' +
     '<div class="row gap2"><span style="font-size:13px">' + tx("Accent", "Akcent") + '</span><span class="dot" style="width:22px;height:22px;background:var(--accent)"></span><span class="dot" style="width:22px;height:22px;background:#2563eb"></span><span class="dot" style="width:22px;height:22px;background:#db2777"></span></div>' +
-    '<div><div class="eyebrow" style="margin-bottom:8px">' + tx("Embed code", "Kod osadzania") + '</div><div style="border:1px solid var(--border);background:var(--surface-2);border-radius:9px;padding:11px;font-family:ui-monospace,monospace;font-size:11.5px;color:var(--text-2)">&lt;script src="app.certemis.com/embed.js" data-ws="northwind"&gt;&lt;/script&gt;</div></div></div>';
-  h += '<div class="card pad"><div class="eyebrow" style="margin-bottom:12px">' + tx("Live preview", "Podgląd na żywo") + '</div><div style="border:1px solid var(--border);border-radius:14px;padding:16px;background:var(--surface-2);min-height:260px" class="stack gap3"><div class="row gap2"><span class="icosq acc" style="width:30px;height:30px">' + svg("chat") + '</span><b style="font-size:13px">Northwind</b></div><div class="cbub them" style="max-width:90%">' + tx("Hi! Ask me anything about Northwind.", "Cześć! Zapytaj mnie o Northwind.") + '</div><div class="cbub me" style="max-width:90%;align-self:flex-end">' + tx("Do you support SSO?", "Wspieracie SSO?") + '</div><div class="cbub them" style="max-width:90%">' + tx("Yes — SAML & Google SSO on Team and Enterprise plans.", "Tak — SAML i Google SSO w planach Team i Enterprise.") + '</div></div></div>';
+    '<div><div class="eyebrow" style="margin-bottom:8px">' + tx("Embed code", "Kod osadzania") + '</div><div style="border:1px solid var(--border);background:var(--surface-2);border-radius:9px;padding:11px;font-family:ui-monospace,monospace;font-size:11.5px;color:var(--text-2)">&lt;script src="app.certemis.com/embed.js" data-ws="demo-company"&gt;&lt;/script&gt;</div></div></div>';
+  h += '<div class="card pad"><div class="eyebrow" style="margin-bottom:12px">' + tx("Live preview", "Podgląd na żywo") + '</div><div style="border:1px solid var(--border);border-radius:14px;padding:16px;background:var(--surface-2);min-height:260px" class="stack gap3"><div class="row gap2"><span class="icosq acc" style="width:30px;height:30px">' + svg("chat") + '</span><b style="font-size:13px">Demo Company</b></div><div class="cbub them" style="max-width:90%">' + tx("Hi! Ask me anything about Demo Company.", "Cześć! Zapytaj mnie o Demo Company.") + '</div><div class="cbub me" style="max-width:90%;align-self:flex-end">' + tx("Do you support SSO?", "Wspieracie SSO?") + '</div><div class="cbub them" style="max-width:90%">' + tx("Yes — SAML & Google SSO on Team and Enterprise plans.", "Tak — SAML i Google SSO w planach Team i Enterprise.") + '</div></div></div>';
   h += '</div>' + joinbar() + '</div>';
   return h;
 };
@@ -717,7 +739,7 @@ VIEWS.leady = function () {
 };
 
 /* ── router ───────────────────────────────────────────────────────────── */
-function go(view) { VIEW = view; render(); try { $("main").scrollTo(0, 0); } catch (e) {} }
+function go(view) { VIEW = view; expandParentOf(view); render(); try { $("main").scrollTo(0, 0); } catch (e) {} }
 function render() {
   renderNav();
   var fn = VIEWS[VIEW] || VIEWS.start;
@@ -787,9 +809,6 @@ function init() {
   document.querySelectorAll("[data-i18n]").forEach(function (n) { n.textContent = t(n.getAttribute("data-i18n")); });
   $("langDD").querySelectorAll(".dd-opt").forEach(function (o) { o.classList.toggle("sel", o.getAttribute("data-lang") === LANG); });
   render();
-
-  function tick() { try { var d = new Date(); $("clock").textContent = String(d.getHours()).padStart(2, "0") + ":" + String(d.getMinutes()).padStart(2, "0"); } catch (e) {} }
-  tick(); setInterval(tick, 15000);
 
   $("themeBtn").onclick = function () { THEME = THEME === "dark" ? "light" : "dark"; localStorage.setItem("certemis_demo_theme", THEME); applyTheme(); };
   $("langBtn").onclick = function (e) { e.stopPropagation(); $("langDD").classList.toggle("on"); $("bellDD").classList.remove("on"); };
